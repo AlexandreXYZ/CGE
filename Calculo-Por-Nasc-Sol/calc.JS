@@ -37,8 +37,12 @@ class Calc{
     }
     //Caculos do nascer do Sol
     Nascer_Sol(){
-        var declinição_terra = 23.45 * Math.sin((360/365)*(284 + this.getDia_ano()));
-        var T = 2/15 * Math.acos(Math.tan(this.getLatitude)*Math.tan(declinição_terra));
+        //var declinacao_terra = 23.45 * Math.sin((360/365)*(284 + this.getDia_ano()));
+        var declinacao_terra = 23.45 * Math.sin((360/365)*(284 + 1)); //1 de jan.
+        document.write(this.getDia_ano());
+
+        /*
+        var T = 2/15 * Math.acos(Math.tan(this.getLatitude())*Math.tan(declinacao_terra));
 
         var a = T/2;
         var horas_nasc = 12 - a;
@@ -49,7 +53,7 @@ class Calc{
 
         //var min_por = 0.57587*60;
         //var seg_por = 0.552233*60;
-        document.write(horas_nasc, min_nasc, seg_nasc);
+        document.write(horas_nasc, min_nasc, seg_nasc);*/
     }
 
 
