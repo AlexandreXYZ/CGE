@@ -56,10 +56,6 @@ class Calc{
             return (grau * (Math.PI/180));
         }
 
-        function conv_Radian(radian){
-            return (radian * (180/Math.PI));
-        }
-
         this.setDia_ano(119);
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
@@ -67,6 +63,7 @@ class Calc{
         document.write(T, "<br>");
 
         this.setHoras_totais(T);
+        //document.write(T);
 
         var a = T/2;
         var horas_nasc = 12 - a;
@@ -77,7 +74,7 @@ class Calc{
 
         //var min_por = 0.57587*60;
         //var seg_por = 0.552233*60;
-        document.write(horas_nasc, "<br>", min_nasc,"<br>", seg_nasc, "<br>");
+        //document.write(horas_nasc, "<br>", min_nasc,"<br>", seg_nasc, "<br>");
 
         document.write("<br> <br>");
     }
