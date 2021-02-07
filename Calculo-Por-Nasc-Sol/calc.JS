@@ -94,7 +94,6 @@ class Calc{
         var hora_por = Math.trunc(horario_por);
         var min_por = (horario_por - hora_por) * 60;
         var seg_por = (min_por - Math.trunc(min_por)) * 60;
-
         document.write("Horario: ", hora_por, "h ", Math.trunc(min_por),"min ", Math.trunc(seg_por), "s");
         document.write("<br> <br>");
     }
