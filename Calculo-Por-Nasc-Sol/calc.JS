@@ -1,4 +1,4 @@
-//Essa Função irá efetuar os calculos do Nascer e do Por do sol\\
+
 class Calc{
     //Esse metodo irá pegar os imput
     constructor(longi, lati, dia, mes1){
@@ -64,24 +64,36 @@ class Calc{
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
         var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
-        document.write(T, "<br>");
-
-        this.setHoras_totais(T);
-
         var a = T/2;
         var horas_nasc = 12 - a;
-        //var horas_por = 12 + a;
-
         var min_nasc = 0.424129 * horas_nasc;
-        var seg_nasc = 44774 * 60;
+        var seg_nasc = 0.44774 * 60;
 
-        //var min_por = 0.57587*60;
-        //var seg_por = 0.552233*60;
-        document.write(horas_nasc, "<br>", min_nasc,"<br>", seg_nasc, "<br>");
-
+        document.write("Horas:", horas_nasc, "<br>Minutos:", min_nasc,"<br>Segundos:", seg_nasc, "<br>");
         document.write("<br> <br>");
     }
+    Por_Sol(){
 
+        function conv_Grau(grau){
+            return (grau * (Math.PI/180));
+        }
+
+        function conv_Radian(radian){
+            return (radian * (180/Math.PI));
+        }
+
+        this.setDia_ano(119);
+
+        var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
+        var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
+        var a = T/2;
+        var horas_nasc = 12 + a;
+        var min_nasc = 0.57587 * horas_nasc;
+        var seg_nasc = 0.552233 * 60;
+
+        document.write("Horas:", horas_nasc, "<br>Minutos:", min_nasc,"<br>Segundos:", seg_nasc, "<br>");
+        document.write("<br> <br>");
+    }
     //Metodos Getters e Setters
 
         //longitude
@@ -106,13 +118,5 @@ class Calc{
     }
     setDia_ano(x){
         this.dia_ano = x;
-    }
-
-        //horas_totais
-    getHoras_totais(){
-        return this.horas_totais;
-    }
-    setHoras_totais(x){
-        this.horas_totais = x;
     }
 }
