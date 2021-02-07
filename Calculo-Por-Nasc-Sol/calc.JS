@@ -23,32 +23,18 @@ class Calc{
         var dezMax = 31;
         
         var jan = 0;        
-        var fev = 31;
-        var abr = 31;
-        var mar = 28;
-        var mai = 30;
-        var jun = 31;
-        var jul = 30;
-        var ago = 30;
-        var set = 31;
-        var out = 30;
-        var nov = 31;
-        var dez = 30;
+        var fev = 0;
+        var abr = 0;
+        var mar = 0;
+        var mai = 0;
+        var jun = 0;
+        var jul = 0;
+        var ago = 0;
+        var set = 0;
+        var out = 0;
+        var nov = 0;
+        var dez = 0;
         
-        var jan =+ 0;        
-        var fev =+ jan;
-        var abr =+ mar;
-        var mar =+ mai;
-        var mai =+ jun;
-        var jun =+ jul;
-        var jul =+ ago;
-        var ago =+ set;
-        var set =+ out;
-        var out =+ nov;
-        var nov =+ dez;
-        var dez =+ 30;
-        
-
         if(mes1 == "jan"){var mes = jan;}
         if(mes1 == "fev"){var mes = fev + janMax;}
         if(mes1 == "mar"){var mes = mar + janMax + fevMax;}
@@ -65,14 +51,22 @@ class Calc{
     } 
     //Caculos do nascer do Sol
     Nascer_Sol(){
+
+        function conv_Grau(grau){
+            return (grau * (Math.PI/180));
+        }
+
+        function conv_Radian(radian){
+            return (radian * (180/Math.PI));
+        }
+
         this.setDia_ano(119);
 
-        //var declinacao_terra = 23.45 * Math.sin((360/365)*(284 + this.getDia_ano()));
-        var declinacao_terra = 23.45 * Math.sin((360/365)*(284 + 119));
-        var T = 2/15 * Math.acos(-Math.tan((this.getLatitude()) * (180/Math.PI)) * Math.tan((declinacao_terra) * (180/Math.PI)));
+        var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
+        var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
+        document.write(T, "<br>");
 
-        document.write(declinacao_terra).innertext;
-        document.write(Math.sin((360/365)*(284 + 119))).innertext;
+        this.setHoras_totais(T);
 
         var a = T/2;
         var horas_nasc = 12 - a;
@@ -83,9 +77,10 @@ class Calc{
 
         //var min_por = 0.57587*60;
         //var seg_por = 0.552233*60;
-        //document.write(horas_nasc, "<br>", min_nasc,"<br>", seg_nasc).innertext;
-    }
+        document.write(horas_nasc, "<br>", min_nasc,"<br>", seg_nasc, "<br>");
 
+        document.write("<br> <br>");
+    }
 
     //Metodos Getters e Setters
 
@@ -102,7 +97,7 @@ class Calc{
         return this.latitude;
     }
     setLatitude(x){
-        return this.latitude;
+        this.latitude = x;
     }
 
         //dia_ano
@@ -111,5 +106,13 @@ class Calc{
     }
     setDia_ano(x){
         this.dia_ano = x;
+    }
+
+        //horas_totais
+    getHoras_totais(){
+        return this.horas_totais;
+    }
+    setHoras_totais(x){
+        this.horas_totais = x;
     }
 }
