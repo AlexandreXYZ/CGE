@@ -1,18 +1,20 @@
 class Calc{
     // Esse metodo irá pegar os input
 
-    constructor(longi, lati, dia, mes1){
+    constructor(longi, lati, dia, mes1, bicesto=false){
 
         // Declara 2 atributos
         this.longitude = longi;
         this.latitude = lati;
+        this.bicesto = bicesto
 
         // Vai adicionar cada variável um número para que elas possam ser calculadas quantos Dias do ano valem cada Mes de 2021\\
         // Isso é uma gambiarra e deverá ser mudado para que possa ser modificado para qualquer ano
         
         var janMax = 31;
-        var fevMax = 28;
         var abrMax = 31;
+        if(this.bicesto == true){var fevMax=29}
+        if(this.bicesto == false){var fevMax=28}
         var marMax = 30;
         var maiMax = 31;
         var junMax = 30;
@@ -52,6 +54,7 @@ class Calc{
         this.dia_ano = dia + mes; // Aqui ele pega o último input que seria qual é o dia do ano EXATO de 2021
     } 
 
+    
     // Cálculos do nascer do sol
     Nascer_Sol(){
 
@@ -70,7 +73,7 @@ class Calc{
         var min_nasc = (horario_nasc - hora_nasc) * 60;
         var seg_nasc = (min_nasc - Math.trunc(min_nasc)) * 60;
 
-        document.write("Horas: ", hora_nasc, "<br>Minutos: ", Math.trunc(min_nasc),"<br>Segundos: ", Math.trunc(seg_nasc), "<br>");
+        document.write("Horario: ", hora_nasc, "h ", Math.trunc(min_nasc),"min ", Math.trunc(seg_nasc), "s");
         document.write("<br> <br>");
     }
 
@@ -92,7 +95,7 @@ class Calc{
         var min_por = (horario_por - hora_por) * 60;
         var seg_por = (min_por - Math.trunc(min_por)) * 60;
 
-        document.write("Horas: ", hora_por, "<br>Minutos: ", Math.trunc(min_por),"<br>Segundos: ", Math.trunc(seg_por), "<br>");
+        document.write("Horario: ", hora_por, "h ", Math.trunc(min_por),"min ", Math.trunc(seg_por), "s");
         document.write("<br> <br>");
     }
 
