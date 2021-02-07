@@ -23,32 +23,18 @@ class Calc{
         var dezMax = 31;
         
         var jan = 0;        
-        var fev = 31;
-        var abr = 31;
-        var mar = 28;
-        var mai = 30;
-        var jun = 31;
-        var jul = 30;
-        var ago = 30;
-        var set = 31;
-        var out = 30;
-        var nov = 31;
-        var dez = 30;
+        var fev = 0;
+        var abr = 0;
+        var mar = 0;
+        var mai = 0;
+        var jun = 0;
+        var jul = 0;
+        var ago = 0;
+        var set = 0;
+        var out = 0;
+        var nov = 0;
+        var dez = 0;
         
-        var jan =+ 0;        
-        var fev =+ jan;
-        var abr =+ mar;
-        var mar =+ mai;
-        var mai =+ jun;
-        var jun =+ jul;
-        var jul =+ ago;
-        var ago =+ set;
-        var set =+ out;
-        var out =+ nov;
-        var nov =+ dez;
-        var dez =+ 30;
-        
-
         if(mes1 == "jan"){var mes = jan;}
         if(mes1 == "fev"){var mes = fev + janMax;}
         if(mes1 == "mar"){var mes = mar + janMax + fevMax;}
