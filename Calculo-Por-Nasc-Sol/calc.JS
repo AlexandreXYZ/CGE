@@ -62,8 +62,24 @@ class Calc{
             return (grau * (Math.PI/180));
         }
 
+        function corret_lati(latitude, divisor){
+            // Checa se o número é divisível pelo 'divisor';
+            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
 
+            var num = latitude + (divisor - (latitude % divisor)) % divisor;
+
+            if ((num - latitude) > 7.5){
+                return (num - 15);
+            }
+            else{
+                return num;
+            }
+        }
+
+
+        //this.setLatitude(corret_lati(this.getLatitude(), 15));
         this.setDia_ano(119);
+
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
         var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
@@ -73,8 +89,9 @@ class Calc{
         var min_nasc = (horario_nasc - hora_nasc) * 60;
         var seg_nasc = (min_nasc - Math.trunc(min_nasc)) * 60;
 
-        document.write("Horario: ", hora_nasc, "h ", Math.trunc(min_nasc),"min ", Math.trunc(seg_nasc), "s");
-        document.write("<br> <br>");
+        // Saída (output)
+        document.write("Horário do nascer do sol: ", hora_nasc, "h ", Math.trunc(min_nasc),"min ", Math.trunc(seg_nasc), "s");
+
     }
 
     // Cálculos do pôr do sol
@@ -84,8 +101,29 @@ class Calc{
             return (grau * (Math.PI/180));
         }
 
+        function corret_lati(longitude){
+            // Checa se o número é divisível por 15
+            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
+
+            // Calcula qual o fuso horário do usuário
+            var fuso = longitude + (15 - (longitude % 15)) % 15;
+
+            if ((fuso - longitude) > 7.5){
+                fuso = (fuso - 15);
+            }
+
+            // Calcula as diferenças
+            var dif_Grau = longitude - fuso;
+            var min_dif = (dif_Grau * 60) / 15;
+            var seg_dif = (min_dif - Math.trunc(min_dif)) * 60;
+
+            document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
+            document.write("segundos: ", seg_por + seg_dif, "<br>"); // ta errado
+
+        }
 
         this.setDia_ano(119);
+
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
         var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
@@ -94,8 +132,12 @@ class Calc{
         var hora_por = Math.trunc(horario_por);
         var min_por = (horario_por - hora_por) * 60;
         var seg_por = (min_por - Math.trunc(min_por)) * 60;
-        document.write("Horario: ", hora_por, "h ", Math.trunc(min_por),"min ", Math.trunc(seg_por), "s");
-        document.write("<br> <br>");
+
+        corret_lati(this.getLongitude());
+
+        // Saída (output)
+        document.write("Horário do pôr do sol: ", hora_por, "h ", Math.trunc(min_por),"min ", Math.trunc(seg_por), "s");
+        
     }
 
     // Métodos Getters e Setters
