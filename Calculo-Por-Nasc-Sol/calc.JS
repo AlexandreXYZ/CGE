@@ -1,16 +1,16 @@
 class Calc{
-    // Esse metodo irá pegar os input
 
+    // Esse metodo irá pegar os input
     constructor(longi, lati, dia, mes1, bicesto=false){
 
-        // Declara 2 atributos
+        // Declara 3 atributos
         this.longitude = longi;
         this.latitude = lati;
         this.bicesto = bicesto
 
-        // Vai adicionar cada variável um número para que elas possam ser calculadas quantos Dias do ano valem cada Mes de 2021\\
-        // Isso é uma gambiarra e deverá ser mudado para que possa ser modificado para qualquer ano
-        
+        //Calculo que diz qual é o dia do ano que estamo exemplo: 108/365
+        //Ele foi feito capaz de ser usado qualquer ano, pois a diferença é o ano bicesto que se não colocar nenhum parametro ou false
+        //É considerado como não ano bicesto e se colocar TRUE ele é considerado ano bicesto
         var janMax = 31;
         var abrMax = 31;
         if(this.bicesto == true){var fevMax=29}
@@ -51,7 +51,7 @@ class Calc{
         if(mes1 == "nov"){var mes = nov + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax;}
         if(mes1 == "dez"){var mes = dez + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax + novMax;}
 
-        this.dia_ano = dia + mes; // Aqui ele pega o último input que seria qual é o dia do ano EXATO de 2021
+        this.dia_ano = dia + mes; // Fim do codigo, ele colocar o Valor do dia do ano em um Atributo
     } 
 
     
@@ -76,9 +76,8 @@ class Calc{
             }
         }
 
-
         //this.setLatitude(corret_lati(this.getLatitude(), 15));
-        this.setDia_ano(119);
+//this.setDia_ano(119); eu botei essa linha como comentario pra te dizer que era só botar o dia como bicesto, não precisa desse SET, abraços e quanado ler isso, apague essa linda
 
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
@@ -123,7 +122,6 @@ class Calc{
         }
 
         this.setDia_ano(119);
-
 
         var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
         var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
