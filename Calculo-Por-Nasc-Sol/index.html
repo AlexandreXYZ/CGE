@@ -8,9 +8,16 @@
     </head>
     <body>
         <script >
-            
-            let a = new Calc(46,633056,-23.543333, 29, "abr");
-            document.write(a.Nascer_Sol());
+
+            let a = new Calc(46.633056,-23.543333, 29, "abr");
+            document.write("Longitude: ", a.getLongitude(), "<br>");
+            document.write("Latitude: ", a.getLatitude(), "<br>");
+            document.write("Dia: ", a.getDia_ano(), "<br>");
+            document.write("<br> <br>");
+            a.Nascer_Sol();
+            document.write("<br> <br>");
+            a.Por_Sol();
+
         </script>
     </body>
 </html>
