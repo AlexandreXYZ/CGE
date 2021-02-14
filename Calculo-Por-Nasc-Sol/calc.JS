@@ -1,6 +1,6 @@
 class Calc{
 
-    // Esse metodo irá pegar os inputs
+    // Esse metodo irá pegar as entradas (input)
     constructor(longi, lati, dia, mes1, bicesto=false){
 
         // Declara 3 atributos
@@ -50,7 +50,7 @@ class Calc{
         if(mes1 == "nov"){var mes = nov + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax;}
         if(mes1 == "dez"){var mes = dez + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax + novMax;}
 
-        this.dia_ano = dia + mes; // Fim do código, valor do dia vira um atributo.
+        this.day_year = dia + mes; // Fim do código, valor do dia vira um atributo.
     } 
 
     
@@ -58,8 +58,8 @@ class Calc{
     Nascer_Sol(){
 
         // Função para conversão entre GRAUS para RADIANOS
-        function conv_Grau(grau){
-            return (grau * (Math.PI/180));
+        function conv_degree(degree){
+            return (degree * (Math.PI/180));
         }
 
         function corret_lati(longitude){
@@ -67,14 +67,14 @@ class Calc{
             // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
 
             // Calcula qual o fuso horário do usuário
-            var fuso = longitude + (15 - (longitude % 15)) % 15;
+            var timezone = longitude + (15 - (longitude % 15)) % 15;
 
-            if ((fuso - longitude) > 7.5){
-                fuso = (fuso - 15);
+            if ((timezone - longitude) > 7.5){
+                timezone = (timezone - 15);
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - fuso;
+            var dif_Grau = longitude - timezone;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = (min_dif - Math.trunc(min_dif)) * 60;
 
@@ -87,9 +87,9 @@ class Calc{
         //this.setLatitude(corret_lati(this.getLatitude(), 15));
 
         // Calcula a declinação da Terra
-        var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
+        var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
         // Calcula a duração do dia
-        var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
+        var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
         var schedule_sunrise = 12 - (T/2); // Número completo
 
         var hour_sunrise = Math.trunc(schedule_sunrise);
@@ -104,8 +104,8 @@ class Calc{
     // Cálculos do pôr do sol
     Por_Sol(){
 
-        function conv_Grau(grau){
-            return (grau * (Math.PI/180));
+        function conv_degree(degree){
+            return (degree * (Math.PI/180));
         }
 
         function corret_lati(longitude){
@@ -113,14 +113,14 @@ class Calc{
             // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
 
             // Calcula qual o fuso horário do usuário
-            var fuso = longitude + (15 - (longitude % 15)) % 15;
+            var timezone = longitude + (15 - (longitude % 15)) % 15;
 
-            if ((fuso - longitude) > 7.5){
-                fuso = (fuso - 15);
+            if ((timezone - longitude) > 7.5){
+                timezone = (timezone - 15);
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - fuso;
+            var dif_Grau = longitude - timezone;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = (min_dif - Math.trunc(min_dif)) * 60;
 
@@ -131,12 +131,12 @@ class Calc{
 
         this.setDia_ano(119);
 
-        var declinacao_terra = 23.45 * Math.sin(conv_Grau((360/365)*(284 + this.getDia_ano())));
-        var T = 2/15 * Math.acos(-Math.tan(conv_Grau(this.getLatitude())) * Math.tan(conv_Grau(declinacao_terra))) * (180/Math.PI);
-        var horario_por = 12 + (T/2); // Número completo
+        var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
+        var schedule_sunset = 12 + (T/2); // Número completo
 
-        var hour_sunset = Math.trunc(horario_por);
-        var min_por = (horario_por - hour_sunset) * 60;
+        var hour_sunset = Math.trunc(schedule_sunset);
+        var min_por = (schedule_sunset - hour_sunset) * 60;
         var seg_por = (min_por - Math.trunc(min_por)) * 60;
 
         corret_lati(this.getLongitude());
@@ -166,9 +166,9 @@ class Calc{
 
         // Dia_ano
     getDia_ano(){
-        return this.dia_ano;
+        return this.day_year;
     }
     setDia_ano(x){
-        this.dia_ano = x;
+        this.day_year = x;
     }
 }
