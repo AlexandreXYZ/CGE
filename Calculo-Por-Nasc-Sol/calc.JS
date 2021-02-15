@@ -124,8 +124,8 @@ class Calc{
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = (min_dif - Math.trunc(min_dif)) * 60;
 
-            //document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
-            //document.write("segundos: ", seg_por + seg_dif, "<br>"); // ta errado
+            document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
+            document.write("segundos: ", seg_por + seg_dif, "<br>"); // ta errado
 
         }
 
