@@ -9,15 +9,15 @@
     <body>
         <script >
 
-            let a = new Calc(46.633056,-23.543333, 29, "abr", true);
+            let a = new Calc(46.633056,-23.543333, 10, "mai");
             document.write("Longitude: ", a.getLongitude(), "<br>");
             document.write("Latitude: ", a.getLatitude(), "<br>");
             document.write("Dia: ", a.getDia_ano(), "<br>");
             document.write("<br> <br>");
 
-            a.Nascer_Sol();
+            a.Sunrise();
             document.write("<br> <br>");
-            a.Por_Sol();
+            a.Sunset();
 
         </script>
     </body>

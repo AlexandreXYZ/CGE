@@ -55,7 +55,7 @@ class Calc{
 
     
     // Cálculos do nascer do sol
-    Nascer_Sol(){
+    Sunrise(){
 
         // Função para conversão entre GRAUS para RADIANOS
         function conv_degree(degree){
@@ -63,28 +63,30 @@ class Calc{
         }
 
         function corret_lati(longitude){
-            // Checa se o número é divisível por 15
-            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
-
             // Calcula qual o fuso horário do usuário
+
+            // Checa se o número é divisível por 15
+            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo            
             var timezone = longitude + (15 - (longitude % 15)) % 15;
 
             if ((timezone - longitude) > 7.5){
-                timezone = (timezone - 15);
+                timezone -= 15;
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - timezone;
+            var dif_Grau = longitude - timezone;            
             var min_dif = (dif_Grau * 60) / 15;
-            var seg_dif = (min_dif - Math.trunc(min_dif)) * 60;
+            var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
 
-            //document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
-            //document.write("segundos: ", seg_por + seg_dif, "<br>"); // ta errado
+            // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
+            if ((Math.round(seg_sunrise + seg_dif)) > 60){
+                seg_dif -= 60;
+            }
 
+            // Saída (output)
+            document.write("<br> Horário corrigido: ", hour_sunrise, "h ", Math.trunc(min_sunrise + min_dif), "min ", Math.round(seg_sunrise + seg_dif), "s <br>");
+            
         }
-
-
-        //this.setLatitude(corret_lati(this.getLatitude(), 15));
 
         // Calcula a declinação da Terra
         var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
@@ -98,21 +100,22 @@ class Calc{
 
         // Saída (output)
         document.write("Horário do nascer do sol: ", hour_sunrise, "h ", Math.trunc(min_sunrise),"min ", Math.trunc(seg_sunrise), "s");
+        corret_lati(this.getLongitude());
 
     }
 
     // Cálculos do pôr do sol
-    Por_Sol(){
+    Sunset(){
 
         function conv_degree(degree){
             return (degree * (Math.PI/180));
         }
 
         function corret_lati(longitude){
-            // Checa se o número é divisível por 15
-            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo
-
             // Calcula qual o fuso horário do usuário
+
+            // Checa se o número é divisível por 15
+            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo    
             var timezone = longitude + (15 - (longitude % 15)) % 15;
 
             if ((timezone - longitude) > 7.5){
@@ -120,32 +123,33 @@ class Calc{
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - timezone;
+            var dif_Grau = longitude - timezone;            
             var min_dif = (dif_Grau * 60) / 15;
-            var seg_dif = 60 - (Math.round((min_dif - Math.trunc(min_dif)) * 60));
+            var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
 
-            document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
-            document.write("segundos: ", seg_por - seg_dif, "<br>"); // ta errado
-            document.write("segundos 2: ", seg_por, "<br>");
-            document.write("segundos dif: ", seg_dif, "<br>"); // ta errado
+            // Caso a soma entre 'seg_sunset' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
+            if ((Math.round(seg_sunset + seg_dif)) > 60){
+                seg_dif -= 60;
+            }
 
-
+            // Saída (output)
+            document.write("<br> Horário corrigido: ", hour_sunset, "h ", Math.trunc(min_sunset + min_dif), "min ", Math.round(seg_sunset + seg_dif), "s <br>");
+            
         }
 
-        this.setDia_ano(119);
-
+        // Calcula a declinação da Terra
         var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        // Calcula a duração do dia
         var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
         var schedule_sunset = 12 + (T/2); // Número completo
 
         var hour_sunset = Math.trunc(schedule_sunset);
-        var min_por = (schedule_sunset - hour_sunset) * 60;
-        var seg_por = (min_por - Math.trunc(min_por)) * 60;
-
-        corret_lati(this.getLongitude());
+        var min_sunset = (schedule_sunset - hour_sunset) * 60;
+        var seg_sunset = (min_sunset - Math.trunc(min_sunset)) * 60;
 
         // Saída (output)
-        document.write("Horário do pôr do sol: ", hour_sunset, "h ", Math.trunc(min_por),"min ", Math.trunc(seg_por), "s");
+        document.write("Horário do pôr do sol: ", hour_sunset, "h ", Math.trunc(min_sunset),"min ", Math.round(seg_sunset), "s");
+        corret_lati(this.getLongitude());
         
     }
 
