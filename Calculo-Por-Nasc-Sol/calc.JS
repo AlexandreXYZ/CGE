@@ -6,7 +6,7 @@ class Calc{
         // Declara 3 atributos
         this.longitude = longi;
         this.latitude = lati;
-        this.bicesto = bicesto
+        this.bicesto = bicesto;
 
         // Cálculo que retorna o dia do ano. Ex: 108/365
         // Pode ser utilizado em qualquer ano, porém em anos bicestos é necessária a adição de um parâmetro 'true'.
