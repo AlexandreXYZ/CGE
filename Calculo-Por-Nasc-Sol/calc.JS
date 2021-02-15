@@ -116,17 +116,19 @@ class Calc{
             var timezone = longitude + (15 - (longitude % 15)) % 15;
 
             if ((timezone - longitude) > 7.5){
-                timezone = (timezone - 15);
+                timezone -= 15;
             }
 
             // Calcula as diferenças
             var dif_Grau = longitude - timezone;
             var min_dif = (dif_Grau * 60) / 15;
-            var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60) - 60;
+            var seg_dif = 60 - (Math.round((min_dif - Math.trunc(min_dif)) * 60));
 
             document.write("minutos: ", min_por + min_dif, "<br>"); // ta certo
-            document.write("segundos: ", seg_por + seg_dif, "<br>"); // ta errado
+            document.write("segundos: ", seg_por - seg_dif, "<br>"); // ta errado
             document.write("segundos 2: ", seg_por, "<br>");
+            document.write("segundos dif: ", seg_dif, "<br>"); // ta errado
+
 
         }
 
