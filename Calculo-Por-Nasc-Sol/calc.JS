@@ -74,17 +74,23 @@ class Calc{
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - timezone;            
+            var dif_Grau = longitude - timezone;
+            var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
 
             // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunrise + seg_dif)) > 60){
+            if ((Math.round(seg_sunrise + seg_dif)) > 59){
                 seg_dif -= 60;
             }
 
+            if (Math.trunc(min_sunrise + min_dif) > 59){
+                hour_dif += 1;
+                min_dif -= 60;
+            }
+
             // Saída (output)
-            document.write("<br> Horário corrigido: ", hour_sunrise, "h ", Math.trunc(min_sunrise + min_dif), "min ", Math.round(seg_sunrise + seg_dif), "s <br>");
+            document.write("<br> Horário corrigido: ", hour_sunrise + hour_dif, "h ", Math.trunc(min_sunrise + min_dif), "min ", Math.round(seg_sunrise + seg_dif), "s <br>");
             
         }
 
@@ -123,7 +129,8 @@ class Calc{
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - timezone;            
+            var dif_Grau = longitude - timezone;
+            var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
 
@@ -132,8 +139,13 @@ class Calc{
                 seg_dif -= 60;
             }
 
+            if (Math.trunc(min_sunset + min_dif) > 59){
+                hour_dif += 1;
+                min_dif -= 60;
+            }
+
             // Saída (output)
-            document.write("<br> Horário corrigido: ", hour_sunset, "h ", Math.trunc(min_sunset + min_dif), "min ", Math.round(seg_sunset + seg_dif), "s <br>");
+            document.write("<br> Horário corrigido: ", hour_sunset + hour_dif, "h ", Math.trunc(min_sunset + min_dif), "min ", Math.round(seg_sunset + seg_dif), "s <br>");
             
         }
 
