@@ -78,7 +78,7 @@ class Calc{
             var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
-
+            
             // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
             if ((Math.round(seg_sunrise + seg_dif)) > 59){
                 seg_dif -= 60;
@@ -107,8 +107,11 @@ class Calc{
 
         // Calcula a declinação da Terra
         var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        document.write("declination_earth: ", declination_earth, "<br>");
         // Calcula a duração do dia
         var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
+        document.write("Td: ",T, "<br><br>");
+        
         var schedule_sunrise = 12 - (T/2); // Número completo
 
         var hour_sunrise = Math.trunc(schedule_sunrise);
@@ -144,6 +147,9 @@ class Calc{
             var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
+            document.write("<br><br> hora: ",hour_dif, "<br><br>");
+            document.write("min: ",min_dif, "<br><br>");
+            document.write("seg: ",seg_dif, "<br><br>");
 
             // Caso a soma entre 'seg_sunset' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
             if ((Math.round(seg_sunset + seg_dif)) > 60){
