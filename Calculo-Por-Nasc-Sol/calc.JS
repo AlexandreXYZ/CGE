@@ -88,9 +88,20 @@ class Calc{
                 hour_dif += 1;
                 min_dif -= 60;
             }
-
+            var horaFinal =  hour_sunrise + hour_dif;
+            var minFinal =  Math.trunc(min_sunrise + min_dif);
+            var segFinal = Math.round(seg_sunrise + seg_dif);
+            if (horaFinal<0){
+                horaFinal = horaFinal/-1;
+            }
+            if (minFinal<0){
+                minFinal = minFinal/-1;
+            }
+            if (segFinal<0){
+                segFinal = segFinal/-1;
+            }
             // Saída (output)
-            document.write("<br> Horário corrigido: ", hour_sunrise + hour_dif, "h ", Math.trunc(min_sunrise + min_dif), "min ", Math.round(seg_sunrise + seg_dif), "s <br>");
+            document.write("<br> Horário corrigido: ",horaFinal, "h ",minFinal, "min ",segFinal , "s <br>");
             
         }
 
@@ -143,9 +154,20 @@ class Calc{
                 hour_dif += 1;
                 min_dif -= 60;
             }
-
+            var horaFinal =  hour_sunset + hour_dif;
+            var minFinal =  Math.trunc(min_sunset + min_dif);
+            var segFinal = Math.round(seg_sunset + seg_dif);
+            if (horaFinal<0){
+                horaFinal = horaFinal/-1;
+            }
+            if (minFinal<0){
+                minFinal = minFinal/-1;
+            }
+            if (segFinal<0){
+                segFinal = segFinal/-1;
+            }
             // Saída (output)
-            document.write("<br> Horário corrigido: ", hour_sunset + hour_dif, "h ", Math.trunc(min_sunset + min_dif), "min ", Math.round(seg_sunset + seg_dif), "s <br>");
+            document.write("<br> Horário corrigido: ",horaFinal, "h ", minFinal, "min ", segFinal, "s <br>");
             
         }
 
