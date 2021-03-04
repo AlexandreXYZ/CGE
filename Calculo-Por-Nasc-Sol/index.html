@@ -18,10 +18,11 @@
         <div class="container">
             <script id="js-output">
 
-                let a = new Calc(-51.2278,-30.0275, 3, "mar");
-                document.write("Longitude: ", a.getLongitude(), "<br>");
+                // (Latitude, Longitude, Dia, Mês)
+                let a = new Calc(-30.0275,-51.2278, 3, "mar");
                 document.write("Latitude: ", a.getLatitude(), "<br>");
-                document.write("Dia: ", a.getDia_ano(), "<br>");
+                document.write("Longitude: ", a.getLongitude(), "<br>");
+                document.write("Dia: ", a.getSequential_day(), "<br>");
                 document.write("<br> <br>");
 
                 a.Sunrise();

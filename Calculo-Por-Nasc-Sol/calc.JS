@@ -1,19 +1,19 @@
 class Calc{
 
     // Esse metodo irá pegar as entradas (input)
-    constructor(longi, lati, dia, mes1, bicesto=false) {
+    constructor(lati, longi, dia, mes1, bicesto = false) {
 
         // Declara 3 atributos
-        this.longitude = longi;
         this.latitude = lati;
+        this.longitude = longi;
         this.bicesto = bicesto;
 
         // Cálculo que retorna o dia sequencial. Ex: 108/365
         // Pode ser utilizado em qualquer ano, porém em anos bicestos é necessária a adição de um parâmetro 'true'.
         var janMax = 31;
         var abrMax = 31;
-        if(this.bicesto == true){var fevMax=29}
-        if(this.bicesto == false){var fevMax=28}
+        if(this.bicesto == true){var fevMax=29;}
+        if(this.bicesto == false){var fevMax=28;}
         var marMax = 30;
         var maiMax = 31;
         var junMax = 30;
@@ -58,11 +58,12 @@ class Calc{
     // Cálculos do nascer do sol
     Sunrise(){
 
-        // Função para conversão entre GRAUS para RADIANOS
+        // Converte GRAUS para RADIANOS
         function conv_degree(degree){
             return (degree * (Math.PI/180));
         }
 
+        // Calcula a correção do horário de acordo com a latitude
         function corret_lati(longitude){
             // Calcula qual o fuso horário do usuário
 
@@ -103,14 +104,14 @@ class Calc{
         }
 
         // Calcula a declinação do local
-        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getSequential_day())));
         // Calcula a duração do dia
         var day_lenght = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(local_declination))) * (180/Math.PI);        
         // Calcula o horário do nascer do sol (completo)
         var schedule_sunrise = 12 - (day_lenght/2);
 
 
-        // Divide o horário nas suas respectivas divisões (hora, minuto, segundo)
+        // Divide o horário nas suas respectivas divisões (hora, minuto e segundo)
         // Multiplica o número depois da vírgula por 60
         var hour_sunrise = Math.trunc(schedule_sunrise);
         var min_sunrise = (schedule_sunrise - hour_sunrise) * 60;
@@ -125,11 +126,12 @@ class Calc{
     // Cálculos do pôr do sol
     Sunset(){
 
-        // Função para conversão entre GRAUS para RADIANOS
+        // Converte GRAUS para RADIANOS
         function conv_degree(degree){
             return (degree * (Math.PI/180));
         }
 
+        // Calcula a correção do horário de acordo com a latitude
         function corret_lati(longitude){
             // Calcula qual o fuso horário do usuário
 
@@ -170,7 +172,7 @@ class Calc{
         }
 
         // Calcula a declinação do local
-        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getSequential_day())));
         // Calcula a duração do dia
         var day_lenght = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(local_declination))) * (180/Math.PI);
         // Calcula o horário do nascer do sol (completo)
@@ -190,27 +192,27 @@ class Calc{
 
     // Métodos Getters e Setters
 
-        // Longitude
-    getLongitude(){
-        return this.longitude;
-    }
-    setLongitude(x){
-        this.longitude = x;
-    }
-
         // Latitude
-    getLatitude(){
+    getLatitude() {
         return this.latitude;
     }
-    setLatitude(x){
+    setLatitude(x) {
         this.latitude = x;
     }
 
+        // Longitude
+    getLongitude() {
+        return this.longitude;
+    }
+    setLongitude(x) {
+        this.longitude = x;
+    }
+
         // Dia_ano
-    getDia_ano(){
+    getSequential_day() {
         return this.sequential_day;
     }
-    setDia_ano(x){
+    setSequential_day(x) {
         this.sequential_day = x;
     }
 }
