@@ -1,14 +1,14 @@
 class Calc{
 
     // Esse metodo irá pegar as entradas (input)
-    constructor(longi, lati, dia, mes1, bicesto=false){
+    constructor(longi, lati, dia, mes1, bicesto=false) {
 
         // Declara 3 atributos
         this.longitude = longi;
         this.latitude = lati;
         this.bicesto = bicesto;
 
-        // Cálculo que retorna o dia do ano. Ex: 108/365
+        // Cálculo que retorna o dia sequencial. Ex: 108/365
         // Pode ser utilizado em qualquer ano, porém em anos bicestos é necessária a adição de um parâmetro 'true'.
         var janMax = 31;
         var abrMax = 31;
@@ -24,7 +24,7 @@ class Calc{
         var novMax = 30;
         var dezMax = 31;
         
-        var jan = 0;        
+        var jan = 0;
         var fev = 0;
         var abr = 0;
         var mar = 0;
@@ -50,7 +50,8 @@ class Calc{
         if(mes1 == "nov"){var mes = nov + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax;}
         if(mes1 == "dez"){var mes = dez + janMax + fevMax + marMax + abrMax + maiMax + junMax + julMax + agoMax + setMax + outMax + novMax;}
 
-        this.day_year = dia + mes; // Fim do código, valor do dia vira um atributo.
+        // Fim do código, valor do dia vira um atributo
+        this.sequential_day = dia + mes;
     } 
 
     
@@ -74,46 +75,43 @@ class Calc{
             }
 
             // Calcula as diferenças
-            var dif_Grau = longitude - timezone;
+            var dif_grau = longitude - timezone;
             var hour_dif = 0;
-            var min_dif = (dif_Grau * 60) / 15;
+            var min_dif = (dif_grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
             
-            // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunrise + seg_dif)) > 59){
+            // Caso a soma entre 'seg_sunrise' e 'seg_dif' seja > 59, 'seg_dif' ficará negativo
+            if ((Math.round(seg_sunrise + seg_dif)) > 59) {
                 seg_dif -= 60;
             }
 
-            if (Math.trunc(min_sunrise + min_dif) > 59){
+            // Caso a soma entre 'min_sunrise' e 'min_dif' seja > 59, +1 será adicionado na 'hour_dif' e -60 do 'min_dif'
+            if (Math.trunc(min_sunrise + min_dif) > 59) {
                 hour_dif += 1;
                 min_dif -= 60;
             }
-            var horaFinal =  hour_sunrise + hour_dif;
-            var minFinal =  Math.trunc(min_sunrise + min_dif);
-            var segFinal = Math.round(seg_sunrise + seg_dif);
-            if (horaFinal<0){
-                horaFinal = horaFinal/-1;
-            }
-            if (minFinal<0){
-                minFinal = minFinal/-1;
-            }
-            if (segFinal<0){
-                segFinal = segFinal/-1;
-            }
+
+            // Calcula o horário definitivo, somando as variáveis 'originais' com a da 'diferença'
+            // Além de aplicar a função módulo matemático
+            var hora_Final =  Math.abs(hour_sunrise + hour_dif);
+            var min_Final =  Math.abs(Math.trunc(min_sunrise + min_dif));
+            var seg_Final = Math.abs(Math.round(seg_sunrise + seg_dif));
+
             // Saída (output)
-            document.write("<br> Horário corrigido: ",horaFinal, "h ",minFinal, "min ",segFinal , "s <br>");
+            document.write("<br> Horário corrigido: ",hora_Final, "h ",min_Final, "min ",seg_Final , "s <br>");
             
         }
 
-        // Calcula a declinação da Terra
-        var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
-        document.write("declination_earth: ", declination_earth, "<br>");
+        // Calcula a declinação do local
+        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
         // Calcula a duração do dia
-        var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
-        document.write("Td: ",T, "<br><br>");
-        
-        var schedule_sunrise = 12 - (T/2); // Número completo
+        var day_lenght = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(local_declination))) * (180/Math.PI);        
+        // Calcula o horário do nascer do sol (completo)
+        var schedule_sunrise = 12 - (day_lenght/2);
 
+
+        // Divide o horário nas suas respectivas divisões (hora, minuto, segundo)
+        // Multiplica o número depois da vírgula por 60
         var hour_sunrise = Math.trunc(schedule_sunrise);
         var min_sunrise = (schedule_sunrise - hour_sunrise) * 60;
         var seg_sunrise = (min_sunrise - Math.trunc(min_sunrise)) * 60;
@@ -127,6 +125,7 @@ class Calc{
     // Cálculos do pôr do sol
     Sunset(){
 
+        // Função para conversão entre GRAUS para RADIANOS
         function conv_degree(degree){
             return (degree * (Math.PI/180));
         }
@@ -147,42 +146,38 @@ class Calc{
             var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
-            document.write("<br><br> hora: ",hour_dif, "<br><br>");
-            document.write("min: ",min_dif, "<br><br>");
-            document.write("seg: ",seg_dif, "<br><br>");
 
             // Caso a soma entre 'seg_sunset' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
             if ((Math.round(seg_sunset + seg_dif)) > 60){
                 seg_dif -= 60;
             }
 
+            // Caso a soma entre 'min_sunrise' e 'min_dif' seja > 59, +1 será adicionado na 'hour_dif' e -60 do 'min_dif'
             if (Math.trunc(min_sunset + min_dif) > 59){
                 hour_dif += 1;
                 min_dif -= 60;
             }
-            var horaFinal =  hour_sunset + hour_dif;
-            var minFinal =  Math.trunc(min_sunset + min_dif);
-            var segFinal = Math.round(seg_sunset + seg_dif);
-            if (horaFinal<0){
-                horaFinal = horaFinal/-1;
-            }
-            if (minFinal<0){
-                minFinal = minFinal/-1;
-            }
-            if (segFinal<0){
-                segFinal = segFinal/-1;
-            }
+
+            // Calcula o horário definitivo, somando as variáveis 'originais' com a da 'diferença'
+            // Além de aplicar a função módulo matemático
+            var hora_Final =  Math.abs(hour_sunset + hour_dif);
+            var min_Final =  Math.abs(Math.trunc(min_sunset + min_dif));
+            var seg_Final = Math.abs(Math.round(seg_sunset + seg_dif));
+
             // Saída (output)
-            document.write("<br> Horário corrigido: ",horaFinal, "h ", minFinal, "min ", segFinal, "s <br>");
+            document.write("<br> Horário corrigido: ", hora_Final, "h ", min_Final, "min ", seg_Final, "s <br>");
             
         }
 
-        // Calcula a declinação da Terra
-        var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
+        // Calcula a declinação do local
+        var local_declination = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_ano())));
         // Calcula a duração do dia
-        var T = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(declination_earth))) * (180/Math.PI);
-        var schedule_sunset = 12 + (T/2); // Número completo
+        var day_lenght = 2/15 * Math.acos(-Math.tan(conv_degree(this.getLatitude())) * Math.tan(conv_degree(local_declination))) * (180/Math.PI);
+        // Calcula o horário do nascer do sol (completo)
+        var schedule_sunset = 12 + (day_lenght/2);
 
+        // Divide o horário nas suas respectivas divisões (hora, minuto, segundo)
+        // Multiplica o número depois da vírgula por 60
         var hour_sunset = Math.trunc(schedule_sunset);
         var min_sunset = (schedule_sunset - hour_sunset) * 60;
         var seg_sunset = (min_sunset - Math.trunc(min_sunset)) * 60;
@@ -213,9 +208,9 @@ class Calc{
 
         // Dia_ano
     getDia_ano(){
-        return this.day_year;
+        return this.sequential_day;
     }
     setDia_ano(x){
-        this.day_year = x;
+        this.sequential_day = x;
     }
 }
