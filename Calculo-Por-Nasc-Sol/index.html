@@ -1,16 +1,35 @@
 <!DOCTYPE html>
-
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Cálculo do horário do nascer e pôr do sol</title>
+
+        <link rel="stylesheet" href="./index.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
         <script type="text/javascript" src="calc.JS"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     </head>
+
     <body>
-        <script >
-            
-            let a = new Calc(46,633056,-23.543333, 29, "abr");
-            document.write(a.Nascer_Sol());
-        </script>
+        <div class="container">
+            <script id="js-output">
+
+                // (Latitude, Longitude, Dia, Mês)
+                let a = new Calc(-30.0275,-51.2278, 3, "mar");
+                document.write("Latitude: ", a.getLatitude(), "<br>");
+                document.write("Longitude: ", a.getLongitude(), "<br>");
+                document.write("Dia: ", a.getSequential_day(), "<br>");
+                document.write("<br> <br>");
+
+                a.Sunrise();
+                document.write("<br> <br>");
+                a.Sunset();
+
+            </script>
+        </div>
     </body>
 </html>
