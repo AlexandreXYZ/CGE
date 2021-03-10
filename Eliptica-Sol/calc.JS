@@ -15,8 +15,8 @@ class Calc {
 		    return (degree * (Math.PI/180));
 		}
 		
-		this.declinacao = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.dia_sequencial)));
-		document.write("Declinação: ", this.declinacao, "<br/>")
+		this.setDeclinacao(23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_seq()))));
+		document.write("Declinação: ", this.getDeclinacao(), "<br/>")
 		
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
 		var altura_sol = Math.acos(conv_degree(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude()))));
@@ -60,9 +60,9 @@ class Calc {
     }
 
     getDia_seq() {
-        return this.dia_seq;
+        return this.dia_sequencial;
     }
     setDia_seq(x) {
-        this.dia_seq = x;
+        this.dia_sequencial = x;
     }
 }
