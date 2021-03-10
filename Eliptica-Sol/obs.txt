@@ -22,3 +22,11 @@ Declinação local:
 	
 	É o ângulo do sol em relação ao meio dia. Pela manhã é negativo e pela tarde é negativo.
 	Calcula-se multiplicando 15º pelo número de horas passadas.
+
+Excentricidade:
+	(Não aparece nos códigos, porém aparece nos conceitos físicos)
+
+	Apoio: https://blog.biologiatotal.com.br/leis-de-kepler/
+
+	É a diferença entre o centro da elipse (real) e o sol.
+	Varia entre 0 e 1.
