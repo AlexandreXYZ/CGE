@@ -1,7 +1,7 @@
 class Calc {
 
 	constructor(lati, longi, h, declinacao, dia_seq) {
-		// Declara 3 atributos
+		// Declara 5 atributos
 		this.latitude = lati;
 		this.longitude = longi;
 		this.h = h;
@@ -10,12 +10,14 @@ class Calc {
 
 	}
 
+	// Equação 1
 	Altura_Sol() {
 		function conv_degree(degree) {
 		    return (degree * (Math.PI/180));
 		}
 		
-		this.declinacao = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.dia_sequencial)));
+		//this.declinacao = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.dia_sequencial)));
+		this.declinacao = - 23.45 * Math.cos(284 + this.dia_sequencial);
 		document.write("Declinação: ", this.declinacao, "<br/>")
 		
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
@@ -25,6 +27,7 @@ class Calc {
 		document.write("Altura Sol: ", altura_sol, "<br/>");
 	}
 
+	// Equação 2
 	Azimute_Sol() {
 		function conv_degree(degree) {
 		    return (degree * (Math.PI/180));
