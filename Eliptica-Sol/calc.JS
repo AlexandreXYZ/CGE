@@ -13,22 +13,27 @@ class Calc {
 	// Equação 1
 	Altura_Sol() {
 		function conv_degree(degree) {
-		    return (degree * (Math.PI/180));
+			var radian = degree * (Math.PI/180);
+		    return radian;
 		}
 		
+
+		// DECLINAÇÃO
 		//original: this.setDeclinacao(23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_seq()))));
 		this.setDeclinacao(23.45 * Math.sin(conv_degree(360*(this.getDia_seq()-80)/365))); //usp
 		document.write("Declinação (original): -23.011636727869245<br/>");
 		document.write("Declinação: ", this.getDeclinacao(), "<br/>");		
 		
+		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
 		//original: var altura_sol = Math.asin(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude())));
-		var altura_sol = Math.acos(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude())));		
+		var altura_sol = Math.acos(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude())));
 		this.altura_sol = altura_sol;
 
+		// OUTPUT
 		document.write("<br/>");		
-		document.write("Altura (original - radianos): 0.49063671898751454<br/>");
-		document.write("Altura (original - graus): 28.111413272130765<br/>");
+		document.write("Altura (original - radianos): 0.4920529335892037<br/>");
+		document.write("Altura (original - graus): 28.192556391692356<br/>");
 		document.write("Altura Sol (radian): ", altura_sol, "<br/>");
 		document.write("Altura Sol (grau): ", (altura_sol * 180/Math.PI), "<br/><br/>");
 	}
@@ -36,7 +41,8 @@ class Calc {
 	// Equação 2
 	Azimute_Sol() {
 		function conv_degree(degree) {
-		    return (degree * (Math.PI/180));
+			var radian = degree * (Math.PI/180);
+		    return radian;
 		}
 
 		// Ângulo da distância zenital
