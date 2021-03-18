@@ -1,3 +1,73 @@
 /* Add padding to containers */
-.container {
+body, html{
+    width: 100%;
+    height: 100%;
+    background-color: rgb(208, 220, 223);
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    padding: 0px 30px 0px 30px;
+}
+#header__border{
+    margin:0px;
+    padding: 0px;
+    width: 60%;
+    border-bottom: 2px rgba(51, 51, 51, 0.248) SOLID;    
+}
+#header__title{
+    width: 80%;
+    padding: 10px 5px 20px 10px;
+    border-bottom: 2px  rgba(51, 51, 51, 0.248) SOLID;    
+}
+#header__img{
+    width:80px; 
+    height:80px;
+    border-radius: 100px; 
+    padding: 30px 30px 30px 30px;
+}
+
+.content{
+    display: flex;
+    padding: 50px 165px 0px 165px;
+}
+#content__form{
+    
+    border: 2px rgb(169, 188, 191) solid;
+    background-color: white;
+    font-size: 150%;
+    padding: 15px 15px 15px 15px;
+    min-width: 350px;
+}
+.content__label{
+    font-size: 20px;
+}
+.content__input{
+    
+    border:  rgb(169, 188, 191) 1px solid;
+    border-color: rgba(0, 0, 0, 0.234);
+    border-radius: 5px;
+    font-size: 15px;
+    float: right;
+    min-width: 150px;
+    max-width: 150px;
+
+    padding: 5px 5px 5px 5px;
+
+}
+
+#content__output{
+    background-color: white;
+    border: 2px rgb(119, 0, 167) solid;
+    min-width: 200px;
+    padding: 15px 15px 15px 15px;
+    margin: 0px 0px 0px 5%;
+}
+#content__output > div{
+    display: flex;
+    font-size: 23px;
+    padding: 15px 15px 15px 15px;
 }

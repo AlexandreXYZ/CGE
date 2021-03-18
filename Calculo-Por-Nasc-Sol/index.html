@@ -5,22 +5,46 @@
         <meta charset="UTF-8">
         <title></title>
         <script type="text/javascript" src="calc.JS"></script>
+        <link href="./index.css" rel="stylesheet">
         <style>
             
         </style>
     </head>
     <body>
+        <header class="header">
+                <img src="user.jpg" alt="some text" id="header__img">
+                <div id="header__border"> 
+                    <h1 id="header__title"> Horario do nascer e do por do Sol de acordo com a latitude e longitude</h1>
+                </div>
+        </header>
+        
+        <article  class="content">
+
+                <form  id="content__form">
+                    <label class="content__label"  class="longitude" for="longitude">Longitude:</label>
+                    <input class="content__input" type="number" min="-99999999" max="99999999" class="longitude" name="longitude"><br>
+                    <br><label class="content__label" for="latitude">Latitude:</label>
+                    <input class="content__input"type="number" min="-99999999" max="99999999" id="latitude" name="latitude"><br>
+                    <br><label class="content__label" for="date">Data:</label>
+                    <input class="content__input"type="date" id="date" name="date">
+                </form>
+
+            <div id="content__output">
+                <div id="longi">Nascer do Sol: &nbsp<div>aaaaaaaaaa</div></div>
+                <div id="lati">Por do Sol: &nbsp<div>a</div></div>
+            </div>
+        </article>
         <script >
             
-            let a = new SunRiseSet(46.633056,-23.543333, 29, "abr", true);
-            document.write("Longitude: ", a.getLongitude(), "<br>");
-            document.write("Latitude: ", a.getLatitude(), "<br>");
-            document.write("Dia: ", a.getDia_ano(), "<br>");
-            document.write("<br> <br>");
+            // let a = new SunRiseSet(46.633056,-23.543333, 29, "abr", true);
+            // document.write("Longitude: ", a.getLongitude(), "<br>");
+            // document.write("Latitude: ", a.getLatitude(), "<br>");
+            // document.write("Dia: ", a.getDia_ano(), "<br>");
+            // document.write("<br> <br>");
 
-            a.Sunrise();
-            document.write("<br> <br>");
-            a.Sunset();
+            // a.Sunrise();
+            // document.write("<br> <br>"); 
+            // a.Sunset();
 
         </script>
     </body>
