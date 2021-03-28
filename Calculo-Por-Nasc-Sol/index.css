@@ -74,7 +74,6 @@ main > section > form > label{
 main > section:last-of-type {
     display: flex;
     flex-direction: column;
-    background-color: white;
     border: 2px rgb(119, 0, 167) solid;
     min-width: 200px;
     padding: 15px 15px 15px 15px;
