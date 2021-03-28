@@ -2,71 +2,85 @@
 body, html{
     width: 100%;
     height: 100%;
-    background-color: rgb(208, 220, 223);
-    margin: 0px;
-    padding: 0px;
+    background-color: #d1e9f3;
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
 }
-.header{
+header{
+    margin: 3% 10% 3% 100px;
+
+}
+header > div:first-of-type{
     display: flex;
     flex-direction: row;
-    padding: 0px 30px 0px 30px;
+    align-items: center;
+    padding: 0 100px 0 0;
 }
-#header__border{
-    margin:0px;
-    padding: 0px;
+header > div:last-of-type{
+    display: flex;
+    flex-direction: column;
+}
+header > div > h1{
     width: 60%;
-    border-bottom: 2px rgba(51, 51, 51, 0.248) SOLID;    
 }
-#header__title{
-    width: 80%;
-    padding: 10px 5px 20px 10px;
-    border-bottom: 2px  rgba(51, 51, 51, 0.248) SOLID;    
-}
-#header__img{
-    width:80px; 
-    height:80px;
+header > div > img{
+    width:90px; 
+    height:90px;
     border-radius: 100px; 
-    padding: 30px 30px 30px 30px;
+    margin-right: 15px;
 }
 
-.content{
-    display: flex;
-    padding: 50px 165px 0px 165px;
+.border{
+    margin: 5px;
+    height: 2px;
+    width: 100%;
+    background-color: #788896;
 }
-#content__form{
-    
+.border:first-of-type{
+    width: 90%;
+}
+
+main{
+    display: flex;
+    margin: 50px 10% 0px 10%;
+}
+main > section > form{
+    display: flex;
+    flex-direction: column;
     border: 2px rgb(169, 188, 191) solid;
     background-color: white;
     font-size: 150%;
     padding: 15px 15px 15px 15px;
-    min-width: 350px;
+    min-width: 400px;
 }
-.content__label{
+main > section > form > label{
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
     font-size: 20px;
 }
-.content__input{
-    
-    border:  rgb(169, 188, 191) 1px solid;
+.input{
+    border: rgb(169, 188, 191) 1px solid;
     border-color: rgba(0, 0, 0, 0.234);
     border-radius: 5px;
     font-size: 15px;
-    float: right;
     min-width: 150px;
-    max-width: 150px;
-
-    padding: 5px 5px 5px 5px;
+    height: 30px;
 
 }
 
-#content__output{
+main > section:last-of-type {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     border: 2px rgb(119, 0, 167) solid;
     min-width: 200px;
     padding: 15px 15px 15px 15px;
     margin: 0px 0px 0px 5%;
 }
-#content__output > div{
+main > section > span{
     display: flex;
     font-size: 23px;
     padding: 15px 15px 15px 15px;
