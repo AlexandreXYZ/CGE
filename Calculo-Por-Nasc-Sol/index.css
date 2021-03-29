@@ -8,20 +8,28 @@ body, html{
     font-family: Arial, sans-serif;
 }
 header{
-    margin: 3% 10% 3% 100px;
+    margin: 3% 10% 3% 10%;
+    margin-right:0;
+    padding-right: 0;
 }
 header > div:first-of-type{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    padding: 0 100px 0 0;
+    padding: 0 0 0 0;
+    text-align: center;
 }
 header > div:last-of-type{
     display: flex;
     flex-direction: column;
+    place-items: center;
 }
 header > div > h1{
-    width: 60%;
+    
+    margin-right:0;
+    padding-right: 0;
+    width: 100%;
+
 }
 header > div > img{
     width:90px; 
@@ -42,6 +50,8 @@ header > div > img{
 
 main{
     display: flex;
+    flex-direction: column;
+    place-items: center;
     margin: 50px 10% 0px 10%;
 }
 main > section > form{
@@ -76,10 +86,41 @@ main > section:last-of-type {
     border: 2px rgb(119, 0, 167) solid;
     min-width: 200px;
     padding: 15px 15px 15px 15px;
-    margin: 0px 0px 0px 5%;
+    margin: 20px 0 0 0;
 }
 main > section > span{
     display: flex;
     font-size: 23px;
-    padding: 15px 15px 15px 15px;
+    padding: 15px 15px 15px 15px;   
+}
+
+@media only screen and (min-width: 950px) {
+    header{
+        margin: 3% 10% 3% 100px;
+
+    }
+    header>div:first-of-type{
+        flex-direction: row;
+        text-align: initial;
+    }
+    header>div:last-of-type{
+        place-items: initial;
+    }
+    header > div > h1{
+        width: 60%;
+        
+    }
+    main{
+        flex-direction: row;
+        place-items: center;
+
+    }
+    main > section:last-of-type {
+        display: flex;
+        flex-direction: column;
+        border: 2px rgb(119, 0, 167) solid;
+        min-width: 200px;
+        padding: 15px 15px 15px 15px;
+        margin: 0px 0px 0px 5%;
+    }
 }
