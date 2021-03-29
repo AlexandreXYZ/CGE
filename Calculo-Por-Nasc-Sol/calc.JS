@@ -1,4 +1,4 @@
-function diaAno(dia, mes1, bicesto=false){
+function diaAno(dia, mes1, bicesto=false) {
     // Cálculo que retorna o dia do ano. Ex: 108/365
     // Pode ser utilizado em qualquer ano, porém em anos bicestos é necessária a adição de um parâmetro 'true'.
     // Fim do código, valor do dia vira um atributo.
@@ -45,11 +45,12 @@ function diaAno(dia, mes1, bicesto=false){
     return dia + mes;
 }
 
-function conv_degree(degree){
-     // Função para conversão entre GRAUS para RADIANOS
-    return (degree * (Math.PI/180));
+function conv_degree(degree) {
+    // Função para conversão entre GRAUS para RADIANOS
+    radian = degree * (Math.PI/180);
+    return radian;
 }
-function declination_earth(diaAno){
+function declination_earth(diaAno) {
     // Calcula a declinação da Terra
     var declination_earth = 23.45 * Math.sin(conv_degree((360/365)*(284 + diaAno)));
     return declination_earth;
@@ -59,31 +60,28 @@ function duracaoTempo(latitude, diaAno) {
     return T;
 }
 
-class SunRiseSet{
-
+class SunRiseSet {
     // Esse metodo irá pegar as entradas (input)
-    constructor(longi, lati, dia, mes1, bicesto){
+    constructor(longi, lati, dia, mes1, bicesto) {
         this.day_year = diaAno(dia, mes1, bicesto);
-        // Declara 3 atributos
         this.longitude = longi;
         this.latitude = lati;
         this.bicesto = bicesto;  
-    } 
-        
-    
-    // Cálculos do nascer do sol
-    Sunrise(){
+    }
 
-        function corret_lati(longitude){
+    // Cálculos do nascer do sol
+    Sunrise() {
+        function corret_lati(longitude) {
             // Calcula qual o fuso horário do usuário
 
             // Checa se o número é divisível por 15
             // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo            
             var timezone = longitude + (15 - (longitude % 15)) % 15;
 
-            if ((timezone - longitude) > 7.5){
+            if ((timezone - longitude) > 7.5) {
                 timezone -= 15;
             }
+
             // Calcula as diferenças
             var dif_Grau = longitude - timezone;
             var hour_dif = 0;
@@ -91,35 +89,35 @@ class SunRiseSet{
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
             
             // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunrise + seg_dif)) > 59){
+            if ((Math.round(seg_sunrise + seg_dif)) > 59) {
                 seg_dif -= 60;
             }
-
-            if (Math.trunc(min_sunrise + min_dif) > 59){
+            if (Math.trunc(min_sunrise + min_dif) > 59) {
                 hour_dif += 1;
                 min_dif -= 60;
             }
+
             var horaFinal =  hour_sunrise + hour_dif;
             var minFinal =  Math.trunc(min_sunrise + min_dif);
             var segFinal = Math.round(seg_sunrise + seg_dif);
-            if (horaFinal<0){
+
+            if (horaFinal<0) {
                 horaFinal = horaFinal/-1;
             }
-            if (minFinal<0){
+            if (minFinal<0) {
                 minFinal = minFinal/-1;
             }
-            if (segFinal<0){
+            if (segFinal<0) {
                 segFinal = segFinal/-1;
             }
+
             // Saída (output)
             document.write("<br> Horário corrigido: ",horaFinal, "h ",minFinal, "min ",segFinal , "s <br>");
-            
         }
-
        
         // Calcula a duração do dia
         var T = duracaoTempo(this.latitude, this.day_year);
-                document.write("Td: ",T, "<br><br>");
+        document.write("Td: ",T, "<br><br>");
         
         var schedule_sunrise = 12 - (T/2); // Número completo
 
@@ -130,22 +128,18 @@ class SunRiseSet{
         // Saída (output)
         document.write("Horário do nascer do sol: ", hour_sunrise, "h ", Math.trunc(min_sunrise),"min ", Math.trunc(seg_sunrise), "s");
         corret_lati(this.getLongitude());
-
     }
 
     // Cálculos do pôr do sol
     Sunset(){
-
-       
-
-        function corret_lati(longitude){
+        function corret_lati(longitude) {
             // Calcula qual o fuso horário do usuário
 
             // Checa se o número é divisível por 15
             // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo    
             var timezone = longitude + (15 - (longitude % 15)) % 15;
 
-            if ((timezone - longitude) > 7.5){
+            if ((timezone - longitude) > 7.5) {
                 timezone -= 15;
             }
 
@@ -154,34 +148,36 @@ class SunRiseSet{
             var hour_dif = 0;
             var min_dif = (dif_Grau * 60) / 15;
             var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
+
             document.write("<br><br> hora: ",hour_dif, "<br><br>");
             document.write("min: ",min_dif, "<br><br>");
             document.write("seg: ",seg_dif, "<br><br>");
 
             // Caso a soma entre 'seg_sunset' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunset + seg_dif)) > 60){
+            if ((Math.round(seg_sunset + seg_dif)) > 60) {
                 seg_dif -= 60;
             }
-
-            if (Math.trunc(min_sunset + min_dif) > 59){
+            if (Math.trunc(min_sunset + min_dif) > 59) {
                 hour_dif += 1;
                 min_dif -= 60;
             }
+
             var horaFinal =  hour_sunset + hour_dif;
             var minFinal =  Math.trunc(min_sunset + min_dif);
             var segFinal = Math.round(seg_sunset + seg_dif);
-            if (horaFinal<0){
+
+            if (horaFinal<0) {
                 horaFinal = horaFinal/-1;
             }
-            if (minFinal<0){
+            if (minFinal<0) {
                 minFinal = minFinal/-1;
             }
-            if (segFinal<0){
+            if (segFinal<0) {
                 segFinal = segFinal/-1;
             }
+
             // Saída (output)
             document.write("<br> Horário corrigido: ",horaFinal, "h ", minFinal, "min ", segFinal, "s <br>");
-            
         }
 
         // Calcula a declinação da Terra

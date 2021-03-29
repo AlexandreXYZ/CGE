@@ -9,7 +9,6 @@ body, html{
 }
 header{
     margin: 3% 10% 3% 100px;
-
 }
 header > div:first-of-type{
     display: flex;

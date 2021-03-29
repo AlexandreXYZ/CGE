@@ -1,34 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Cálculo da Elíptica Solar</title>
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo da Elíptica Solar</title>
 
-        <!-- CSS link -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script type="text/javascript" src="calc.JS"></script>
+</head>
 
-        <script type="text/javascript" src="calc.JS"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    </head>
+<body>
+    <script id="js-output">
+        // (lati, longi, h, declinacao, dia_seq)
+        let a = new Calc(38.87690,-77.04130, 0, 0, 1);
+        document.write("Latitude: ", a.getLatitude(), "<br>");
+        document.write("<br> <br>");
 
-    <body>
-        <div class="container">
-            <script id="js-output">
-
-                // (lati, longi, h, declinacao, dia_seq)
-                let a = new Calc(38.87690,-77.04130, 0, 0, 1);
-                document.write("Latitude: ", a.getLatitude(), "<br>");
-
-                //document.write("Altura: ", a.getAltura(), "<br>");
-                document.write("<br> <br>");
-
-                a.Altura_Sol();
-                a.Azimute_Sol();
-
-            </script>
-        </div>
-    </body>
+        a.Altura_Sol();
+        a.Azimute_Sol();
+    </script>
+</body>
 </html>

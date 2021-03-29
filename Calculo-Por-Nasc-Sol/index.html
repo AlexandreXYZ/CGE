@@ -1,62 +1,59 @@
 <!DOCTYPE html>
-
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-        <script type="text/javascript" src="calc.JS"></script>
-        <link href="./index.css" rel="stylesheet">
-        <style>
-            
-        </style>
-    </head>
-    <body>
-        <header >
-            <div>
-                <img src="user.jpg" alt="some text">
-                <h1> Horario do nascer e do por do Sol de acordo com a latitude e longitude</h1>
-            </div>
-            <div>
-                <div class="border"></div>
-                <div class="border"></div>
-            </div>
-        </header>
-        
-        <main>
-            <section>
-                <form>
-                    <label for="longitude">
-                        <span>Longitude:</span>
-                        <input class="input" type="number" min="-99999999" max="99999999" id="longitude" name="longitude">
-                    </label>
-                    <label for="latitude">
-                        <span> Latitude: </span>
-                        <input class="input" type="number" min="-99999999" max="99999999" id="latitude" name="latitude">
-                    </label>
-                    <label for="date">
-                        <span> Data: </span>
-                        <input class="input" type="date" id="date" name="date">
-                    </label>
-                </form>
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo do Nascer e Pôr do Sol</title>
 
-            </section>
-            <section>
-                <span>Nascer do Sol: <a> </a></span>
-                <span>Por do Sol: <a> </a> </span>
-            </section>
-        </main>
-        <script >
-            
-            // let a = new SunRiseSet(46.633056,-23.543333, 29, "abr", true);
-            // document.write("Longitude: ", a.getLongitude(), "<br>");
-            // document.write("Latitude: ", a.getLatitude(), "<br>");
-            // document.write("Dia: ", a.getDia_ano(), "<br>");
-            // document.write("<br> <br>");
+    <link href="./index.css" rel="stylesheet">
+    <script type="text/javascript" src="calc.JS"></script>
+</head>
 
-            // a.Sunrise();
-            // document.write("<br> <br>"); 
-            // a.Sunset();
+<body>
+    <header>
+        <div>
+            <img src="user.jpg" alt="some text">
+            <h1> Horario do nascer e do por do Sol de acordo com a latitude e longitude</h1>
+        </div>
+        <div>
+            <div class="border"></div>
+            <div class="border"></div>
+        </div>
+    </header>
 
-        </script>
-    </body>
+    <main>
+        <section>
+            <form>
+                <label for="longitude">
+                    <span>Longitude:</span>
+                    <input class="input" type="number" min="-99999999" max="99999999" id="longitude" name="longitude">
+                </label>
+                <label for="latitude">
+                    <span>Latitude:</span>
+                    <input class="input" type="number" min="-99999999" max="99999999" id="latitude" name="latitude">
+                </label>
+                <label for="date">
+                    <span>Data:</span>
+                    <input class="input" type="date" id="date" name="date">
+                </label>
+            </form>
+        </section>
+
+        <section>
+            <span>Nascer do Sol: <a> </a></span>
+            <span>Por do Sol: <a> </a> </span>
+        </section>
+    </main>
+
+    <script>
+        // let a = new SunRiseSet(46.633056,-23.543333, 29, "abr", true);
+        // document.write("Longitude: ", a.getLongitude(), "<br>");
+        // document.write("Latitude: ", a.getLatitude(), "<br>");
+        // document.write("Dia: ", a.getDia_ano(), "<br>");
+        // document.write("<br> <br>");
+
+        // a.Sunrise();
+        // document.write("<br> <br>"); 
+        // a.Sunset();
+    </script>
+</body>
 </html>

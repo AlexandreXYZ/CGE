@@ -1,13 +1,10 @@
 class Calc {
-
 	constructor(lati, longi, h, declinacao, dia_seq) {
-		// Declara 5 atributos
 		this.latitude = lati;
 		this.longitude = longi;
 		this.h = h;
 		this.declinacao = declinacao;
 		this.dia_sequencial = dia_seq;
-
 	}
 
 	// Equação 1
@@ -15,8 +12,7 @@ class Calc {
 		function conv_degree(degree) {
 			var radian = degree * (Math.PI/180);
 		    return radian;
-		}
-		
+		}		
 
 		// DECLINAÇÃO
 		//original: this.setDeclinacao(23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_seq()))));
@@ -46,12 +42,11 @@ class Calc {
 		}
 
 		// Ângulo da distância zenital
-		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]     |     A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
+		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
 		var azimute_sol = Math.acos(Math.sin(conv_degree(this.getH())) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.getLatitude()))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.getLatitude())));
 
 		document.write("Azimute Sol: ", azimute_sol, "<br/>");
 	}
-
 
 	// Métodos Getters e Setters
     getH() {
