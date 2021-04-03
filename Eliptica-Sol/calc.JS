@@ -9,6 +9,7 @@ class Calc {
 
 	// Equação 1
 	Altura_Sol() {
+		// Só p mudar
 		function conv_degree(degree) {
 			var radian = degree * (Math.PI/180);
 		    return radian;
