@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <title>Cálculo da Elíptica Solar</title>
 
-    <script type="text/javascript" src="calc.JS"></script>
+    <script type="module" src="calc.JS"></script>
+    <!-- funciona sem <script type="module" src="../Formulas-Matematicas/formulas.js"></script> -->
 </head>
 
 <body>
     <script id="js-output">
-        // (lati, longi, h, declinacao, dia_seq)
         let a = new Calc(38.87690,-77.04130, 0, 0, 1);
-        document.write("Latitude: ", a.getLatitude(), "<br>");
-        document.write("<br> <br>");
 
-        a.Altura_Sol();
-        a.Azimute_Sol();
+        // (lati, longi, h, declinacao, dia_seq)
+        // let a = new Calc(38.87690,-77.04130, 0, 0, 1);
+        // document.write("Latitude: ", a.getLatitude(), "<br>");
+        // document.write("<br> <br>");
+
+        // a.Altura_Sol();
+        // a.Azimute_Sol();
     </script>
 </body>
 </html>

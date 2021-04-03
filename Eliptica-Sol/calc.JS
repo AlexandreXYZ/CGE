@@ -1,3 +1,5 @@
+import { conv_degree } from '../Formulas-Matematicas/formulas.js';
+
 class Calc {
 	constructor(lati, longi, h, declinacao, dia_seq) {
 		this.latitude = lati;
@@ -7,13 +9,8 @@ class Calc {
 		this.dia_sequencial = dia_seq;
 	}
 
-	// Equação 1
+	//Equação 1
 	Altura_Sol() {
-		function conv_degree(degree) {
-			var radian = degree * (Math.PI/180);
-		    return radian;
-		}		
-
 		// DECLINAÇÃO
 		//original: this.setDeclinacao(23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_seq()))));
 		this.setDeclinacao(23.45 * Math.sin(conv_degree(360*(this.getDia_seq()-80)/365))); //usp
@@ -36,11 +33,6 @@ class Calc {
 
 	// Equação 2
 	Azimute_Sol() {
-		function conv_degree(degree) {
-			var radian = degree * (Math.PI/180);
-		    return radian;
-		}
-
 		// Ângulo da distância zenital
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
 		var azimute_sol = Math.acos(Math.sin(conv_degree(this.getH())) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.getLatitude()))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.getLatitude())));
