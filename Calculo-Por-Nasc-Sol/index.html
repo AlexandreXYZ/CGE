@@ -5,14 +5,15 @@
     <title>Cálculo do Nascer e Pôr do Sol</title>
 
     <link href="./index.css" rel="stylesheet">
-    <script type="text/javascript" src="calc.JS"></script>
+    <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
+    <script type="text/javascript" src="./calc.JS"></script>
 </head>
 
 <body>
     <header>
         <div>
             <img src="user.jpg" alt="some text">
-            <h1> Horario do nascer e do por do Sol de acordo com a latitude e longitude</h1>
+            <h1> Horario do nascer e do pôr do Sol de acordo com a latitude e longitude</h1>
         </div>
         <div>
             <div class="border"></div>
@@ -45,15 +46,20 @@
     </main>
 
     <script>
-        // let a = new SunRiseSet(46.633056,-23.543333, 29, "abr", true);
+        const lat = 46.633056;
+        const longi = -23.543333;
+        const dia = 29;
+        const mes = "abr";
+
+        let a = new SunRiseSet(lat, longi, dia, mes, true);
         // document.write("Longitude: ", a.getLongitude(), "<br>");
         // document.write("Latitude: ", a.getLatitude(), "<br>");
         // document.write("Dia: ", a.getDia_ano(), "<br>");
-        // document.write("<br> <br>");
+        // document.write("<br/> <br/>");
 
-        // a.Sunrise();
-        // document.write("<br> <br>"); 
-        // a.Sunset();
+        a.Sunrise();
+        // document.write("<br/> <br/>"); 
+        a.Sunset();
     </script>
 </body>
 </html>

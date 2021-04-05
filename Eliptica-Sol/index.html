@@ -4,10 +4,20 @@
     <meta charset="UTF-8">
     <title>Cálculo da Elíptica Solar</title>
 
-    <script type="module" src="calc.JS"></script>
-    <!-- funciona sem <script type="module" src="../Formulas-Matematicas/formulas.js"></script> -->
+    <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
+    <script type="text/javascript" src="./calc.JS"></script>
 </head>
 
 <body>
+    <script>
+        const lat = 38.87690;
+        const longi = -77.04130;
+        const h = 0;
+        const dia_seq = 1;
+
+        let a = new Calibrador(lat, longi, h, dia_seq);
+        a.Altura_Sol();
+        a.Azimute_Sol();
+    </script>
 </body>
 </html>
