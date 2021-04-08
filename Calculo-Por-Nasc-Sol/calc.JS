@@ -20,25 +20,27 @@ class SunRiseSet {
 
             // Calcula as diferenças
             var dif_Grau = longitude - timezone;
-            var hour_dif = 0;
-            var min_dif = (dif_Grau * 60) / 15;
-            var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
-            
-            // Caso a soma entre 'seg_sunrise' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunrise + seg_dif)) > 59) {
-                seg_dif -= 60;
+            var schedule_dif = {
+                hour: 0,
+                min: (dif_Grau * 60) / 15,
+                seg: Math.round((this.min - Math.trunc(this.min)) * 60)
             }
-            if (Math.trunc(min_sunrise + min_dif) > 59) {
-                hour_dif += 1;
-                min_dif -= 60;
+            
+            // Caso a soma entre 'seg_sunrise' e 'schedule_dif.seg' sejam > 60, 'schedule_dif.seg' ficará negativo
+            if ((Math.round(seg_sunrise + schedule_dif.seg)) > 59) {
+                schedule_dif.seg -= 60;
+            }
+            if (Math.trunc(min_sunrise + schedule_dif.min) > 59) {
+                schedule_dif.hour += 1;
+                schedule_dif.min -= 60;
             }
 
-            var horaFinal =  Math.abs(hour_sunrise + hour_dif);
-            var minFinal =  Math.abs(Math.trunc(min_sunrise + min_dif));
-            var segFinal = Math.abs(Math.round(seg_sunrise + seg_dif));
+            var hour_adjusted =  Math.abs(hour_sunrise + schedule_dif.hour);
+            var min_adjusted =  Math.abs(Math.trunc(min_sunrise + schedule_dif.min));
+            var seg_adjusted = Math.abs(Math.round(seg_sunrise + schedule_dif.seg));
 
             // Saída (output)
-            document.write("<br> Horário corrigido: ",horaFinal, "h ",minFinal, "min ",segFinal , "s <br>");
+            document.write("<br> Horário corrigido: ",hour_adjusted, "h ",min_adjusted, "min ",seg_adjusted , "s <br>");
         }
        
         // Calcula a duração do dia
@@ -56,51 +58,18 @@ class SunRiseSet {
 
     // Cálculos do pôr do sol
     Sunset() {
-        function corret_lati(longitude) {
-            // Calcula qual o fuso horário do usuário
-
-            // Checa se o número é divisível por 15
-            // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo    
-            var timezone = longitude + (15 - (longitude % 15)) % 15;
-
-            if ((timezone - longitude) > 7.5) {
-                timezone -= 15;
-            }
-
-            // Calcula as diferenças
-            var dif_Grau = longitude - timezone;
-            var hour_dif = 0;
-            var min_dif = (dif_Grau * 60) / 15;
-            var seg_dif = Math.round((min_dif - Math.trunc(min_dif)) * 60);
-
-            // Caso a soma entre 'seg_sunset' e 'seg_dif' sejam > 60, 'seg_dif' ficará negativo
-            if ((Math.round(seg_sunset + seg_dif)) > 60) {
-                seg_dif -= 60;
-            }
-            if (Math.trunc(min_sunset + min_dif) > 59) {
-                hour_dif += 1;
-                min_dif -= 60;
-            }
-
-            var horaFinal =  Math.abs(hour_sunset + hour_dif);
-            var minFinal =  Math.abs(Math.trunc(min_sunset + min_dif));
-            var segFinal = Math.abs(Math.round(seg_sunset + seg_dif));
-
-            // Saída (output)
-            document.write("<br> Horário corrigido: ",horaFinal, "h ", minFinal, "min ", segFinal, "s <br>");
-        }
-
         // Calcula a duração do dia
         var T = duracaoDia(this.latitude, this.day_year);
         var schedule_sunset = 12 + (T/2); // Número completo
 
-        var hour_sunset = Math.trunc(schedule_sunset);
-        var min_sunset = (schedule_sunset - hour_sunset) * 60;
-        var seg_sunset = (min_sunset - Math.trunc(min_sunset)) * 60;
+        var sunset = new Object();
+        sunset.hour = Math.trunc(schedule_sunset);
+        sunset.min = Math.abs((schedule_sunset - sunset.hour) * 60);
+        sunset.seg = Math.abs((sunset.min - Math.trunc(sunset.min)) * 60);
 
         // Saída (output)
-        document.write("Horário do pôr do sol: ", hour_sunset, "h ", Math.trunc(min_sunset),"min ", Math.round(seg_sunset), "s");
-        corret_lati(this.getLongitude());        
+        var schedule_adjusted = corret_lati(this.getLongitude(), sunset);
+        document.getElementById("oi2").innerHTML = (schedule_adjusted.hour+"h " + schedule_adjusted.min+"min " + schedule_adjusted.seg+"s");
     }
 
     // Métodos Getters e Setters

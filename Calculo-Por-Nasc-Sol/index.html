@@ -40,8 +40,8 @@
         </section>
 
         <section>
-            <span><strong>Nascer do Sol: </strong> <a> </a></span>
-            <span><strong>Por do Sol: </strong> <a> </a> </span>
+            <span><strong>Nascer do Sol: </strong> <a id="oi1"> </a></span>
+            <span><strong>Por do Sol: </strong> <a id="oi2"> </a> </span>
         </section>
     </main>
 
@@ -52,13 +52,11 @@
         const mes = "abr";
 
         let a = new SunRiseSet(lat, longi, dia, mes, true);
-        // document.write("Longitude: ", a.getLongitude(), "<br>");
-        // document.write("Latitude: ", a.getLatitude(), "<br>");
-        // document.write("Dia: ", a.getDia_ano(), "<br>");
-        // document.write("<br/> <br/>");
+        // console.log("Longitude: ", a.getLongitude());
+        // console.log("Latitude: ", a.getLatitude());
+        // console.log("Dia: ", a.getDia_ano());
 
-        a.Sunrise();
-        // document.write("<br/> <br/>"); 
+        // a.Sunrise();
         a.Sunset();
     </script>
 </body>

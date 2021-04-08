@@ -61,3 +61,39 @@ function duracaoDia(latitude, diaAno) {
     var T = 2/15 * Math.acos(-Math.tan(conv_degree(latitude)) * Math.tan(conv_degree(declinacao(diaAno)))) * (180 / Math.PI);
     return T;
 }
+
+function corret_lati(longitude, schedule_original) {
+    // Calcula qual o fuso horário do usuário
+
+    // Checa se o número é divisível por 15
+    // Se for, retorna ele mesmo, se não for, retorna o número divisível mais próximo    
+    var timezone = longitude + (15 - (longitude % 15)) % 15;
+
+    if ((timezone - longitude) > 7.5) {
+        timezone -= 15;
+    }
+
+    var dif_Grau = longitude - timezone;
+    var schedule_dif = new Object();
+    schedule_dif.hour = 0;
+    schedule_dif.min = (dif_Grau * 60) / 15;
+    schedule_dif.seg = Math.round((schedule_dif.min - Math.trunc(schedule_dif.min)) * 60);
+
+    // Caso a soma entre 'schedule_original.seg' e 'schedule_dif.seg' sejam > 60, 'schedule_dif.seg' ficará negativo
+    if ((Math.round(schedule_original.seg + schedule_dif.seg)) > 60) {
+        schedule_dif.seg -= 60;
+    }
+    if (Math.trunc(schedule_original.min + schedule_dif.min) > 59) {
+        schedule_dif.hour += 1;
+        schedule_dif.min -= 60;
+    }
+
+    var schedule_adjusted = {
+        hour: Math.abs(schedule_original.hour + schedule_dif.hour),
+        min: Math.abs(Math.trunc(schedule_original.min + schedule_dif.min)),
+        seg: Math.abs(Math.round(schedule_original.seg + schedule_dif.seg))
+    }
+
+    // Saída (output)
+    return (schedule_adjusted);
+}
