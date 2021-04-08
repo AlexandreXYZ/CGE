@@ -79,7 +79,9 @@ main > section > form > label{
     height: 30px;
 
 }
-
+#submit{
+    justify-content: center;
+}
 main > section:last-of-type {
     display: flex;
     flex-direction: column;
