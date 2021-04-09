@@ -26,11 +26,11 @@
             <form>
                 <label for="latitude">
                     <span>Latitude:</span>
-                    <input class="input" type="number" min="-99999999" max="99999999" id="latitude" name="latitude">
+                    <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
                 </label>
                 <label for="longitude">
                     <span>Longitude:</span>
-                    <input class="input" type="number" min="-99999999" max="99999999" id="longitude" name="longitude">
+                    <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
                 </label>
                 <label for="date">
                     <span>Data:</span>
@@ -54,11 +54,11 @@
             const longi = parseInt(document.getElementById("longitude").value);
             const dia = parseInt((document.getElementById("date").value).split("-")[2]);
             const mes = parseInt((document.getElementById("date").value).split("-")[1]);
-            // const ano = parseInt((document.getElementById("date").value).split("-")[0]);
+            const ano = parseInt((document.getElementById("date").value).split("-")[0]);
 
-            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04);            
-            let a = new SunRiseSet(lat, longi, dia, mes);
-            console.log(lat, longi, dia, mes);
+            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2018);
+            let a = new SunRiseSet(lat, longi, dia, mes, ano);
+            console.log(lat, longi, dia, mes, ano);
             a.Sunrise();
             a.Sunset();
         }

@@ -1,6 +1,6 @@
 class SunRiseSet {
-    constructor(lati, longi, dia, mes1, bicesto) {
-        this.day_year = diaAno(dia, mes1, bicesto);
+    constructor(lati, longi, dia, mes, ano) {
+        this.day_year = diaAno(dia, mes, ano);
         this.latitude = lati;
         this.longitude = longi;
     }

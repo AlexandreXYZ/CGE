@@ -1,10 +1,7 @@
 function diaAno(dia, mes, ano) {
-    // Cálculo que retorna o dia do ano. Ex: 108/365
-    // Pode ser utilizado em qualquer ano, em anos bicestos é necessário o parâmetro 'true'.
     var jan = mar = mai = jul = ago = out = dez = 31;
     var abr = jun = set = nov = 30;
-    var bicesto = bicesto(ano);
-    switch(bicesto) {
+    switch(bicesto(ano)) {
         case true: var fev = 29; break;
         case false: var fev = 28; break;
     }
@@ -23,7 +20,6 @@ function diaAno(dia, mes, ano) {
         case 11: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out; break;
         case 12: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out + nov; break;
     }
-
     return dia + tot_meses;
 }
 
@@ -80,25 +76,29 @@ function corret_lati(longitude, schedule_original) {
     // Saída (output)
     return schedule_adjusted;
 }
-function bicesto(ano){
-    var etapa1 = ano%4;
-    if(etapa1 == 0){
-        var etapa2 = ano%100;
-        if(etapa2 == 0){
-            var etapa3 = ano%400;
-            if(etapa3 == 0){
+
+function bicesto(ano) {
+    var etapa1 = ano % 4;
+
+    if(etapa1 == 0) {
+        var etapa2 = ano % 100;
+
+        if(etapa2 == 0) {
+            var etapa3 = ano % 400;
+
+            if(etapa3 == 0) {
                 var verify = true;
             } 
-            else{ 
+            else {  
                 var verify = false;
             }
         } 
-        else{ 
+        else {
             var verify = true;
         }
     }
-    else{ 
+    else {
         var verify = false;
-    }
+    }    
     return verify;
 }
