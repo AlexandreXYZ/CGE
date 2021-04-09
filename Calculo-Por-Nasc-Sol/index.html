@@ -24,20 +24,20 @@
     <main>
         <section>
             <form>
-                <label for="longitude">
-                    <span>Longitude:</span>
-                    <input class="input" type="number" min="-99999999" max="99999999" id="longitude" name="longitude">
-                </label>
                 <label for="latitude">
                     <span>Latitude:</span>
                     <input class="input" type="number" min="-99999999" max="99999999" id="latitude" name="latitude">
+                </label>
+                <label for="longitude">
+                    <span>Longitude:</span>
+                    <input class="input" type="number" min="-99999999" max="99999999" id="longitude" name="longitude">
                 </label>
                 <label for="date">
                     <span>Data:</span>
                     <input class="input" type="date" id="date" name="date">
                 </label>
                 <label for="submit" id="submit">
-                    <input class="input" type="submit" name="submit" value="Entrar">
+                    <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
                 </label>
             </form>
         </section>
@@ -49,18 +49,19 @@
     </main>
 
     <script>
-        const lat = 46.633056;
-        const longi = -23.543333;
-        const dia = 29;
-        const mes = "abr";
+        function enter() {
+            const lat = parseInt(document.getElementById("latitude").value);
+            const longi = parseInt(document.getElementById("longitude").value);
+            const dia = parseInt((document.getElementById("date").value).split("-")[2]);
+            const mes = parseInt((document.getElementById("date").value).split("-")[1]);
+            // const ano = parseInt((document.getElementById("date").value).split("-")[0]);
 
-        let a = new SunRiseSet(lat, longi, dia, mes, true);
-        // console.log("Longitude: ", a.getLongitude());
-        // console.log("Latitude: ", a.getLatitude());
-        // console.log("Dia: ", a.getDia_ano());
-
-        a.Sunrise();
-        a.Sunset();
+            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04);            
+            let a = new SunRiseSet(lat, longi, dia, mes);
+            console.log(lat, longi, dia, mes);
+            a.Sunrise();
+            a.Sunset();
+        }
     </script>
 </body>
 </html>

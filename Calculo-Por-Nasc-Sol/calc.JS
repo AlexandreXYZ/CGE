@@ -1,15 +1,15 @@
 class SunRiseSet {
-    constructor(longi, lati, dia, mes1, bicesto) {
+    constructor(lati, longi, dia, mes1, bicesto) {
         this.day_year = diaAno(dia, mes1, bicesto);
-        this.longitude = longi;
         this.latitude = lati;
+        this.longitude = longi;
     }
 
     // Cálculos do nascer do sol
     Sunrise() {       
         // Calcula a duração do dia
-        var T = duracaoDia(this.latitude, this.day_year);        
-        var schedule_sunrise = 12 - (T/2); // Número completo
+        var T = duracaoDia(this.latitude, this.day_year);
+        var schedule_sunrise = 12 - (T/2); // Horas de sol (número completo)
 
         var sunrise = new Object();
         sunrise.hour = Math.trunc(schedule_sunrise);
