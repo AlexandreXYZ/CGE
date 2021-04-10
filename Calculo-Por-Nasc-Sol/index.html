@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Cálculo do Nascer e Pôr do Sol</title>
@@ -43,8 +44,8 @@
         </section>
 
         <section>
-            <span><strong>Nascer do Sol: </strong> <a id="oi1"> </a></span>
-            <span><strong>Por do Sol: </strong> <a id="oi2"> </a> </span>
+            <span><strong>Nascer do Sol: </strong> <a id="sunrise"> </a></span>
+            <span><strong>Por do Sol: </strong> <a id="sunset"> </a> </span>
         </section>
     </main>
 
@@ -56,7 +57,7 @@
             const mes = parseInt((document.getElementById("date").value).split("-")[1]);
             const ano = parseInt((document.getElementById("date").value).split("-")[0]);
 
-            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2018);
+            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2021);
             let a = new SunRiseSet(lat, longi, dia, mes, ano);
             console.log(lat, longi, dia, mes, ano);
             a.Sunrise();
@@ -64,4 +65,5 @@
         }
     </script>
 </body>
+
 </html>

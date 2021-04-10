@@ -6,10 +6,10 @@ class SunRiseSet {
     }
 
     // Cálculos do nascer do sol
-    Sunrise() {       
+    Sunrise() {
         // Calcula a duração do dia
         var T = duracaoDia(this.latitude, this.day_year);
-        var schedule_sunrise = 12 - (T/2); // Horas de sol (número completo)
+        var schedule_sunrise = 12 - (T / 2); // Horas de sol (número completo)
 
         var sunrise = new Object();
         sunrise.hour = Math.trunc(schedule_sunrise);
@@ -18,14 +18,14 @@ class SunRiseSet {
 
         // Saída (output)
         var schedule_adjusted = corret_lati(this.getLongitude(), sunrise);
-        document.getElementById("oi1").innerHTML = (schedule_adjusted.hour+"h " + schedule_adjusted.min+"min " + schedule_adjusted.seg+"s");
+        document.getElementById("sunrise").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
     // Cálculos do pôr do sol
     Sunset() {
         // Calcula a duração do dia
         var T = duracaoDia(this.latitude, this.day_year);
-        var schedule_sunset = 12 + (T/2); // Número completo
+        var schedule_sunset = 12 + (T / 2); // Número completo
 
         var sunset = new Object();
         sunset.hour = Math.trunc(schedule_sunset);
@@ -34,32 +34,32 @@ class SunRiseSet {
 
         // Saída (output)
         var schedule_adjusted = corret_lati(this.getLongitude(), sunset);
-        document.getElementById("oi2").innerHTML = (schedule_adjusted.hour+"h " + schedule_adjusted.min+"min " + schedule_adjusted.seg+"s");
+        document.getElementById("sunset").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
     // Métodos Getters e Setters
 
-        // Longitude
-    getLongitude(){
+    // Longitude
+    getLongitude() {
         return this.longitude;
     }
-    setLongitude(x){
+    setLongitude(x) {
         this.longitude = x;
     }
 
-        // Latitude
-    getLatitude(){
+    // Latitude
+    getLatitude() {
         return this.latitude;
     }
-    setLatitude(x){
+    setLatitude(x) {
         this.latitude = x;
     }
 
-        // Dia_ano
-    getDia_ano(){
+    // Dia_ano
+    getDia_ano() {
         return this.day_year;
     }
-    setDia_ano(x){
+    setDia_ano(x) {
         this.day_year = x;
     }
 }

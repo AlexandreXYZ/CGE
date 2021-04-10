@@ -1,11 +1,8 @@
 function diaAno(dia, mes, ano) {
     var jan = mar = mai = jul = ago = out = dez = 31;
     var abr = jun = set = nov = 30;
-    switch(bicesto(ano)) {
-        case true: var fev = 29; break;
-        case false: var fev = 28; break;
-    }
-    
+    var fev = (bicesto == true) ? true : false;
+
     switch(mes) {
         case 01: var tot_meses = 0; break;
         case 02: var tot_meses = jan; break;
@@ -19,12 +16,13 @@ function diaAno(dia, mes, ano) {
         case 10: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set; break;
         case 11: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out; break;
         case 12: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out + nov; break;
+        default: var tot_meses = 0; break;
     }
     return dia + tot_meses;
 }
 
 function conv_degree(degree) {
-	var radian = degree * (Math.PI / 180);
+    var radian = degree * (Math.PI / 180);
     return radian;
 }
 
@@ -37,7 +35,7 @@ function declinacao(dia_seq) {
 }
 
 function duracaoDia(latitude, diaAno) {
-    var T = 2/15 * Math.acos(-Math.tan(conv_degree(latitude)) * Math.tan(conv_degree(declinacao(diaAno)))) * (180 / Math.PI);
+    var T = 2 / 15 * Math.acos(-Math.tan(conv_degree(latitude)) * Math.tan(conv_degree(declinacao(diaAno)))) * (180 / Math.PI);
     return T;
 }
 
@@ -80,25 +78,22 @@ function corret_lati(longitude, schedule_original) {
 function bicesto(ano) {
     var etapa1 = ano % 4;
 
-    if(etapa1 == 0) {
+    if (etapa1 == 0) {
         var etapa2 = ano % 100;
 
-        if(etapa2 == 0) {
+        if (etapa2 == 0) {
             var etapa3 = ano % 400;
 
-            if(etapa3 == 0) {
+            if (etapa3 == 0) {
                 var verify = true;
-            } 
-            else {  
+            } else {
                 var verify = false;
             }
-        } 
-        else {
+        } else {
             var verify = true;
         }
-    }
-    else {
+    } else {
         var verify = false;
-    }    
+    }
     return verify;
 }
