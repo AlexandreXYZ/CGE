@@ -1,7 +1,7 @@
 function diaAno(dia, mes, ano) {
     var jan = mar = mai = jul = ago = out = dez = 31;
     var abr = jun = set = nov = 30;
-    var fev = (bicesto == true) ? true : false;
+    var fev = (bicesto(ano) == true) ? 28 : 29;
 
     switch(mes) {
         case 01: var tot_meses = 0; break;
