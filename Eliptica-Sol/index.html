@@ -1,23 +1,104 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>Cálculo da Elíptica Solar</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Cálculo do Nascer e Pôr do Sol</title>
 
-    <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
-    <script type="text/javascript" src="./calc.JS"></script>
-</head>
+        <link href="./index.css" rel="stylesheet">
+        <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
+        <script type="text/javascript" src="./calc.JS"></script>
+    </head>
 
-<body>
-    <script>
-        const lat = 38.87690;
-        const longi = -77.04130;
-        const h = 0;
-        const dia_seq = 1;
+    <body>
+        
+        <header class="conteiner">
+            <div>
+                <img src="./assets/user.jpg" alt="some text" id="logo">
+                <h1> Trájetoria solar de acordo com a posição</h1>
+            </div>
+            <div>
+                <div class="border"></div>
+                <div class="border"></div>
+            </div>
+        </header>
 
-        let a = new Calibrador(lat, longi, h, dia_seq);
-        a.Altura_Sol();
-        a.Azimute_Sol();
-    </script>
-</body>
+        <main class="conteiner">
+            <section>
+                <section>
+                    <form id="inputs">
+
+                        <div>
+                            <label for="latitude">Latitude:</label>
+                            <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
+                        </div>
+                        
+                        <div>
+                            <label for="longitude">Longitude:</label>
+                            <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
+                        </div>
+                        
+                        <div>
+                            <label for="date">Data:</label>
+                            <input class="input" type="date" id="date" name="date">
+                        </div>
+                        
+                        <div>
+                            <label for="time">Hórario:</label>
+                            <input class="input" type="time" id="time" name="date" step="1">
+                        </div>
+                        
+                        <div>
+                            <label for="submit" id="submit"></label>
+                            <input class="input" type="button" name="submit" value="Calcular" onclick="enter()" >
+                    </div>
+                    </form>
+                </section>
+
+                <section id="output">
+                    <span><strong>Altura: </strong> <a id="oi1">99</a>&#176;</span>
+                    <span><strong>Azimute: </strong> <a id="oi2">99</a>&#176;</span>
+                </section>
+            </section>
+            
+            <section>
+                    <div id="mapa"></div>
+            </section>
+        </main>
+        <script>
+
+            function inicializar() {
+              var coordenadas = {lat: -22.912869, lng: -43.228963};
+      
+              var mapa = new google.maps.Map(document.getElementById('mapa'), {
+                zoom: 15,
+                center: coordenadas 
+              });
+      
+              var marker = new google.maps.Marker({
+                position: coordenadas,
+                map: mapa,
+                title: 'Meu marcador'
+              });
+            }
+          </script>
+          <script async defer
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTLbcm7UIqgwUDJHQ_8Rw42lbMi0iZlzI&callback=inicializar">
+          </script>
+    <!-- 
+        <script>
+            function enter() {
+                const lat = parseInt(document.getElementById("latitude").value);
+                const longi = parseInt(document.getElementById("longitude").value);
+                const dia = parseInt((document.getElementById("date").value).split("-")[2]);
+                const mes = parseInt((document.getElementById("date").value).split("-")[1]);
+                const ano = parseInt((document.getElementById("date").value).split("-")[0]);
+
+                // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2018);
+                let a = new SunRiseSet(lat, longi, dia, mes, ano);
+                console.log(lat, longi, dia, mes, ano);
+                a.Sunrise();
+                a.Sunset();
+            }
+        </script> -->
+    </body>
 </html>

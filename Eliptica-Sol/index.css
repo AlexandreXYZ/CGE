@@ -1,0 +1,107 @@
+/* Add padding to containers */
+body, html{
+    width: 100%;
+    height: 100%;
+    background-color: #49788c;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    color: rgb(40, 73, 74);
+
+}
+.conteiner{
+    background-color: rgb(125, 193, 187);
+    margin: 0 20vw;
+    border-radius: 7px;
+    padding: 2vw;
+
+}
+header.conteiner{
+    margin-top: 3%;
+    margin-bottom: 1%;
+    
+}
+
+header > div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+#logo{
+    width: 100px;
+    border-radius: 100%;
+    align-items: center;
+}
+.border{
+    margin: 5px;
+    height: 2px;
+    width: 100%;
+    background-color: #82909d;
+}
+.border:first-of-type{
+    width: 90%;
+}
+
+main.conteiner > section{
+    display: flex;
+    flex-direction: row;
+}
+main > section > section{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    background-color: rgb(111, 172, 167);
+    border-radius: 25px;
+    padding: 1vw;
+    min-width: 75px;
+    max-width: 1000px;
+    min-height: 100px;
+    margin: 10px;
+    max-height: 12rem;
+    
+
+}
+
+#inputs>div{
+    display:flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+#inputs>div:last-of-type{
+    justify-content:center;
+    margin: 25px 10px 10px 10px;
+    height: 25px;
+
+}
+#inputs>div>label{
+    margin: 3px;
+    font-weight: bold;
+}
+.input{
+    border: none;
+    border-radius: 6px;
+    min-width: 50px;
+
+    width: 150px;
+}
+
+#output{
+    display: table;
+    align-self: center;
+}
+#output>span{
+    display: table-cell;
+    vertical-align: middle;
+  text-align: center;
+}
+
+#mapa {
+    border: 3px rgb(111, 172, 167) solid;
+    border-radius: 40px;
+    min-height:200px;
+    min-width:200px;
+    height:400px;
+    width:800px;
+  }
+
