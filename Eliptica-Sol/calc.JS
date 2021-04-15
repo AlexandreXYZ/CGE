@@ -1,67 +1,39 @@
 class Calibrador {
-	constructor(lati, longi, h, dia_seq) {
-		this.latitude = lati;
-		this.longitude = longi;
+	constructor(coord, h, date) {
+		this.latitude = coord.lat;
+		this.longitude = coord.lng;
 		this.h = h;
-		this.dia_sequencial = dia_seq;
+		this.dia_sequencial = diaAno(date.dia, date.mes, date.ano);
 	}
 
 	//Equação 1
 	Altura_Sol() {
 		// DECLINAÇÃO
-		this.setDeclinacao(declinacao(this.getDia_seq()));
-		document.write("Declinação (original): -23.011636727869245", "<br/>");
-		document.write("Declinação: ", this.getDeclinacao(), "<br/>");
-		
+		// Declinação (original): -23.011636727869245
+		const decli = declinacao(this.dia_sequencial);
+		console.log("Declinação: ", decli);
+
 		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		//original: Math.asin(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude())))
-		this.altura_sol = Math.acos(Math.cos(conv_degree(this.getH())) * Math.cos(conv_degree(this.getDeclinacao())) * Math.cos(conv_degree(this.getLatitude())) + Math.sin(conv_degree(this.getDeclinacao())) * Math.sin(conv_degree(this.getLatitude())));
+		//original: Math.asin(Math.cos(conv_degree(this.h)) * Math.cos(conv_degree(decli)) * Math.cos(conv_degree(this.latitude)) + Math.sin(conv_degree(decli)) * Math.sin(conv_degree(this.latitude)))
+		const altura_sol = Math.acos(Math.cos(conv_degree(this.h)) * Math.cos(conv_degree(decli)) * Math.cos(conv_degree(this.latitude)) + Math.sin(conv_degree(decli)) * Math.sin(conv_degree(this.latitude)));
+		this.altura_sol = altura_sol;
 
 		// OUTPUT
-		document.write("<br/>");
-		document.write("Altura (original - radianos): 0.4920529335892037", "<br/>");
-		document.write("Altura (original - graus): 28.192556391692356<br/>");
-		document.write("Altura Sol (radian): ", this.altura_sol, "<br/>");
-		document.write("Altura Sol (grau): ", (this.altura_sol * 180/Math.PI), "<br/>");
+		console.log("-");
+		console.log("Altura (original - radianos): ", 0.4920529335892037);
+		console.log("Altura (original - graus): ", 28.192556391692356);
+		console.log("Altura Sol (radian): ", altura_sol);
+		console.log("Altura Sol (grau): ", (altura_sol * 180/Math.PI));
 	}
 
 	// Equação 2
 	Azimute_Sol() {
 		// Ângulo da distância zenital
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
-		var azimute_sol = Math.acos(Math.sin(conv_degree(this.getH())) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.getLatitude()))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.getLatitude())));
+		var azimute_sol = Math.acos(Math.sin(conv_degree(this.h)) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.latitude))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.latitude)));
 
-		document.write("<br/>")
-		document.write("Azimute Sol: ", azimute_sol, "<br/>");
+		console.log("-");
+		console.log("Azimute Sol: ", azimute_sol);
 	}
-
-	// Métodos Getters e Setters
-    getH() {
-    	return this.h;
-    }
-    setH(x) {
-    	this.h = x;
-    }
-
-    getDeclinacao() {
-        return this.declinacao;
-    }
-    setDeclinacao(x) {
-        this.declinacao = x;
-    }
-
-    getLatitude() {
-        return this.latitude;
-    }
-    setLatitude(x) {
-        this.latitude = x;
-    }
-
-    getDia_seq() {
-        return this.dia_sequencial;
-    }
-    setDia_seq(x) {
-        this.dia_sequencial = x;
-    }
 }

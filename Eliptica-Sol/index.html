@@ -1,111 +1,127 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>Cálculo do Nascer e Pôr do Sol</title>
 
-        <link href="./index.css" rel="stylesheet">
-        <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
-        <script type="text/javascript" src="./calc.JS"></script>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Cálculo do Nascer e Pôr do Sol</title>
 
-    <body>
+    <link href="./index.css" rel="stylesheet">
+    <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
+    <script type="text/javascript" src="./calc.JS"></script>
+
+    <!-- Mapa -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ1KxiHQ8vf2UnHN18e9pgj8v_AbJevJ4&callback=inicializar">
+    </script>
+</head>
+
+<body>
+    <div>
+        <nav>
+            <a href="../Calculo-Por-Nasc-Sol/index.html">Nacer e Pôr do Sol</a>
+        </nav>
+        <nav>
+            <a href="../Eliptica-Sol/index.html">Ecliptica do Sol</a>
+        </nav>
+    </div>
+
+    <header class="container">
         <div>
-            <nav>
-                <a href="../Calculo-Por-Nasc-Sol/index.html">Nacer e Pôr do Sol</a>
-            </nav>
-            <nav>
-                <a href="../Eliptica-Sol/index.html">Ecliptica do Sol</a>
-            </nav>
+            <img src="./assets/user.jpg" alt="Project logo" id="logo">
+            <h1>Trájetoria solar de acordo com a posição</h1>
         </div>
-        <header class="conteiner">
-            <div>
-                <img src="./assets/user.jpg" alt="some text" id="logo">
-                <h1> Trájetoria solar de acordo com a posição</h1>
-            </div>
-            <div>
-                <div class="border"></div>
-                <div class="border"></div>
-            </div>
-        </header>
+        <div>
+            <div class="border"></div>
+            <div class="border"></div>
+        </div>
+    </header>
 
-        <main class="conteiner">
+    <main class="container">
+        <section>
             <section>
-                <section>
-                    <form id="inputs">
-
-                        <div>
-                            <label for="latitude">Latitude:</label>
-                            <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
-                        </div>
-                        
-                        <div>
-                            <label for="longitude">Longitude:</label>
-                            <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
-                        </div>
-                        
-                        <div>
-                            <label for="date">Data:</label>
-                            <input class="input" type="date" id="date" name="date">
-                        </div>
-                        
-                        <div>
-                            <label for="time">Hórario:</label>
-                            <input class="input" type="time" id="time" name="date" step="1">
-                        </div>
-                        
-                        <div>
-                            <label for="submit" id="submit"></label>
-                            <input class="input" type="button" name="submit" value="Calcular" onclick="enter()" >
+                <form id="inputs">
+                    <div>
+                        <label for="latitude">Latitude:</label>
+                        <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
                     </div>
-                    </form>
-                </section>
 
-                <section id="output">
-                    <span><strong>Altura: </strong> <a id="oi1">99</a>&#176;</span>
-                    <span><strong>Azimute: </strong> <a id="oi2">99</a>&#176;</span>
-                </section>
-            </section>
-            
-            <section>
-                    <div id="mapa"></div>
-            </section>
-        </main>
-        <script>
+                    <div>
+                        <label for="longitude">Longitude:</label>
+                        <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
+                    </div>
 
-            function inicializar() {
-              var coordenadas = {lat: -22.912869, lng: -43.228963};
-      
-              var mapa = new google.maps.Map(document.getElementById('mapa'), {
+                    <div>
+                        <label for="date">Data:</label>
+                        <input class="input" type="date" id="date" name="date">
+                    </div>
+
+                    <div>
+                        <label for="time">Hórario:</label>
+                        <input class="input" type="time" id="time" name="date" step="1">
+                    </div>
+
+                    <div>
+                        <label for="submit" id="submit"></label>
+                        <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
+                    </div>
+                </form>
+            </section>
+
+            <section id="output">
+                <span><strong>Altura: </strong> <a id="oi1">99</a>&#176;</span>
+                <span><strong>Azimute: </strong> <a id="oi2">99</a>&#176;</span>
+            </section>
+        </section>
+
+        <section>
+            <div id="mapa"></div>
+        </section>
+    </main>
+
+    <script id="Mapa">
+        var coord = {
+            lat: -29.101822525054313,
+            lng: -49.63858494648771
+        };
+
+        function inicializar() {
+            var mapa = new google.maps.Map(document.getElementById('mapa'), {
                 zoom: 15,
-                center: coordenadas 
-              });
-      
-              var marker = new google.maps.Marker({
-                position: coordenadas,
+                center: coord
+            });
+
+            var marker = new google.maps.Marker({
+                position: coord,
                 map: mapa,
                 title: 'Meu marcador'
-              });
-            }
-          </script>
-          <script async defer
-          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTLbcm7UIqgwUDJHQ_8Rw42lbMi0iZlzI&callback=inicializar">
-          </script>
-    <!-- 
-        <script>
-            function enter() {
-                const lat = parseInt(document.getElementById("latitude").value);
-                const longi = parseInt(document.getElementById("longitude").value);
-                const dia = parseInt((document.getElementById("date").value).split("-")[2]);
-                const mes = parseInt((document.getElementById("date").value).split("-")[1]);
-                const ano = parseInt((document.getElementById("date").value).split("-")[0]);
+            });
+        }
+    </script>
 
-                // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2018);
-                let a = new SunRiseSet(lat, longi, dia, mes, ano);
-                console.log(lat, longi, dia, mes, ano);
-                a.Sunrise();
-                a.Sunset();
+    <script>
+        function enter() {
+            let coord = {
+                lat: parseFloat(document.getElementById("latitude").value),
+                lng: parseFloat(document.getElementById("longitude").value)
             }
-        </script> -->
-    </body>
+
+            let date = {
+                dia: parseInt((document.getElementById("date").value).split("-")[2]),
+                mes: parseInt((document.getElementById("date").value).split("-")[1]),
+                ano: parseInt((document.getElementById("date").value).split("-")[0])
+            }
+            // implementar o angle hour 
+            
+            // let a = new Calibrador({lat:46.633056, lng:-23.543333}, 0, {dia:29, mes:04, ano:2018}); //4debug
+            let a = new Calibrador(coord, 0, date);
+            inicializar();
+            // console.log(coord, date);
+
+            a.Altura_Sol();
+            // a.Azimute_Sol();
+        }
+        enter()
+    </script>
+</body>
+
 </html>

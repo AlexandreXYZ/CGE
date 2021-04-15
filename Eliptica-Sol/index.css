@@ -31,13 +31,13 @@ body>div>nav>a{
     text-decoration: none;
     color:rgb(40, 73, 74);
 }
-.conteiner{
+.container{
     background-color: rgb(125, 193, 187);
     margin: 0 20vw;
     border-radius: 7px;
     padding: 2vw;
 }
-header.conteiner{
+header.container{
     margin-top: 3%;
     margin-bottom: 1%;
     
@@ -64,7 +64,7 @@ header > div{
     width: 90%;
 }
 
-main.conteiner > section{
+main.container > section{
     display: flex;
     flex-direction: row;
 }

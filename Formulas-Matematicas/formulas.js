@@ -27,10 +27,10 @@ function conv_degree(degree) {
 }
 
 function declinacao(dia_seq) {
-    //original: 23.45 * Math.sin(conv_degree((360/365)*(284 + this.getDia_seq())))
+    //original: 23.45 * Math.sin(conv_degree((360/365)*(284 + dia_seq)))
 
     //usp
-    var declinacao = 23.45 * Math.sin(conv_degree(360 * (dia_seq - 80) / 365));
+    var declinacao = 23.45 * Math.sin(360 * (dia_seq - 80) / 365);
     return declinacao;
 }
 
