@@ -2,30 +2,39 @@
 body, html{
     width: 100%;
     height: 100%;
-    background-color: #49788c;
+    background-color: var(--fundo-body);
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    color: rgb(40, 73, 74) ;
-
+    color: var(--letra-color);
+    
+}
+:root{
+    --fundo-body: #49788c;
+    --fundo-body-header:rgb(117, 183, 177);
+    --fundo-conteiner: rgb(125, 193, 187);
+    --fundo-conteiner-bloco: rgb(111, 172, 167);
+    --border: 3px rgb(99, 154, 149) solid;
+    --letra-color: rgb(40, 73, 74);
 }
 body>div{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: rgb(117, 183, 177);
+    background-color: var(--fundo-body-header);
     padding: 2px 20vw;
     width: 100vw;
 }
 body>div>nav{
     float: left;
     margin: 1px 0.5rem;
-    border: 2px rgb(102, 159, 154) solid;
+    border: var(--border);
+    border-width: 2px;
     font-weight: bold;
     border-radius: 15px;
 }
 body>div>nav:hover{
-    background-color: rgb(117, 183, 177);
+    background-color: var(--fundo-body-header);
 
 }
 
@@ -33,10 +42,10 @@ body>div>nav>a{
     display: inline-block;
     padding: 15px;
     text-decoration: none;
-    color:rgb(40, 73, 74);
+    color:var(--letra-color);
 }
 .conteiner{
-    background-color: rgb(125, 193, 187);
+    background-color: var(--fundo-conteiner);
     margin: 0 20vw;
     border-radius: 7px;
     padding: 2vw;
@@ -67,7 +76,7 @@ main > section > section{
     display: flex;
     flex-direction: column;
     flex-basis: 50%;
-    background-color: rgb(111, 172, 167);
+    background-color: var(--fundo-conteiner-bloco);
     border-radius: 25px;
     padding: 1vw;
     min-width: 75px;
@@ -105,7 +114,7 @@ main > section > section{
 #output{
     display: table;
     align-self: center;
-    border: 3px rgb(99, 154, 149) solid;
+    border: var(--border);
 }
 #output>span{
     display: table-cell;
