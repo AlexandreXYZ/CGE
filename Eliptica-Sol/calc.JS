@@ -24,16 +24,14 @@ class Calibrador {
 		console.log("Altura (original - radianos): ", 0.4920529335892037);
 		console.log("Altura (original - graus): ", 28.192556391692356);
 		console.log("Altura Sol (radian): ", altura_sol);
-		console.log("Altura Sol (grau): ", (altura_sol * 180/Math.PI));
+		document.getElementById("altura").innerHTML = (altura_sol * 180/Math.PI).toFixed(2);
 	}
-
+	
 	// Equação 2
 	Azimute_Sol() {
 		// Ângulo da distância zenital
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
 		var azimute_sol = Math.acos(Math.sin(conv_degree(this.h)) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.latitude))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.latitude)));
-
-		console.log("-");
-		console.log("Azimute Sol: ", azimute_sol);
+		document.getElementById("azimute").innerHTML = (azimute_sol).toFixed(2);
 	}
 }
