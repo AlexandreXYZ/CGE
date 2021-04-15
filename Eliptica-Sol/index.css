@@ -10,18 +10,22 @@ body, html{
 
 }
 body>div{
-    display: flex;
-    background-color: rgb(125, 193, 187);
-    padding: 2px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgb(117, 183, 177);
+    padding: 2px 20vw;
+    width: 100vw;
 }
 body>div>nav{
-    margin: 1px;
-    border: 2px rgb(111, 172, 167) solid;
+    float: left;
+    margin: 1px 0.5rem;
+    border: 2px rgb(102, 159, 154) solid;
     font-weight: bold;
     border-radius: 15px;
 }
 body>div>nav:hover{
-    background-color: rgb(111, 172, 167);
+    background-color: rgb(117, 183, 177);
 
 }
 
@@ -38,7 +42,7 @@ body>div>nav>a{
     padding: 2vw;
 }
 header.conteiner{
-    margin-top: 3%;
+    margin-top: 7%;
     margin-bottom: 1%;
     
 }
@@ -53,15 +57,6 @@ header > div{
     width: 100px;
     border-radius: 100%;
     align-items: center;
-}
-.border{
-    margin: 5px;
-    height: 2px;
-    width: 100%;
-    background-color: #82909d;
-}
-.border:first-of-type{
-    width: 90%;
 }
 
 main.conteiner > section{
@@ -110,11 +105,14 @@ main > section > section{
 #output{
     display: table;
     align-self: center;
+    border: 3px rgb(99, 154, 149) solid;
 }
 #output>span{
     display: table-cell;
     vertical-align: middle;
-  text-align: center;
+    text-align: center;
+    font-size: 19px;
+    letter-spacing: 0.05rem;
 }
 
 #mapa {
