@@ -11,7 +11,8 @@
 
     <!-- Mapa -->
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDQ1KxiHQ8vf2UnHN18e9pgj8v_AbJevJ4&callback=inicializar">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTLbcm7UIqgwUDJHQ_8Rw42lbMi0iZlzI&callback=inicializar">
+        // pedro key=AIzaSyDQ1KxiHQ8vf2UnHN18e9pgj8v_AbJevJ4
     </script>
 </head>
 
@@ -30,41 +31,41 @@
             <img src="./assets/user.jpg" alt="Project logo" id="logo">
             <h1>Trajetória solar de acordo com a posição</h1>
         </div>
+    </header>
 
-        <main class="conteiner">
-            <section>
-                <form id="inputs">
-                    <div>
-                        <label for="latitude">Latitude:</label>
-                        <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
-                    </div>
+    <main class="container">
+        <section>
+            <form id="inputs">
+                <div>
+                    <label for="latitude">Latitude:</label>
+                    <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
+                </div>
 
-                    <div>
-                        <label for="longitude">Longitude:</label>
-                        <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
-                    </div>
+                <div>
+                    <label for="longitude">Longitude:</label>
+                    <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
+                </div>
 
-                    <div>
-                        <label for="date">Data:</label>
-                        <input class="input" type="date" id="date" name="date">
-                    </div>
+                <div>
+                    <label for="date">Data:</label>
+                    <input class="input" type="date" id="date" name="date">
+                </div>
 
-                    <div>
-                        <label for="time">Hórario:</label>
-                        <input class="input" type="time" id="time" name="date" step="1">
-                    </div>
+                <div>
+                    <label for="time">Hórario:</label>
+                    <input class="input" type="time" id="time" name="date" step="1">
+                </div>
 
-                    <div>
-                        <label for="submit" id="submit"></label>
-                        <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
-                    </div>
-                </form>
-            </section>
+                <div>
+                    <label for="submit" id="submit"></label>
+                    <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
+                </div>
+            </form>
+        </section>
 
-            <section id="output">
-                <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
-                <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
-            </section>
+        <section id="output">
+            <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
+            <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
         </section>
 
         <section>
@@ -74,7 +75,7 @@
 
     <script id="Mapa">
         var coord = {
-            lat: -29.101822525054313,
+            lat: -29.10182252505431,
             lng: -49.63858494648771
         };
 
@@ -97,24 +98,29 @@
             let coord = {
                 lat: parseFloat(document.getElementById("latitude").value),
                 lng: parseFloat(document.getElementById("longitude").value)
-            }
+            };
 
             let date = {
                 dia: parseInt((document.getElementById("date").value).split("-")[2]),
                 mes: parseInt((document.getElementById("date").value).split("-")[1]),
                 ano: parseInt((document.getElementById("date").value).split("-")[0])
-            }
-            // implementar o angle hour 
+            };
             
-            let a = new Calibrador({lat:46.633056, lng:-23.543333}, 0, {dia:29, mes:04, ano:2018}); //4debug
-            // let a = new Calibrador(coord, 0, date);
+            let schedule = {
+                hora: parseInt((document.getElementById("time").value).split(":")[0]),
+                min: parseInt((document.getElementById("time").value).split(":")[1]),
+                seg: parseInt((document.getElementById("time").value).split(":")[2])
+            };
+             
+            let a = new Calibrador({lat:46.633056,lng:-23.543333}, {hour:12,min:0,seg:0}, {dia:29,mes:04,ano:2018}); //4debug
+            // let a = new Calibrador(coord, schedule, date);
+            // console.log(coord, schedule, date);
             inicializar();
-            // console.log(coord, date);
 
             a.Altura_Sol();
             // a.Azimute_Sol();
         }
-        enter()
+        enter();
     </script>
 </body>
 
