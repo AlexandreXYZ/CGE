@@ -2,127 +2,134 @@
 body, html{
     width: 100%;
     height: 100%;
-    background-color: #d1e9f3;
+    background-color: var(--fundo-body);
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    color: var(--letra-color);
+    
 }
-header{
-    margin: 3% 10% 3% 10%;
-    margin-right:0;
-    padding-right: 0;
+:root{
+    --fundo-body: #49788c;
+    --fundo-body-header:rgb(117, 183, 177);
+    --fundo-conteiner: rgb(125, 193, 187);
+    --fundo-conteiner-bloco: rgb(111, 172, 167);
+    --border: 3px rgb(99, 154, 149) solid;
+    --letra-color: rgb(40, 73, 74);
 }
-header > div:first-of-type{
+body>div{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--fundo-body-header);
+    padding: 2px 20vw;
+    width: 100vw;
+}
+body>div>nav{
+    float: left;
+    margin: 1px 0.5rem;
+    border: var(--border);
+    border-width: 2px;
+    font-weight: bold;
+    border-radius: 15px;
+}
+body>div>nav:hover{
+    background-color: var(--fundo-body-header);
+
+}
+
+body>div>nav>a{
+    display: inline-block;
+    padding: 15px;
+    text-decoration: none;
+    color:var(--letra-color);
+}
+.container{
+    background-color: var(--fundo-conteiner);
+    margin: 0 20vw;
+    border-radius: 7px;
+    padding: 2vw;
+}
+header.container{
+    margin-top: 7%;
+    margin-bottom: 1%;
+    
+}
+
+header > div{
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0 0 0 0;
     text-align: center;
 }
-header > div:last-of-type{
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-}
-header > div > h1{
-    
-    margin-right:0;
-    padding-right: 0;
-    width: 100%;
-
-}
-header > div > img{
-    width:90px; 
-    height:90px;
-    border-radius: 100px; 
-    margin-right: 15px;
-}
-
-.border{
-    margin: 5px;
-    height: 2px;
-    width: 100%;
-    background-color: #788896;
-}
-.border:first-of-type{
-    width: 90%;
-}
-
-main{
-    display: flex;
-    flex-direction: column;
-    place-items: center;
-    margin: 50px 10% 0px 10%;
-}
-main > section > form{
-    display: flex;
-    flex-direction: column;
-    border: 2px rgb(169, 188, 191) solid;
-    background-color: white;
-    font-size: 150%;
-    padding: 15px 15px 15px 15px;
-    min-width: 400px;
-}
-main > section > form > label{
-    display: inline-flex;
-    justify-content: space-between;
+#logo{
+    width: 100px;
+    border-radius: 100%;
     align-items: center;
-    padding: 5px;
-    font-size: 20px;
+}
+
+main.container > section{
+    display: flex;
+    flex-direction: row;
+}
+main > section > section{
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    background-color: var(--fundo-conteiner-bloco);
+    border-radius: 25px;
+    padding: 1vw;
+    min-width: 75px;
+    max-width: 1000px;
+    min-height: 100px;
+    margin: 10px;
+    max-height: 12rem;
+    
+
+}
+
+#inputs>div{
+    display:flex;
+    justify-content: space-between;
+    margin: 10px;
+}
+#inputs>div:last-of-type{
+    justify-content:center;
+    margin: 25px 10px 10px 10px;
+    height: 25px;
+
+}
+#inputs>div>label{
+    margin: 3px;
+    font-weight: bold;
 }
 .input{
-    border: rgb(169, 188, 191) 1px solid;
-    border-color: rgba(0, 0, 0, 0.234);
-    border-radius: 5px;
-    font-size: 15px;
-    min-width: 150px;
-    height: 30px;
+    border: none;
+    border-radius: 6px;
+    min-width: 50px;
 
-}
-#submit{
-    justify-content: center;
-}
-main > section:last-of-type {
-    display: flex;
-    flex-direction: column;
-    border: 2px rgb(119, 0, 167) solid;
-    min-width: 200px;
-    padding: 15px 15px 15px 15px;
-    margin: 20px 0 0 0;
-}
-main > section > span{
-    display: flex;
-    font-size: 23px;
-    padding: 15px 15px 15px 15px;   
+    width: 150px;
 }
 
-@media only screen and (min-width: 950px) {
-    header{
-        margin: 3% 10% 3% 100px;
-
-    }
-    header>div:first-of-type{
-        flex-direction: row;
-        text-align: initial;
-    }
-    header>div:last-of-type{
-        place-items: initial;
-    }
-    header > div > h1{
-        width: 60%;
-        
-    }
-    main{
-        flex-direction: row;
-        place-items: center;
-
-    }
-    main > section:last-of-type {
-        display: flex;
-        flex-direction: column;
-        border: 2px rgb(119, 0, 167) solid;
-        min-width: 200px;
-        padding: 15px 15px 15px 15px;
-        margin: 0px 0px 0px 5%;
-    }
+#output{
+    display: table;
+    align-self: center;
+    border: var(--border);
 }
+#output>span{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 19px;
+    letter-spacing: 0.05rem;
+}
+
+#mapa {
+    border: 3px rgb(111, 172, 167) solid;
+    border-radius: 40px;
+    min-height:200px;
+    min-width:200px;
+    height:400px;
+    width:800px;
+  }
+
