@@ -22,8 +22,6 @@ body>div{
     top: 0;
     left: 0;
     background-color: var(--fundo-body-header);
-    border: var(--border);
-    border-width: 1.5px;
     padding: 2px 20vw;
     width: 100vw;
 }
