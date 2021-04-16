@@ -35,37 +35,39 @@
 
     <main class="container">
         <section>
-            <form id="inputs">
-                <div>
-                    <label for="latitude">Latitude:</label>
-                    <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
-                </div>
+            <section>
+                <form id="inputs">
+                    <div>
+                        <label for="latitude">Latitude:</label>
+                        <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
+                    </div>
 
-                <div>
-                    <label for="longitude">Longitude:</label>
-                    <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
-                </div>
+                    <div>
+                        <label for="longitude">Longitude:</label>
+                        <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
+                    </div>
 
-                <div>
-                    <label for="date">Data:</label>
-                    <input class="input" type="date" id="date" name="date">
-                </div>
+                    <div>
+                        <label for="date">Data:</label>
+                        <input class="input" type="date" id="date" name="date">
+                    </div>
 
-                <div>
-                    <label for="time">Hórario:</label>
-                    <input class="input" type="time" id="time" name="date" step="1">
-                </div>
+                    <div>
+                        <label for="time">Hórario:</label>
+                        <input class="input" type="time" id="time" name="date" step="1">
+                    </div>
 
-                <div>
-                    <label for="submit" id="submit"></label>
-                    <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
-                </div>
-            </form>
-        </section>
+                    <div>
+                        <label for="submit" id="submit"></label>
+                        <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
+                    </div>
+                </form>
+            </section>
 
-        <section id="output">
-            <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
-            <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
+            <section id="output">
+                <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
+                <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
+            </section>
         </section>
 
         <section>
@@ -105,14 +107,14 @@
                 mes: parseInt((document.getElementById("date").value).split("-")[1]),
                 ano: parseInt((document.getElementById("date").value).split("-")[0])
             };
-            
+
             let schedule = {
                 hora: parseInt((document.getElementById("time").value).split(":")[0]),
                 min: parseInt((document.getElementById("time").value).split(":")[1]),
                 seg: parseInt((document.getElementById("time").value).split(":")[2])
             };
-             
-            let a = new Calibrador({lat:46.633056,lng:-23.543333}, {hour:12,min:0,seg:0}, {dia:29,mes:04,ano:2018}); //4debug
+
+            let a = new Calibrador({lat: 46.633056,lng: -23.543333}, {hour: 12,min: 0,seg: 0}, {dia: 29,mes: 04,ano: 2018}); //4debug
             // let a = new Calibrador(coord, schedule, date);
             // console.log(coord, schedule, date);
             inicializar();
