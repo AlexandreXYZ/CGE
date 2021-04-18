@@ -1,8 +1,8 @@
 class SunRiseSet {
-    constructor(lati, longi, dia, mes, ano) {
-        this.day_year = diaAno(dia, mes, ano);
-        this.latitude = lati;
-        this.longitude = longi;
+    constructor(coord, date) {
+        this.day_year = diaAno(date.dia, date.mes, date.ano);
+		this.latitude = coord.lat;
+		this.longitude = coord.lng;
     }
 
     // Cálculos do nascer do sol

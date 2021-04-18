@@ -1,9 +1,9 @@
 class Calibrador {
-	constructor(coord, schedule, date) {
+	constructor(coord, horario, data) {
 		this.latitude = coord.lat;
 		this.longitude = coord.lng;
-		this.h = hourAngle(schedule.hour, schedule.min, schedule.seg);
-		this.dia_sequencial = diaAno(date.dia, date.mes, date.ano);
+		this.h = anguloHorario(horario.hora, horario.min, horario.seg);
+		this.dia_sequencial = diaAno(data.dia, data.mes, data.ano);
 	}
 
 	//Equação 1

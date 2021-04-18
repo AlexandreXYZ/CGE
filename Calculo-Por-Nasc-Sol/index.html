@@ -51,15 +51,20 @@
 
     <script>
         function enter() {
-            const lat = parseInt(document.getElementById("latitude").value);
-            const longi = parseInt(document.getElementById("longitude").value);
-            const dia = parseInt((document.getElementById("date").value).split("-")[2]);
-            const mes = parseInt((document.getElementById("date").value).split("-")[1]);
-            const ano = parseInt((document.getElementById("date").value).split("-")[0]);
+            let coord = {
+                lat: parseFloat(document.getElementById("latitude").value),
+                longi: parseFloat(document.getElementById("longitude").value)
+            };
 
-            // let a = new SunRiseSet(46.633056, -23.543333, 29, 04, 2021);
-            let a = new SunRiseSet(lat, longi, dia, mes, ano);
-            console.log(lat, longi, dia, mes, ano);
+            let date = {
+                dia: parseInt((document.getElementById("date").value).split("-")[2]),
+                mes: parseInt((document.getElementById("date").value).split("-")[1]),
+                ano: parseInt((document.getElementById("date").value).split("-")[0])
+            };
+
+            // let a = new SunRiseSet({lat: 46.633056,lng: -23.543333}, {dia: 29,mes: 04,ano: 2018}); //4debug
+            let a = new SunRiseSet(coord, date);
+            console.log(coord, date);
             a.Sunrise();
             a.Sunset();
         }

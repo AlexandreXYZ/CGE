@@ -102,21 +102,21 @@
                 lng: parseFloat(document.getElementById("longitude").value)
             };
 
-            let date = {
+            let data = {
                 dia: parseInt((document.getElementById("date").value).split("-")[2]),
                 mes: parseInt((document.getElementById("date").value).split("-")[1]),
                 ano: parseInt((document.getElementById("date").value).split("-")[0])
             };
 
-            let schedule = {
+            let horario = {
                 hora: parseInt((document.getElementById("time").value).split(":")[0]),
                 min: parseInt((document.getElementById("time").value).split(":")[1]),
                 seg: parseInt((document.getElementById("time").value).split(":")[2])
             };
 
             let a = new Calibrador({lat: 46.633056,lng: -23.543333}, {hour: 12,min: 0,seg: 0}, {dia: 29,mes: 04,ano: 2018}); //4debug
-            // let a = new Calibrador(coord, schedule, date);
-            // console.log(coord, schedule, date);
+            // let a = new Calibrador(coord, horario, data);
+            // console.log(coord, horario, data);
             inicializar();
 
             a.Altura_Sol();
