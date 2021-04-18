@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cálculo do Nascer e Pôr do Sol</title>
+    <title>Elíptica Solar</title>
 
     <link href="./index.css" rel="stylesheet">
     <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
@@ -114,15 +114,15 @@
                 seg: parseInt((document.getElementById("time").value).split(":")[2])
             };
 
-            let a = new Calibrador({lat: 46.633056,lng: -23.543333}, {hora: 12,min: 0,seg: 0}, {dia: 29,mes: 04,ano: 2018}); //4debug
-            // let a = new Calibrador(coord, horario, data);
+            // let a = new Calibrador({lat: 46.633056,lng: -23.543333}, {hora: 12,min: 0,seg: 0}, {dia: 29,mes: 04,ano: 2018}); //4debug
+            let a = new Calibrador(coord, horario, data);
             // console.log(coord, horario, data);
-            inicializar();
+            inicializar()
 
-            a.Altura_Sol();
-            // a.Azimute_Sol();
+            a.Altura_Sol()
+            // a.Azimute_Sol()
         }
-        enter();
+        enter()
     </script>
 </body>
 

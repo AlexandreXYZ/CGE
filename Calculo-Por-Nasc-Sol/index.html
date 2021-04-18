@@ -93,7 +93,7 @@
         function enter() {
             let coord = {
                 lat: parseFloat(document.getElementById("latitude").value),
-                longi: parseFloat(document.getElementById("longitude").value)
+                lng: parseFloat(document.getElementById("longitude").value)
             };
 
             let date = {
@@ -105,9 +105,12 @@
             // let a = new SunRiseSet({lat: 46.633056,lng: -23.543333}, {dia: 29,mes: 04,ano: 2018}); //4debug
             let a = new SunRiseSet(coord, date);
             console.log(coord, date);
+            inicializar();
+
             a.Sunrise();
             a.Sunset();
         }
+        enter()
     </script>
 </body>
 
