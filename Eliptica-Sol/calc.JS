@@ -16,7 +16,7 @@ class Calibrador {
 		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
 		//original: Math.asin(Math.cos(this.h) * Math.cos(conv_degree(decli)) * Math.cos(conv_degree(this.latitude)) + Math.sin(conv_degree(decli)) * Math.sin(conv_degree(this.latitude)))
-		const altura_sol = Math.acos(Math.cos(this.h) * Math.cos(conv_degree(decli)) * Math.cos(conv_degree(this.latitude)) + Math.sin(conv_degree(decli)) * Math.sin(conv_degree(this.latitude)));
+		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(conv_degree(decli)) * Math.cos(conv_degree(this.latitude)) + Math.sin(conv_degree(decli)) * Math.sin(conv_degree(this.latitude)));
 		this.altura_sol = altura_sol;
 		
 		// OUTPUT
@@ -30,7 +30,7 @@ class Calibrador {
 	Azimute_Sol() {
 		// Ângulo da distância zenital
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
-		var azimute_sol = Math.acos(Math.sin(this.h) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.latitude))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.latitude)));
+		var azimute_sol = Math.acos(Math.sin(this.latitude) - Math.sin(conv_degree(this.altura_sol)) * Math.sin(conv_degree(this.latitude))) / (Math.cos(conv_degree(this.altura_sol)) * Math.cos(conv_degree(this.latitude)));
 		document.getElementById("azimute").innerHTML = (azimute_sol).toFixed(2);
 	}
 }
