@@ -13,7 +13,7 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 ---------------
 
 #### Declinação local:
-	'declinacao = 23.45 * Math.sin(conv_degree((360/365)*(284 + this.dia_sequencial)));'
+	'declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + this.dia_sequencial)));'
 
 	Apoio: https://www.if.ufrgs.br/~fatima/fis2016/tempo/tempo.htm
 

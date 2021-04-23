@@ -18,7 +18,7 @@ class SunRiseSet {
 
         // Saída (output)
         var schedule_adjusted = corret_lati(this.getLongitude(), sunrise);
-        document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
+        document.getElementById("nascer").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
     // Cálculos do pôr do sol
@@ -34,7 +34,7 @@ class SunRiseSet {
 
         // Saída (output)
         var schedule_adjusted = corret_lati(this.getLongitude(), sunset);
-        document.getElementById("nascer").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
+        document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
     // Métodos Getters e Setters

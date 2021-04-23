@@ -18,10 +18,10 @@
     <script type="text/javascript" src="./calc.JS"></script>
 
     <!-- Mapa -->
-    <script async defer
+    <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTLbcm7UIqgwUDJHQ_8Rw42lbMi0iZlzI&callback=inicializar">
         // pedro key=AIzaSyDQ1KxiHQ8vf2UnHN18e9pgj8v_AbJevJ4
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -68,17 +68,17 @@
             </section>
 
             <section id="output">
-                <span><strong>Por do Sol: </strong> <a id="nascer">13:50:24</a></span>
-                <span><strong> Nascer do Sol:</strong> <a id="por">23:50:24</a></span>
+                <span><strong>Nascer do Sol:</strong> <a id="nascer">23:50:24</a></span>
+                <span><strong>Por do Sol: </strong> <a id="por">13:50:24</a></span>
             </section>
         </section>
 
-        <section>
+        <!-- <section>
             <div id="mapa"></div>
-        </section>
+        </section> -->
     </main>
 
-    <script id="Mapa">
+    <!-- <script id="Mapa">
         var coord = {
             lat: -29.10182252505431,
             lng: -49.63858494648771
@@ -96,7 +96,7 @@
                 title: 'Meu marcador'
             });
         }
-    </script>
+    </script> -->
     <script>
         function enter() {
             let coord = {
@@ -111,9 +111,10 @@
             };
 
             // let a = new SunRiseSet({lat: 46.633056,lng: -23.543333}, {dia: 29,mes: 04,ano: 2018}); //4debug
-            let a = new SunRiseSet(coord, date);
-            console.log(coord, date);
-            inicializar();
+            let a = new SunRiseSet({lat: 38.87690,lng: -77.04130}, {dia: 01,mes: 04,ano: 2018}); //4debug
+            // let a = new SunRiseSet(coord, date);
+            // console.log(coord, date);
+            // inicializar();
 
             a.Sunrise();
             a.Sunset();

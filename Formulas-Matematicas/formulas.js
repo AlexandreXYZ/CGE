@@ -21,21 +21,19 @@ function diaAno(dia, mes, ano) {
     return dia + tot_meses;
 }
 
-function conv_degree(degree) {
+function toRadian(degree) {
     var radian = degree * (Math.PI / 180);
     return radian;
 }
 
 function declinacao(dia_seq) {
-    //original: 23.45 * Math.sin(conv_degree((360/365)*(284 + dia_seq)))
-
-    //usp
-    var declinacao = 23.45 * Math.sin(360 * (dia_seq - 80) / 365);
+    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq)));
+    console.log(Math.sin((360/365)*(284 + dia_seq)));
     return declinacao;
 }
 
 function duracaoDia(latitude, diaAno) {
-    var T = 2 / 15 * Math.acos(-Math.tan(conv_degree(latitude)) * Math.tan(conv_degree(declinacao(diaAno)))) * (180 / Math.PI);
+    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(toRadian(declinacao(diaAno)))) * (180 / Math.PI);
     return T;
 }
 
