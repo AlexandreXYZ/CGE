@@ -5,35 +5,31 @@ class SunRiseSet {
 		this.longitude = coord.lng;
     }
 
-    // Cálculos do nascer do sol
     Sunrise() {
-        // Calcula a duração do dia
-        var T = duracaoDia(this.latitude, this.day_year);
-        var schedule_sunrise = 12 - (T / 2); // Horas de sol (número completo)
-
+        var T = duracaoDia(this.latitude, this.day_year); //day_length()
+        var decimal_sunrise = 12 - (toDegree(T) / 2); // Horario formato decimal
+        
         var sunrise = new Object();
-        sunrise.hour = Math.trunc(schedule_sunrise);
-        sunrise.min = Math.abs((schedule_sunrise - sunrise.hour) * 60);
+        sunrise.hour = Math.trunc(decimal_sunrise);
+        sunrise.min = Math.abs((decimal_sunrise - sunrise.hour) * 60);
         sunrise.seg = Math.abs((sunrise.min - Math.trunc(sunrise.min)) * 60);
-
+        
         // Saída (output)
-        var schedule_adjusted = corret_lati(this.getLongitude(), sunrise);
+        var schedule_adjusted = corret_lati(this.longitude, sunrise);
         document.getElementById("nascer").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
-    // Cálculos do pôr do sol
     Sunset() {
-        // Calcula a duração do dia
-        var T = duracaoDia(this.latitude, this.day_year);
-        var schedule_sunset = 12 + (T / 2); // Número completo
+        var T = duracaoDia(this.latitude, this.day_year); //day_length()
+        var decimal_sunset = 12 + (toDegree(T) / 2); // Horario formato decimal
 
         var sunset = new Object();
-        sunset.hour = Math.trunc(schedule_sunset);
-        sunset.min = Math.abs((schedule_sunset - sunset.hour) * 60);
+        sunset.hour = Math.trunc(decimal_sunset);
+        sunset.min = Math.abs((decimal_sunset - sunset.hour) * 60);
         sunset.seg = Math.abs((sunset.min - Math.trunc(sunset.min)) * 60);
 
         // Saída (output)
-        var schedule_adjusted = corret_lati(this.getLongitude(), sunset);
+        var schedule_adjusted = corret_lati(this.longitude, sunset);
         document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 

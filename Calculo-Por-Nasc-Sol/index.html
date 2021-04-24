@@ -110,16 +110,15 @@
                 ano: parseInt((document.getElementById("date").value).split("-")[0])
             };
 
-            // let a = new SunRiseSet({lat: 46.633056,lng: -23.543333}, {dia: 29,mes: 04,ano: 2018}); //4debug
-            let a = new SunRiseSet({lat: 38.87690,lng: -77.04130}, {dia: 01,mes: 04,ano: 2018}); //4debug
-            // let a = new SunRiseSet(coord, date);
-            // console.log(coord, date);
+            // /*de cima-pdf*/ let a = new SunRiseSet({lat: -23.543333,lng: 46.633056}, {dia: 29,mes: 04,ano: 2020}); //4debug
+            // /*de baixo-pdf*/ let a = new SunRiseSet({lat: -23.543333,lng: 46.633056}, {dia: 10,mes: 05,ano: 2020}); //4debug
+            let a = new SunRiseSet(coord, date);
+            console.log(coord, date);
             // inicializar();
 
             a.Sunrise();
             a.Sunset();
         }
-        enter()
     </script>
 </body>
 

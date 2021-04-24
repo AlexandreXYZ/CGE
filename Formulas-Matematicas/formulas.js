@@ -26,14 +26,18 @@ function toRadian(degree) {
     return radian;
 }
 
+function toDegree(radian) {
+    var degree = radian * (180 / Math.PI);
+    return degree;
+}
+
 function declinacao(dia_seq) {
-    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq)));
-    console.log(Math.sin((360/365)*(284 + dia_seq)));
-    return declinacao;
+    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq))); //pdf
+    return toRadian(declinacao); // Retorna em radianos
 }
 
 function duracaoDia(latitude, diaAno) {
-    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(toRadian(declinacao(diaAno)))) * (180 / Math.PI);
+    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declinacao(diaAno)));
     return T;
 }
 
