@@ -43,7 +43,9 @@
 
     <main class="container">
         <section>
-            <section>
+            <fieldset>
+                <legend><strong> Input </strong></legend>
+
                 <form id="inputs">
                     <div>
                         <label for="latitude">Latitude:</label>
@@ -62,7 +64,7 @@
 
                     <div>
                         <label for="time">Hórario:</label>
-                        <input class="input" type="time" id="time" name="date" step="1">
+                        <input class="input" type="time" id="time" name="date" autocomplete="on"step="1">
                     </div>
 
                     <div>
@@ -70,12 +72,13 @@
                         <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
                     </div>
                 </form>
-            </section>
-
-            <section id="output">
-                <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
-                <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
-            </section>
+            </fieldset>
+            
+                <fieldset id="output">
+                    <legend><strong> Output </strong></legend>
+                    <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
+                    <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
+                </fieldset>
         </section>
 
         <!-- <section>
