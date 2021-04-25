@@ -46,3 +46,10 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 
 	É o ângulo que determina a altura do sol em relação ao horizonte.
 	Varia entre -90° e 90°. Sendo o máximo quando está no zênite. E negativo quando está de noite.
+
+#### Azimute Solar:
+	'azimute_sol = Math.acos((Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude)));'
+
+	Apoio: https://solarsena.com/solar-azimuth-angle-calculator-solar-panels
+
+	Ângulo do sol em relação ao norte.
