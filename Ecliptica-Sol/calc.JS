@@ -11,7 +11,6 @@ class Calibrador {
 		const declination = declinacao(this.dia_sequencial);
 		console.log("Declinação: ", toDegree(declination).toFixed(3));
 
-		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
 		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(declination) * Math.cos(this.latitude) + Math.sin(declination) * Math.sin(this.latitude));
 		this.altura_sol = altura_sol;
@@ -27,7 +26,7 @@ class Calibrador {
 
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
 		/*pdf*/ var azimute_sol_pdf = Math.acos((Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude)));
-		var azimute_sol = Math.acos((Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
+		/*net*/ var azimute_sol = Math.acos((Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
 
 		if (this.h > 0) {
 			// Se for depois do meio dia, subtrai de o azimute de 360

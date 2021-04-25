@@ -21,8 +21,10 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 	O '360/365 * (284 + dia)' serve para calcular o ângulo em relação à posição da terra no primeiro dia do ano.
 	O 'sin' serve para calcular a distância em relação a linha do primeiro dia do ano.
 
+	Obs: A fórmula com cosseno e 'n + 10' retorna quase o mesmo valor da fórmula com seno 'n + 284'
+
 #### Ângulo da Hora Solar:
-	'h'
+	'h = 15 * (((((seg / 60) + min) / 60) + hour) - 12)'
 
 	Apoio: https://pt.qaz.wiki/wiki/Hour_angle
 	
@@ -34,5 +36,13 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 
 	Apoio: https://blog.biologiatotal.com.br/leis-de-kepler/
 
-	É a diferença entre o centro da elipse (real) e o sol.
+	É a diferença entre o centro da elipse (real) e o ponto de interesse (sol).
 	Varia entre 0 e 1.
+
+#### Altura Solar:
+	'altura_sol = Math.asin(Math.cos(this.h) * Math.cos(declination) * Math.cos(this.latitude) + Math.sin(declination) * Math.sin(this.latitude));'
+
+	Apoio: https://solarsena.com/solar-elevation-angle-altitude
+
+	É o ângulo que determina a altura do sol em relação ao horizonte.
+	Varia entre -90° e 90°. Sendo o máximo quando está no zênite. E negativo quando está de noite.
