@@ -1,7 +1,7 @@
 class Calibrador {
 	constructor(coord, horario, data) {
-		this.latitude = coord.lat;
-		this.longitude = coord.lng;
+		this.latitude = toRadian(coord.lat);
+		this.longitude = toRadian(coord.lng);
 		this.h = anguloHorario(horario.hora, horario.min, horario.seg);
 		this.dia_sequencial = diaAno(data.dia, data.mes, data.ano);
 	}
@@ -9,28 +9,32 @@ class Calibrador {
 	//Equação 1
 	Altura_Sol() {
 		// DECLINAÇÃO
-		// Declinação (original): -23.011636727869245
+		const latitude = this.latitude;
 		const decli = declinacao(this.dia_sequencial);
-		console.log("Declinação: ", decli);
+		console.log("Declinação: ", toDegree(decli).toFixed(3));
 
 		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		//original: Math.asin(Math.cos(this.h) * Math.cos(toRadian(decli)) * Math.cos(toRadian(this.latitude)) + Math.sin(toRadian(decli)) * Math.sin(toRadian(this.latitude)))
-		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(toRadian(decli)) * Math.cos(toRadian(this.latitude)) + Math.sin(toRadian(decli)) * Math.sin(toRadian(this.latitude)));
+		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(decli) * Math.cos(latitude) + Math.sin(decli) * Math.sin(latitude));
 		this.altura_sol = altura_sol;
-		
+
 		// OUTPUT
-		console.log("Altura (original - radianos): ", 0.4920529335892037);
-		console.log("Altura (original - graus): ", 28.192556391692356);
-		console.log("Altura Sol (radian): ", altura_sol);
-		document.getElementById("altura").innerHTML = (altura_sol * 180/Math.PI).toFixed(2);
+		document.getElementById("altura").innerHTML = toDegree(altura_sol).toFixed(2);
 	}
 	
 	// Equação 2
 	Azimute_Sol() {
 		// Ângulo da distância zenital
+		const latitude = this.latitude;
+		const decli = declinacao(this.dia_sequencial);
+
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
-		var azimute_sol = Math.acos(Math.sin(this.latitude) - Math.sin(toRadian(this.altura_sol)) * Math.sin(toRadian(this.latitude))) / (Math.cos(toRadian(this.altura_sol)) * Math.cos(toRadian(this.latitude)));
-		document.getElementById("azimute").innerHTML = (azimute_sol).toFixed(2);
+		// pdf = Math.acos((Math.sin(latitude) - Math.sin(this.altura_sol) * Math.sin(latitude)) / (Math.cos(this.altura_sol) * Math.cos(latitude)));
+		/*formula 1*/ var azimute_sol = Math.cos((Math.sin(decli) * Math.cos(latitude) - Math.cos(decli) * Math.sin(latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
+		// /*formula 2*/ var azimute_sol = Math.acos((Math.sin(decli) * Math.cos(latitude) - Math.cos(decli) * Math.sin(latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
+
+		console.log(azimute_sol);
+		console.log(toDegree(azimute_sol)); // 246.09
+		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
 	}
 }

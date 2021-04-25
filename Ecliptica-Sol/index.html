@@ -18,10 +18,10 @@
     <script type="text/javascript" src="./calc.JS"></script>
 
     <!-- Mapa -->
-    <script async defer
+    <!-- <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTLbcm7UIqgwUDJHQ_8Rw42lbMi0iZlzI&callback=inicializar">
         // pedro key=AIzaSyDQ1KxiHQ8vf2UnHN18e9pgj8v_AbJevJ4
-    </script>
+    </script> -->
 </head>
 
 <body>
@@ -78,12 +78,12 @@
             </section>
         </section>
 
-        <section>
+        <!-- <section>
             <div id="mapa"></div>
-        </section>
+        </section> -->
     </main>
 
-    <script id="Mapa">
+    <!-- <script id="Mapa">
         var coord = {
             lat: -29.10182252505431,
             lng: -49.63858494648771
@@ -101,7 +101,7 @@
                 title: 'Meu marcador'
             });
         }
-    </script>
+    </script> -->
 
     <script>
         function enter() {
@@ -122,10 +122,10 @@
                 seg: parseInt((document.getElementById("time").value).split(":")[2])
             };
 
-            // let a = new Calibrador({lat: 46.633056,lng: -23.543333}, {hora: 12,min: 0,seg: 0}, {dia: 29,mes: 04,ano: 2018}); //4debug
-            let a = new Calibrador(coord, horario, data);
+            let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
+            // let a = new Calibrador(coord, horario, data);
             // console.log(coord, horario, data);
-            inicializar()
+            // inicializar()
 
             a.Altura_Sol()
             a.Azimute_Sol()
