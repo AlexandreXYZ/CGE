@@ -9,8 +9,7 @@ body, html{
     color: var(--letra-color);
     
 }
-fieldset{
-}
+
 legend{
     position: relative;
     top:-10px ;
