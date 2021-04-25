@@ -108,7 +108,7 @@ main > section > section{
     border-radius: 6px;
     min-width: 50px;
 
-    width: 150px;
+    width: 140px;
 }
 
 #output{
@@ -133,3 +133,20 @@ main > section > section{
     width:800px;
   }
 
+@media screen and (max-width:800px) {
+        .container{
+            margin: 0 12vw;
+
+        }
+        main.container>section{
+            flex-direction: column;
+        }
+        .input{
+            border: none;
+            border-radius: 6px;
+            min-width: 50px;
+        
+            width: 200px;
+        }
+        
+}
