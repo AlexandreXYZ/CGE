@@ -106,5 +106,5 @@ function anguloHorario(hour, min, seg) {
     var hour = (min + hour) - 12;
 
     const angle = hour * 15;
-    return angle;
+    return toRadian(angle);
 }

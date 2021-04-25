@@ -8,14 +8,12 @@ class Calibrador {
 
 	//Equação 1
 	Altura_Sol() {
-		// DECLINAÇÃO
-		const latitude = this.latitude;
-		const decli = declinacao(this.dia_sequencial);
-		console.log("Declinação: ", toDegree(decli).toFixed(3));
+		const declination = declinacao(this.dia_sequencial);
+		console.log("Declinação: ", toDegree(declination).toFixed(3));
 
 		// ALTURA
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(decli) * Math.cos(latitude) + Math.sin(decli) * Math.sin(latitude));
+		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(declination) * Math.cos(this.latitude) + Math.sin(declination) * Math.sin(this.latitude));
 		this.altura_sol = altura_sol;
 
 		// OUTPUT
@@ -25,16 +23,20 @@ class Calibrador {
 	// Equação 2
 	Azimute_Sol() {
 		// Ângulo da distância zenital
-		const latitude = this.latitude;
-		const decli = declinacao(this.dia_sequencial);
+		const declination = declinacao(this.dia_sequencial);
 
 		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
-		// pdf = Math.acos((Math.sin(latitude) - Math.sin(this.altura_sol) * Math.sin(latitude)) / (Math.cos(this.altura_sol) * Math.cos(latitude)));
-		/*formula 1*/ var azimute_sol = Math.cos((Math.sin(decli) * Math.cos(latitude) - Math.cos(decli) * Math.sin(latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
-		// /*formula 2*/ var azimute_sol = Math.acos((Math.sin(decli) * Math.cos(latitude) - Math.cos(decli) * Math.sin(latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
+		/*pdf*/ var azimute_sol_pdf = Math.acos((Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude)));
+		var azimute_sol = Math.acos((Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
 
-		console.log(azimute_sol);
-		console.log(toDegree(azimute_sol)); // 246.09
+		if (this.h > 0) {
+			// Se for depois do meio dia, subtrai de o azimute de 360
+			var azimute_sol = toRadian(360) - azimute_sol;
+			var azimute_sol_pdf = toRadian(360) - azimute_sol_pdf;
+		}
+
+		console.log("net:", toDegree(azimute_sol)); // 246.09
+		console.log("pdf:", toDegree(azimute_sol_pdf));
 		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
 	}
 }

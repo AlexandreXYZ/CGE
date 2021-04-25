@@ -16,6 +16,7 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 	'declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + this.dia_sequencial)));'
 
 	Apoio: https://www.if.ufrgs.br/~fatima/fis2016/tempo/tempo.htm
+		   https://solarsena.com/solar-declination-angle-calculator
 
 	O '360/365 * (284 + dia)' serve para calcular o ângulo em relação à posição da terra no primeiro dia do ano.
 	O 'sin' serve para calcular a distância em relação a linha do primeiro dia do ano.
@@ -25,7 +26,7 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 
 	Apoio: https://pt.qaz.wiki/wiki/Hour_angle
 	
-	É o ângulo do sol em relação ao meio dia. Pela manhã é negativo e pela tarde é negativo.
+	É o ângulo do sol em relação ao meio dia. Pela manhã é negativo e pela tarde é positivo.
 	Calcula-se multiplicando 15º pelo número de horas passadas.
 
 #### Excentricidade:
