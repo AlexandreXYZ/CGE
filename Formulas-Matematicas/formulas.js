@@ -41,7 +41,7 @@ function duracaoDia(latitude, diaAno) {
     return T;
 }
 
-function corret_lati(longitude, schedule_original) {
+function corret_long(longitude, schedule_original) {
     // Calcula qual o fuso horário do usuário
 
     // Checa se o número é divisível por 15

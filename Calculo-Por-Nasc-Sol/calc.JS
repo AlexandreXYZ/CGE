@@ -15,7 +15,7 @@ class SunRiseSet {
         sunrise.seg = Math.abs((sunrise.min - Math.trunc(sunrise.min)) * 60);
         
         // Saída (output)
-        var schedule_adjusted = corret_lati(this.longitude, sunrise);
+        var schedule_adjusted = corret_long(this.longitude, sunrise);
         document.getElementById("nascer").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
@@ -29,7 +29,7 @@ class SunRiseSet {
         sunset.seg = Math.abs((sunset.min - Math.trunc(sunset.min)) * 60);
 
         // Saída (output)
-        var schedule_adjusted = corret_lati(this.longitude, sunset);
+        var schedule_adjusted = corret_long(this.longitude, sunset);
         document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
