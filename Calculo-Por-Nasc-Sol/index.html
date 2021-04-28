@@ -43,7 +43,9 @@
 
     <main class="container">
         <section>
-            <section>
+            <fieldset>
+                <legend><strong> Input </strong></legend>
+
                 <form id="inputs">
                     <div>
                         <label for="latitude">Latitude:</label>
@@ -65,12 +67,14 @@
                         <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
                     </div>
                 </form>
-            </section>
+            </fieldset>
 
-            <section id="output">
+            <fieldset id="output">
+                <legend><strong> Output </strong></legend>
+
                 <span><strong>Nascer do Sol:</strong> <a id="nascer">23:50:24</a></span>
                 <span><strong>Por do Sol: </strong> <a id="por">13:50:24</a></span>
-            </section>
+            </fieldset>
         </section>
 
         <!-- <section>
