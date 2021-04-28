@@ -14,7 +14,8 @@
     <title>Eclíptica Solar</title>
 
     <link href="./index.css" rel="stylesheet">
-    <script type="text/javascript" src="../Formulas-Matematicas/formulas.js"></script>
+    <script type="text/javascript" src="../Modules/api-request.js"></script>
+    <script type="text/javascript" src="../Modules/formulas.js"></script>
     <script type="text/javascript" src="./calc.JS"></script>
 
     <!-- Mapa -->
@@ -109,8 +110,8 @@
     <script>
         function enter() {
             let coord = {
-                lat: parseFloat(document.getElementById("latitude").value),
-                lng: parseFloat(document.getElementById("longitude").value)
+                lat: parseFloat(document.getElementById("latitude").value).toFixed(8),
+                lng: parseFloat(document.getElementById("longitude").value).toFixed(8)
             };
 
             let data = {
@@ -128,13 +129,18 @@
             // let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
             // /*solarsena*/ let a = new Calibrador({lat: 32.22,lng: -110.9756}, {hora: 14,min: 00,seg: 00}, {dia: 02,mes: 03,ano: 2020}); //4debug
             let a = new Calibrador(coord, horario, data);
-            // console.log(coord, horario, data);
+            console.log(coord, horario, data);
             // inicializar()
 
-            a.Altura_Sol()
-            a.Azimute_Sol()
+            if (coord.lat != "NaN" && coord.lng != "NaN") {
+                a.Altura_Sol()
+                a.Azimute_Sol()
+                a.Cidade()
+            } else {
+                console.log("Coordinates is not valid.");
+            }
         }
-        enter()
+        // enter()
     </script>
 </body>
 

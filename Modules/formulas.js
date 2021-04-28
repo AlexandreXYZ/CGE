@@ -32,8 +32,8 @@ function toDegree(radian) {
 }
 
 function declinacao(dia_seq) {
-    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq))); //pdf
-    return toRadian(declinacao); // Retorna em radianos
+    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq)));
+    return toRadian(declinacao);
 }
 
 function duracaoDia(latitude, diaAno) {
@@ -73,7 +73,6 @@ function corret_long(longitude, schedule_original) {
         seg: Math.abs(Math.round(schedule_original.seg + schedule_dif.seg))
     }
 
-    // Saída (output)
     return schedule_adjusted;
 }
 
