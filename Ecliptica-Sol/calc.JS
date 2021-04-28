@@ -34,9 +34,14 @@ class Calibrador {
 			var azimute_sol_pdf = toRadian(360) - azimute_sol_pdf;
 		}
 
-		// console.log("ângulo zenital: ", toDegree(Math.acos(Math.sin(this.altura_sol))));
+		console.log("ângulo zenital: ", toDegree(Math.acos(Math.sin(this.altura_sol))));
 		console.log("pdf:", toDegree(azimute_sol_pdf));
 		console.log("net:", toDegree(azimute_sol)); // 246.09
 		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
+	}
+
+	// Nome da cidade
+	Cidade() {
+		cityName(toDegree(this.latitude), toDegree(this.longitude));
 	}
 }
