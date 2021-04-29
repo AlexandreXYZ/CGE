@@ -75,6 +75,7 @@
 
                 <span><strong>Nascer do Sol:</strong> <a id="nascer">05:43:13</a></span>
                 <span><strong>Por do Sol: </strong> <a id="por">19:50:24</a></span>
+                <span><strong>Cidade: </strong> <a id="cidade">No cities found</a></span>
             </fieldset>
         </section>
 
@@ -121,8 +122,13 @@
             console.log(coord, date);
             // inicializar();
 
-            a.Sunrise();
-            a.Sunset();
+            if (coord.lat != "NaN" && coord.lng != "NaN") {
+                a.Sunrise()
+                a.Sunset()
+                a.Cidade()
+            } else {
+                console.log("Coordinates is not valid.");
+            }
         }
     </script>
 </body>

@@ -33,6 +33,11 @@ class SunRiseSet {
         document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
     }
 
+	// Nome da cidade
+	Cidade() {
+		cityName(this.latitude, this.longitude);
+	}
+
     // Métodos Getters e Setters
 
     // Longitude
