@@ -26,7 +26,7 @@ class Calibrador {
 		
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
 		/*pdf*/ var azimute_sol_pdf = (Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
-		
+
 		// A = arccos [(sen(δ) * cos(φ) - cos(δ) - sen(φ) * cos(h)) / cos(a)]
 		/*net*/ var azimute_sol = (Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol);
 
