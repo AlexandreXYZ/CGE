@@ -9,6 +9,20 @@ body, html{
     color: var(--letra-color);
     
 }
+
+legend{
+    position: relative;
+    top:-10px ;
+    text-align: center;
+    background-color: var(--fundo-conteiner-bloco);
+    border: var(--border) ;
+    border-bottom: none ;
+    height: 18px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 0 15px 0 15px;
+    font-size: 18px;
+}
 :root{
     --fundo-body: #49788c;
     --fundo-body-header:rgb(117, 183, 177);
@@ -46,7 +60,8 @@ body>div>nav>a{
 }
 .container{
     background-color: var(--fundo-conteiner);
-    margin: 0 20vw;
+    margin: 0 5vw;
+
     border-radius: 7px;
     padding: 2vw;
 }
@@ -70,20 +85,21 @@ header > div{
 
 main.container > section{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
-main > section > section{
+main > section > fieldset{
     display: flex;
     flex-direction: column;
     flex-basis: 50%;
     background-color: var(--fundo-conteiner-bloco);
     border-radius: 25px;
     padding: 1vw;
-    min-width: 75px;
-    max-width: 1000px;
-    min-height: 100px;
+    min-width: 15rem;
+    max-width: 100%;
+    min-height: 5rem;
     margin: 10px;
-    max-height: 12rem;
+    max-height: 14rem;
+    border: var(--border) ;
     
 
 }
@@ -112,9 +128,11 @@ main > section > section{
 }
 
 #output{
-    display: table;
     align-self: center;
     border: var(--border);
+    padding: 0 ;
+    min-width: 200px;
+    width: 50%;
 }
 #output>span{
     display: table-cell;
@@ -122,6 +140,7 @@ main > section > section{
     text-align: center;
     font-size: 19px;
     letter-spacing: 0.05rem;
+    padding: 0.5rem;
 }
 
 #mapa {
@@ -133,3 +152,16 @@ main > section > section{
     width:800px;
   }
 
+@media screen and (min-width:65rem) {
+        .container{
+            margin: 0 15vw;
+
+        }
+        main.container>section{
+            flex-direction: row;
+        }
+        .input{
+            width: 150px;
+        }
+        
+}
