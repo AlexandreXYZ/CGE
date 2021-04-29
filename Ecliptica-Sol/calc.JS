@@ -23,10 +23,23 @@ class Calibrador {
 	Azimute_Sol() {
 		// Ângulo da distância zenital
 		const declination = declinacao(this.dia_sequencial);
+		
+		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
+		/*pdf*/ var azimute_sol_pdf = (Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
+		
+		// A = arccos [(sen(δ) * cos(φ) - cos(δ) - sen(φ) * cos(h)) / cos(a)]
+		/*net*/ var azimute_sol = (Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol);
 
-		// A = arccos [(sen(δ) − sen(a)sen(φ))/(cos(a)cos(φ))]
-		/*pdf*/ var azimute_sol_pdf = Math.acos((Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude)));
-		/*net*/ var azimute_sol = Math.acos((Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol));
+		if (azimute_sol > 1 || azimute_sol < -1) {
+			// Checa pra ver se o JS nao colocou número a mais (sim, isso acontece)
+			var azimute_sol = Math.trunc(azimute_sol);
+		}
+		if (azimute_sol_pdf > 1 || azimute_sol_pdf < -1) {
+			var azimute_sol_pdf = Math.trunc(azimute_sol_pdf);
+		}
+
+		var azimute_sol = Math.acos(azimute_sol);
+		var azimute_sol_pdf = Math.acos(azimute_sol_pdf);
 
 		if (this.h > 0) {
 			// Se for depois do meio dia, subtrai de o azimute de 360
