@@ -45,9 +45,14 @@
     <main class="container">
         <section>
             <fieldset>
-                <legend><strong> Input </strong></legend>
+                <legend><strong>Input</strong></legend>
 
                 <form id="inputs">
+                    <div>
+                        <label for="cidade">Cidade:</label>
+                        <input class="input" type="text" id="cidade" name="cidade" value="No cities found">
+                    </div>
+
                     <div>
                         <label for="latitude">Latitude:</label>
                         <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
@@ -70,14 +75,18 @@
 
                     <div>
                         <label for="submit" id="submit"></label>
-                        <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
+                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()">
+                    </div>
+
+                    <div>
+                        <label for="clear" id="clear"></label>
+                        <input class="input" type="button" id="clear_button" name="clear" value="Limpar" onclick="clearCoords()">
                     </div>
                 </form>
             </fieldset>
 
             <fieldset id="output">
                 <legend><strong> Output </strong></legend>
-                <span><strong>Cidade: </strong> <a id="cidade">No cities found</a></span>
                 <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
                 <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
             </fieldset>
@@ -124,8 +133,7 @@
             let horario = {
                 hora: parseInt((document.getElementById("time").value).split(":")[0]),
                 min: parseInt((document.getElementById("time").value).split(":")[1]),
-                seg: parseInt((document.getElementById("time").value).split(":")[2]) ? parseInt((document
-                    .getElementById("time").value).split(":")[2]) : 0
+                seg: parseInt((document.getElementById("time").value).split(":")[2]) ? parseInt((document.getElementById("time").value).split(":")[2]) : 0
             };
 
             // let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
@@ -139,10 +147,15 @@
                 a.Azimute_Sol()
                 a.Cidade()
             } else {
-                console.log("Coordinates is not valid.");
+                a.Cidade()
             }
         }
         // enter()
+
+        function clearCoords() {
+            document.getElementById("latitude").value = '';
+            document.getElementById("longitude").value = '';
+        }
     </script>
 </body>
 

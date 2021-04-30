@@ -35,32 +35,15 @@ class SunRiseSet {
 
     // Nome da cidade
     Cidade() {
-        cityName(this.latitude, this.longitude);
-    }
-
-    // Métodos Getters e Setters
-
-    // Longitude
-    getLongitude() {
-        return this.longitude;
-    }
-    setLongitude(x) {
-        this.longitude = x;
-    }
-
-    // Latitude
-    getLatitude() {
-        return this.latitude;
-    }
-    setLatitude(x) {
-        this.latitude = x;
-    }
-
-    // Dia_ano
-    getDia_ano() {
-        return this.day_year;
-    }
-    setDia_ano(x) {
-        this.day_year = x;
+        if (this.latitude && this.longitude) {
+            cityName(this.latitude, this.longitude)
+        } else {
+            if (document.getElementById("cidade").value != "No cities found" && document.getElementById("cidade").value != '') {
+                // nao tem coordenadas e tem cidade
+                cityCoords(document.getElementById("cidade").value)
+            } else {
+                console.log("Coordinates is not valid.");
+            }
+        }
     }
 }

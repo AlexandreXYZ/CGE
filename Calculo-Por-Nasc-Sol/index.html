@@ -49,6 +49,11 @@
 
                 <form id="inputs">
                     <div>
+                        <label for="cidade">Cidade:</label>
+                        <input class="input" type="text" id="cidade" name="cidade" value="No cities found">
+                    </div>
+
+                    <div>
                         <label for="latitude">Latitude:</label>
                         <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
                     </div>
@@ -65,7 +70,13 @@
 
                     <div>
                         <label for="submit" id="submit"></label>
-                        <input class="input" type="button" name="submit" value="Calcular" onclick="enter()">
+                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular"
+                            onclick="enter()">
+                    </div>
+
+                    <div>
+                        <label for="clear" id="clear"></label>
+                        <input class="input" type="button" id="clear_button" name="clear" onclick="clearCoords()">
                     </div>
                 </form>
             </fieldset>
@@ -73,7 +84,6 @@
             <fieldset id="output">
                 <legend><strong> Output </strong></legend>
 
-                <span><strong>Cidade: </strong> <a id="cidade">No cities found</a></span>
                 <span><strong>Nascer do Sol:</strong> <a id="nascer">05:43:13</a></span>
                 <span><strong>Por do Sol: </strong> <a id="por">19:50:24</a></span>
             </fieldset>
@@ -127,8 +137,13 @@
                 a.Sunset()
                 a.Cidade()
             } else {
-                console.log("Coordinates is not valid.");
+                a.Cidade()
             }
+        }
+
+        function clearCoords() {
+            document.getElementById("latitude").value = '';
+            document.getElementById("longitude").value = '';
         }
     </script>
 </body>

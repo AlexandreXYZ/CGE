@@ -54,6 +54,15 @@ class Calibrador {
 
 	// Nome da cidade
 	Cidade() {
-		cityName(toDegree(this.latitude), toDegree(this.longitude));
+		if (this.latitude && this.longitude) {
+			cityName(toDegree(this.latitude), toDegree(this.longitude))
+		} else {
+			if (document.getElementById("cidade").value != "No cities found" && document.getElementById("cidade").value != '') {
+				// nao tem coordenadas e tem cidade
+				cityCoords(document.getElementById("cidade").value)
+			} else {
+				console.log("Coordinates is not valid.");
+			}
+		}
 	}
 }
