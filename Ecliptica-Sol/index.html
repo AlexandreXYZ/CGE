@@ -74,13 +74,13 @@
                     </div>
                 </form>
             </fieldset>
-            
+
             <fieldset id="output">
                 <legend><strong> Output </strong></legend>
-                    <span><strong>Cidade: </strong> <a id="cidade">No cities found</a></span>
-                    <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
-                    <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
-                </fieldset>
+                <span><strong>Cidade: </strong> <a id="cidade">No cities found</a></span>
+                <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
+                <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
+            </fieldset>
         </section>
 
         <!-- <section>
@@ -124,7 +124,8 @@
             let horario = {
                 hora: parseInt((document.getElementById("time").value).split(":")[0]),
                 min: parseInt((document.getElementById("time").value).split(":")[1]),
-                seg: parseInt((document.getElementById("time").value).split(":")[2]) ? parseInt((document.getElementById("time").value).split(":")[2]) : 0
+                seg: parseInt((document.getElementById("time").value).split(":")[2]) ? parseInt((document
+                    .getElementById("time").value).split(":")[2]) : 0
             };
 
             // let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug

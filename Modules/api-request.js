@@ -10,13 +10,13 @@ function cityName(lat, lng) {
                 var cityID = cityProps.href.slice(-8, -1);
 
                 fetch('https://api.teleport.org/api/cities/geonameid:' + cityID + '/', {
-                    mode: 'cors'
-                })
-                .then(response => response.json())
-                .then(data => {
-                    var country = data._links["city:country"].href.slice(-3, -1);
-                    document.getElementById("cidade").innerHTML = city + ', ' + country
-                });
+                        mode: 'cors'
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        var country = data._links["city:country"].href.slice(-3, -1);
+                        document.getElementById("cidade").innerHTML = city + ', ' + country
+                    });
             } else {
                 document.getElementById("cidade").innerHTML = "No cities found";
             }
@@ -25,4 +25,3 @@ function cityName(lat, lng) {
             console.error('Error:', error);
         });
 }
-

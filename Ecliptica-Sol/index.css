@@ -1,5 +1,6 @@
 /* Add padding to containers */
-body, html{
+body,
+html {
     width: 100%;
     height: 100%;
     background-color: var(--fundo-body);
@@ -7,31 +8,32 @@ body, html{
     padding: 0;
     font-family: Arial, sans-serif;
     color: var(--letra-color);
-    
 }
 
-legend{
+legend {
     position: relative;
-    top:-10px ;
+    top: -10px;
     text-align: center;
     background-color: var(--fundo-conteiner-bloco);
-    border: var(--border) ;
-    border-bottom: none ;
+    border: var(--border);
+    border-bottom: none;
     height: 18px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     padding: 0 10px 0 10px;
     font-size: 18px;
 }
-:root{
+
+:root {
     --fundo-body: #49788c;
-    --fundo-body-header:rgb(117, 183, 177);
+    --fundo-body-header: rgb(117, 183, 177);
     --fundo-conteiner: rgb(125, 193, 187);
     --fundo-conteiner-bloco: rgb(111, 172, 167);
     --border: 3px rgb(99, 154, 149) solid;
     --letra-color: rgb(40, 73, 74);
 }
-body>div{
+
+body>div {
     position: fixed;
     top: 0;
     left: 0;
@@ -39,7 +41,8 @@ body>div{
     padding: 2px 20vw;
     width: 100vw;
 }
-body>div>nav{
+
+body>div>nav {
     float: left;
     margin: 1px 0.5rem;
     border: var(--border);
@@ -47,47 +50,49 @@ body>div>nav{
     font-weight: bold;
     border-radius: 15px;
 }
-body>div>nav:hover{
-    background-color: var(--fundo-body-header);
 
+body>div>nav:hover {
+    background-color: var(--fundo-body-header);
 }
 
-body>div>nav>a{
+body>div>nav>a {
     display: inline-block;
     padding: 15px;
     text-decoration: none;
-    color:var(--letra-color);
+    color: var(--letra-color);
 }
-.container{
+
+.container {
     background-color: var(--fundo-conteiner);
     margin: 0 5vw;
-
     border-radius: 7px;
     padding: 2vw;
 }
-header.container{
+
+header.container {
     margin-top: 7%;
     margin-bottom: 1%;
-    
 }
 
-header > div{
+header>div {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
 }
-#logo{
+
+#logo {
     width: 100px;
     border-radius: 100%;
     align-items: center;
 }
 
-main.container > section{
+main.container>section {
     display: flex;
     flex-direction: column;
 }
-main > section > fieldset{
+
+main>section>fieldset {
     display: flex;
     flex-direction: column;
     flex-basis: 50%;
@@ -99,42 +104,42 @@ main > section > fieldset{
     min-height: 5rem;
     margin: 10px;
     max-height: 14rem;
-    border: var(--border) ;
-    
-
+    border: var(--border);
 }
 
-#inputs>div{
-    display:flex;
+#inputs>div {
+    display: flex;
     justify-content: space-between;
     margin: 10px;
 }
-#inputs>div:last-of-type{
-    justify-content:center;
+
+#inputs>div:last-of-type {
+    justify-content: center;
     margin: 25px 10px 10px 10px;
     height: 25px;
-
 }
-#inputs>div>label{
+
+#inputs>div>label {
     margin: 3px;
     font-weight: bold;
 }
-.input{
+
+.input {
     border: none;
     border-radius: 6px;
     min-width: 50px;
-
     width: 150px;
 }
 
-#output{
+#output {
     align-self: center;
     border: var(--border);
-    padding: 0 ;
+    padding: 0;
     min-width: 200px;
     width: 50%;
 }
-#output>span{
+
+#output>span {
     display: table-cell;
     vertical-align: middle;
     text-align: center;
@@ -146,22 +151,22 @@ main > section > fieldset{
 #mapa {
     border: 3px rgb(111, 172, 167) solid;
     border-radius: 40px;
-    min-height:200px;
-    min-width:200px;
-    height:400px;
-    width:800px;
-  }
+    min-height: 200px;
+    min-width: 200px;
+    height: 400px;
+    width: 800px;
+}
 
 @media screen and (min-width:65rem) {
-        .container{
-            margin: 0 15vw;
+    .container {
+        margin: 0 15vw;
+    }
 
-        }
-        main.container>section{
-            flex-direction: row;
-        }
-        .input{
-            width: 150px;
-        }
-        
+    main.container>section {
+        flex-direction: row;
+    }
+
+    .input {
+        width: 150px;
+    }
 }

@@ -32,7 +32,7 @@ function toDegree(radian) {
 }
 
 function declinacao(dia_seq) {
-    var declinacao = 23.45 * Math.sin(toRadian((360/365)*(284 + dia_seq)));
+    var declinacao = 23.45 * Math.sin(toRadian((360 / 365) * (284 + dia_seq)));
     return toRadian(declinacao);
 }
 

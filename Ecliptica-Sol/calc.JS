@@ -18,12 +18,12 @@ class Calibrador {
 		// OUTPUT
 		document.getElementById("altura").innerHTML = toDegree(altura_sol).toFixed(2);
 	}
-	
+
 	// Equação 2
 	Azimute_Sol() {
 		// Ângulo da distância zenital
 		const declination = declinacao(this.dia_sequencial);
-		
+
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
 		/*pdf*/ var azimute_sol_pdf = (Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
 
@@ -47,7 +47,6 @@ class Calibrador {
 			var azimute_sol_pdf = toRadian(360) - azimute_sol_pdf;
 		}
 
-		console.log("ângulo zenital: ", toDegree(Math.acos(Math.sin(this.altura_sol))));
 		console.log("pdf:", toDegree(azimute_sol_pdf));
 		console.log("net:", toDegree(azimute_sol)); // 246.09
 		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
