@@ -25,12 +25,12 @@ legend {
 }
 
 :root {
-    --fundo-body: #49788c;
-    --fundo-body-header: rgb(117, 183, 177);
-    --fundo-conteiner: rgb(125, 193, 187);
-    --fundo-conteiner-bloco: rgb(111, 172, 167);
-    --border: 3px rgb(99, 154, 149) solid;
-    --letra-color: rgb(40, 73, 74);
+    --fundo-body: #FC944A;
+    --fundo-body-header: #F9BE77;
+    --fundo-conteiner: #F9BE77;
+    --fundo-conteiner-bloco: #FDA05E;
+    --border: 3px #FD9449 solid;
+    --letra-color: #522500;
 }
 
 body>div {
