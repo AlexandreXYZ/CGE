@@ -67,14 +67,10 @@
                         <label for="date">Data:</label>
                         <input class="input" type="date" id="date" name="date">
                     </div>
-                    <div class="ultimo">
-                        <input class="input" type="button" id="clear_button" name="clear" value="Limpar" onclick="clearCoords()">
-                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular"
-                            onclick="enter()">
+
+                    <div>
+                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()">
                     </div>
-
-                    
-
                 </form>
             </fieldset>
 
@@ -111,6 +107,12 @@
         }
     </script> -->
     <script>
+        let old_var = {
+            lat: 0,
+            lng: 0,
+            city: "No cities found"
+        };
+
         function enter() {
             let coord = {
                 lat: parseFloat(document.getElementById("latitude").value),
@@ -130,17 +132,28 @@
             // inicializar();
 
             if (coord.lat != "NaN" && coord.lng != "NaN") {
-                a.Sunrise()
-                a.Sunset()
-                a.Cidade()
+                if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
+                    a.Sunrise()
+                    a.Sunset()
+                    a.CidadeNome()
+                } else {
+                    if (document.getElementById("cidade").value != old_var.city) {
+                        a.CidadeCoord()
+                    }
+                }
             } else {
-                a.Cidade()
+                if (document.getElementById("cidade").value != old_var.city) {
+                    a.CidadeCoord()
+                } else {
+                    console.log("Coordinates is not valid");
+                }
             }
-        }
 
-        function clearCoords() {
-            document.getElementById("latitude").value = '';
-            document.getElementById("longitude").value = '';
+            old_var = {
+                lat: coord.lat,
+                lng: coord.lng,
+                city: document.getElementById("cidade").value
+            }
         }
     </script>
 </body>

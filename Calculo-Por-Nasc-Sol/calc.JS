@@ -34,16 +34,14 @@ class SunRiseSet {
     }
 
     // Nome da cidade
-    Cidade() {
+    CidadeNome() {
         if (this.latitude && this.longitude) {
             cityName(this.latitude, this.longitude)
-        } else {
-            if (document.getElementById("cidade").value != "No cities found" && document.getElementById("cidade").value != '') {
-                // nao tem coordenadas e tem cidade
-                cityCoords(document.getElementById("cidade").value)
-            } else {
-                console.log("Coordinates is not valid.");
-            }
         }
+    }
+
+    // Coordenada da cidade
+    CidadeCoord() {
+        cityCoords(document.getElementById("cidade").value)
     }
 }

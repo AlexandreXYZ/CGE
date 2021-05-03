@@ -115,7 +115,7 @@
     <script>
         let old_var = {
             lat: 0,
-            lng: 0 ,
+            lng: 0,
             city: "No cities found"
         };
 
@@ -142,7 +142,7 @@
             let a = new Calibrador(coord, horario, data);
             console.log(coord, horario, data);
             // inicializar()
-        
+
             if (coord.lat != "NaN" && coord.lng != "NaN") {
                 if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
                     a.Altura_Sol()
@@ -167,7 +167,7 @@
                 city: document.getElementById("cidade").value
             }
         }
-        enter()
+        // enter()
     </script>
 </body>
 

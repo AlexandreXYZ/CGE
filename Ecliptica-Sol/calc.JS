@@ -46,7 +46,7 @@ class Calibrador {
 	CidadeNome() {
 		if (this.latitude && this.longitude) {
 			cityName(toDegree(this.latitude), toDegree(this.longitude))
-		} 
+		}
 	}
 
 	// Coordenada da cidade
