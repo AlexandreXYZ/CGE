@@ -20,17 +20,17 @@ legend {
     height: 18px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    padding: 0 15px 0 15px;
+    padding: 0 10px 0 10px;
     font-size: 18px;
 }
 
 :root {
-    --fundo-body: #FC944A;
-    --fundo-body-header: #F9BE77;
-    --fundo-conteiner: #F9BE77;
-    --fundo-conteiner-bloco: #FDA05E;
-    --border: 3px #FD9449 solid;
-    --letra-color: #522500;
+    --fundo-body: #49788c;
+    --fundo-body-header: rgb(117, 183, 177);
+    --fundo-conteiner: rgb(125, 193, 187);
+    --fundo-conteiner-bloco: rgb(111, 172, 167);
+    --border: 3px rgb(99, 154, 149) solid;
+    --letra-color: rgb(40, 73, 74);
 }
 
 body>div {
@@ -66,7 +66,7 @@ body>div>nav>a {
     background-color: var(--fundo-conteiner);
     margin: 0 5vw;
     border-radius: 7px;
-    padding: 2vw 10vw;
+    padding: 2vw;
 }
 
 header.container {
@@ -113,33 +113,24 @@ main>section>fieldset {
     margin: 10px;
 }
 
+#inputs>div:last-of-type {
+    justify-content: center;
+    margin: 25px 10px 10px 10px;
+    height: 25px;
+}
 
 #inputs>div>label {
     margin: 3px;
     font-weight: bold;
 }
+
 .input {
     border: none;
     border-radius: 6px;
     min-width: 50px;
     width: 150px;
 }
-.ultimo{
-    flex-direction: row;
-    place-content: center;
-    height: 50px;
-    /* justify-content: space-between !important; */
-    justify-content: center !important;
-    margin: 0 !important;
-}
-.ultimo > input{
-    width: 100px;
-    margin: 10px;
-}
-.ultimo > input:first-of-type{
-    width: 75px;
-    margin: 15px;
-}
+
 #output {
     align-self: center;
     border: var(--border);

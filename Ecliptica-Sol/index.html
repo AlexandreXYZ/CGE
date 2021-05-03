@@ -11,7 +11,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cálculo do Nascer e Pôr do Sol</title>
+    <title>Eclíptica Solar</title>
 
     <link href="./index.css" rel="stylesheet">
     <script type="text/javascript" src="../Modules/api-request.js"></script>
@@ -38,14 +38,14 @@
     <header class="container">
         <div>
             <img src="./assets/user.jpg" alt="Project logo" id="logo">
-            <h1>Hórario do nascer e do pôr do Sol de acordo com a latitude e longitude</h1>
+            <h1>Trajetória solar de acordo com a posição</h1>
         </div>
     </header>
 
     <main class="container">
         <section>
             <fieldset>
-                <legend><strong> Input </strong></legend>
+                <legend><strong>Input</strong></legend>
 
                 <form id="inputs">
                     <div>
@@ -69,6 +69,12 @@
                     </div>
 
                     <div>
+                        <label for="time">Hórario:</label>
+                        <input class="input" type="time" id="time" name="date" autocomplete="on" step="1">
+                    </div>
+
+                    <div>
+                        <label for="submit" id="submit"></label>
                         <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()">
                     </div>
                 </form>
@@ -76,9 +82,8 @@
 
             <fieldset id="output">
                 <legend><strong> Output </strong></legend>
-
-                <span><strong>Nascer do Sol:</strong> <a id="nascer">05:43:13</a></span>
-                <span><strong>Por do Sol: </strong> <a id="por">19:50:24</a></span>
+                <span><strong>Altura: </strong> <a id="altura">99</a>&#176;</span>
+                <span><strong>Azimute: </strong> <a id="azimute">99</a>&#176;</span>
             </fieldset>
         </section>
 
@@ -106,6 +111,7 @@
             });
         }
     </script> -->
+
     <script>
         let old_var = {
             lat: 0,
@@ -115,26 +121,32 @@
 
         function enter() {
             let coord = {
-                lat: parseFloat(document.getElementById("latitude").value),
-                lng: parseFloat(document.getElementById("longitude").value)
+                lat: parseFloat(document.getElementById("latitude").value).toFixed(8),
+                lng: parseFloat(document.getElementById("longitude").value).toFixed(8)
             };
 
-            let date = {
+            let data = {
                 dia: parseInt((document.getElementById("date").value).split("-")[2]),
                 mes: parseInt((document.getElementById("date").value).split("-")[1]),
                 ano: parseInt((document.getElementById("date").value).split("-")[0])
             };
 
-            // /*de cima-pdf*/ let a = new SunRiseSet({lat: -23.543333,lng: 46.633056}, {dia: 29,mes: 04,ano: 2020}); //4debug
-            // /*de baixo-pdf*/ let a = new SunRiseSet({lat: -23.543333,lng: 46.633056}, {dia: 10,mes: 05,ano: 2020}); //4debug
-            let a = new SunRiseSet(coord, date);
-            console.log(coord, date);
-            // inicializar();
+            let horario = {
+                hora: parseInt((document.getElementById("time").value).split(":")[0]),
+                min: parseInt((document.getElementById("time").value).split(":")[1]),
+                seg: parseInt((document.getElementById("time").value).split(":")[2]) ? parseInt((document.getElementById("time").value).split(":")[2]) : 0
+            };
+
+            // let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
+            // /*solarsena*/ let a = new Calibrador({lat: 32.22,lng: -110.9756}, {hora: 14,min: 00,seg: 00}, {dia: 02,mes: 03,ano: 2020}); //4debug
+            let a = new Calibrador(coord, horario, data);
+            console.log(coord, horario, data);
+            // inicializar()
 
             if (coord.lat != "NaN" && coord.lng != "NaN") {
                 if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
-                    a.Sunrise()
-                    a.Sunset()
+                    a.Altura_Sol()
+                    a.Azimute_Sol()
                     a.CidadeNome()
                 } else {
                     if (document.getElementById("cidade").value != old_var.city) {
@@ -155,6 +167,7 @@
                 city: document.getElementById("cidade").value
             }
         }
+        // enter()
     </script>
 </body>
 
