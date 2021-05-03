@@ -132,7 +132,7 @@
             console.log(coord, date);
             // inicializar();
 
-            if (coord.lat != "NaN" && coord.lng != "NaN") {
+            if (coord.lat && coord.lng) {
                 if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
                     a.Sunrise()
                     a.Sunset()
