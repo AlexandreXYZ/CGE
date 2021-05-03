@@ -110,6 +110,11 @@ main>section>fieldset {
     justify-content: space-between;
     margin: 10px;
 }
+#inputs>div:last-of-type {
+    justify-content: center;
+    margin: 25px 10px 10px 10px;
+    height: 25px;
+}
 
 
 #inputs>div>label {
@@ -122,22 +127,7 @@ main>section>fieldset {
     min-width: 50px;
     width: 150px;
 }
-.ultimo{
-    flex-direction: row;
-    place-content: center;
-    height: 50px;
-    /* justify-content: space-between !important; */
-    justify-content: center !important;
-    margin: 0 !important;
-}
-.ultimo > input{
-    width: 100px;
-    margin: 10px;
-}
-.ultimo > input:first-of-type{
-    width: 75px;
-    margin: 15px;
-}
+
 #output {
     justify-content: center;
     border: var(--border);
