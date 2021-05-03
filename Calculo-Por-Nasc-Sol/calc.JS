@@ -35,9 +35,7 @@ class SunRiseSet {
 
     // Nome da cidade
     CidadeNome() {
-        if (this.latitude && this.longitude) {
-            cityName(this.latitude, this.longitude)
-        }
+        cityName(this.latitude, this.longitude)
     }
 
     // Coordenada da cidade
