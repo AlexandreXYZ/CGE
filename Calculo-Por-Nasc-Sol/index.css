@@ -25,12 +25,12 @@ legend {
 }
 
 :root {
-    --fundo-body: #FC944A;
-    --fundo-body-header: #F9BE77;
-    --fundo-conteiner: #F9BE77;
-    --fundo-conteiner-bloco: #FDA05E;
-    --border: 3px #FD9449 solid;
-    --letra-color: #522500;
+    --fundo-body: #d5c921;
+    --fundo-body-header: #ede7e1;
+    --fundo-conteiner: #ede7e1;
+    --fundo-conteiner-bloco: #ede7e1;
+    --border: 3px #3c4129 solid;
+    --letra-color: #4a5200;
 }
 
 body>div {
@@ -101,9 +101,7 @@ main>section>fieldset {
     padding: 1vw;
     min-width: 15rem;
     max-width: 100%;
-    min-height: 5rem;
     margin: 10px;
-    max-height: 14rem;
     border: var(--border);
 }
 
@@ -141,7 +139,7 @@ main>section>fieldset {
     margin: 15px;
 }
 #output {
-    align-self: center;
+    justify-content: center;
     border: var(--border);
     padding: 0;
     min-width: 200px;
