@@ -77,11 +77,6 @@
                         <label for="submit" id="submit"></label>
                         <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()">
                     </div>
-
-                    <div>
-                        <label for="clear" id="clear"></label>
-                        <input class="input" type="button" id="clear_button" name="clear" value="Limpar" onclick="clearCoords()">
-                    </div>
                 </form>
             </fieldset>
 
@@ -118,6 +113,12 @@
     </script> -->
 
     <script>
+        let old_var = {
+            lat: 0,
+            lng: 0 ,
+            city: "No cities found"
+        };
+
         function enter() {
             let coord = {
                 lat: parseFloat(document.getElementById("latitude").value).toFixed(8),
@@ -141,21 +142,32 @@
             let a = new Calibrador(coord, horario, data);
             console.log(coord, horario, data);
             // inicializar()
-
+        
             if (coord.lat != "NaN" && coord.lng != "NaN") {
-                a.Altura_Sol()
-                a.Azimute_Sol()
-                a.Cidade()
+                if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
+                    a.Altura_Sol()
+                    a.Azimute_Sol()
+                    a.CidadeNome()
+                } else {
+                    if (document.getElementById("cidade").value != old_var.city) {
+                        a.CidadeCoord()
+                    }
+                }
             } else {
-                a.Cidade()
+                if (document.getElementById("cidade").value != old_var.city) {
+                    a.CidadeCoord()
+                } else {
+                    console.log("Coordinates is not valid");
+                }
+            }
+
+            old_var = {
+                lat: coord.lat,
+                lng: coord.lng,
+                city: document.getElementById("cidade").value
             }
         }
-        // enter()
-
-        function clearCoords() {
-            document.getElementById("latitude").value = '';
-            document.getElementById("longitude").value = '';
-        }
+        enter()
     </script>
 </body>
 

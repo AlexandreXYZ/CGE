@@ -6,7 +6,7 @@ class Calibrador {
 		this.dia_sequencial = diaAno(data.dia, data.mes, data.ano);
 	}
 
-	//Equação 1
+	// Equação 1
 	Altura_Sol() {
 		const declination = declinacao(this.dia_sequencial);
 		console.log("Declinação: ", toDegree(declination).toFixed(3));
@@ -25,44 +25,32 @@ class Calibrador {
 		const declination = declinacao(this.dia_sequencial);
 
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
-		/*pdf*/ var azimute_sol_pdf = (Math.sin(this.latitude) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
-
-		// A = arccos [(sen(δ) * cos(φ) - cos(δ) - sen(φ) * cos(h)) / cos(a)]
-		/*net*/ var azimute_sol = (Math.sin(declination) * Math.cos(this.latitude) - Math.cos(declination) * Math.sin(this.latitude) * Math.cos(this.h)) / Math.cos(this.altura_sol);
+		var azimute_sol = (Math.sin(declination) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
 
 		if (azimute_sol > 1 || azimute_sol < -1) {
 			// Checa pra ver se o JS nao colocou número a mais (sim, isso acontece)
 			var azimute_sol = Math.trunc(azimute_sol);
 		}
-		if (azimute_sol_pdf > 1 || azimute_sol_pdf < -1) {
-			var azimute_sol_pdf = Math.trunc(azimute_sol_pdf);
-		}
 
 		var azimute_sol = Math.acos(azimute_sol);
-		var azimute_sol_pdf = Math.acos(azimute_sol_pdf);
 
 		if (this.h > 0) {
 			// Se for depois do meio dia, subtrai de o azimute de 360
 			var azimute_sol = toRadian(360) - azimute_sol;
-			var azimute_sol_pdf = toRadian(360) - azimute_sol_pdf;
 		}
 
-		console.log("pdf:", toDegree(azimute_sol_pdf));
-		console.log("net:", toDegree(azimute_sol)); // 246.09
 		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
 	}
 
 	// Nome da cidade
-	Cidade() {
+	CidadeNome() {
 		if (this.latitude && this.longitude) {
 			cityName(toDegree(this.latitude), toDegree(this.longitude))
-		} else {
-			if (document.getElementById("cidade").value != "No cities found" && document.getElementById("cidade").value != '') {
-				// nao tem coordenadas e tem cidade
-				cityCoords(document.getElementById("cidade").value)
-			} else {
-				console.log("Coordinates is not valid.");
-			}
-		}
+		} 
+	}
+
+	// Coordenada da cidade
+	CidadeCoord() {
+		cityCoords(document.getElementById("cidade").value)
 	}
 }
