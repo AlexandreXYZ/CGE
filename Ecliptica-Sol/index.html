@@ -121,8 +121,8 @@
 
         function enter() {
             let coord = {
-                lat: parseFloat(document.getElementById("latitude").value).toFixed(8),
-                lng: parseFloat(document.getElementById("longitude").value).toFixed(8)
+                lat: parseFloat(parseFloat(document.getElementById("latitude").value).toFixed(8)),
+                lng: parseFloat(parseFloat(document.getElementById("longitude").value).toFixed(8))
             };
 
             let data = {
