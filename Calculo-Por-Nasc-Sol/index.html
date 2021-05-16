@@ -131,7 +131,7 @@
             let a = new SunRiseSet(coord, date);
             console.log(coord, date);
 
-            if (coord.lat != "NaN" && coord.lng != "NaN") {
+            if (coord.lat && coord.lng) {
                 if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
                     a.Sunrise()
                     a.Sunset()

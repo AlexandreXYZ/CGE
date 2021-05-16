@@ -143,7 +143,7 @@
             console.log(coord, horario, data);
             // inicializar()
 
-            if (coord.lat != "NaN" && coord.lng != "NaN") {
+            if (coord.lat && coord.lng) {
                 if (coord.lat != old_var.lat || coord.lng != old_var.lng) {
                     a.Altura_Sol()
                     a.Azimute_Sol()
