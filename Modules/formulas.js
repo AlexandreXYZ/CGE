@@ -107,3 +107,14 @@ function anguloHorario(hour, min, seg) {
     const angle = hour * 15;
     return toRadian(angle);
 }
+
+function toCartesian(altura, azimute) {
+    const r = 1;
+    cartesianCoords = {
+        z: r * Math.sin(altura),
+        x: r * Math.cos(altura) * Math.sin(azimute),
+        y: r * Math.cos(altura) * Math.cos(azimute)
+    }
+
+    return cartesianCoords;
+}

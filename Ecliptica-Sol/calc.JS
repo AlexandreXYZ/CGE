@@ -39,6 +39,7 @@ class Calibrador {
 			var azimute_sol = toRadian(360) - azimute_sol;
 		}
 
+		this.azimute_sol = azimute_sol;
 		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
 	}
 
@@ -50,5 +51,15 @@ class Calibrador {
 	// Coordenada da cidade
 	CidadeCoord() {
 		cityCoords(document.getElementById("cidade").value)
+	}
+
+	CoordenadasCartesianas() {
+		if (this.altura_sol && this.azimute_sol) {
+			console.log("Parsing Spherical coordinate system to Cartesian.");
+			var {x, y, z} = toCartesian(this.altura_sol, this.azimute_sol);
+			console.log("X:", x);
+			console.log("Y:", y);
+			console.log("Z:", z);
+		}
 	}
 }
