@@ -21,7 +21,6 @@ class Calibrador {
 
 	// Equação 2
 	Azimute_Sol() {
-		// Ângulo da distância zenital
 		const declination = declinacao(this.dia_sequencial);
 
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
@@ -55,11 +54,18 @@ class Calibrador {
 
 	CoordenadasCartesianas() {
 		if (this.altura_sol && this.azimute_sol) {
+			const coordsGnomonVirtual = toCartesian(this.altura_sol, this.azimute_sol);
 			console.log("Parsing Spherical coordinate system to Cartesian.");
-			var {x, y, z} = toCartesian(this.altura_sol, this.azimute_sol);
-			console.log("X:", x);
-			console.log("Y:", y);
-			console.log("Z:", z);
+			console.log("X:", coordsGnomonVirtual.x);
+			console.log("Y:", coordsGnomonVirtual.y);
+			console.log("Z:", coordsGnomonVirtual.z);
+
+			const coordsDif = dadosSimulados(coordsGnomonVirtual)
+
+			console.log("Difference:");
+			console.log("X:", coordsDif.x);
+			console.log("Y:", coordsDif.y);
+			console.log("Z:", coordsDif.z);
 		}
 	}
 }

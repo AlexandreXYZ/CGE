@@ -111,10 +111,20 @@ function anguloHorario(hour, min, seg) {
 function toCartesian(altura, azimute) {
     const r = 1;
     cartesianCoords = {
-        z: r * Math.sin(altura),
         x: r * Math.cos(altura) * Math.sin(azimute),
-        y: r * Math.cos(altura) * Math.cos(azimute)
+        y: r * Math.cos(altura) * Math.cos(azimute),
+        z: r * Math.sin(altura)
     }
 
     return cartesianCoords;
+}
+
+function dadosSimulados(coordsGnomonVirtual) {
+    coordsDif = {
+        x: Math.abs(coordsGnomonVirtual.x - Math.random()) / 10,
+        y: Math.abs(coordsGnomonVirtual.y - Math.random()) / 10,
+        z: Math.abs(coordsGnomonVirtual.z - Math.random()) / 10
+    }
+
+    return coordsDif;
 }
