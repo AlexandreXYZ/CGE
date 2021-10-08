@@ -14,8 +14,8 @@
     <title>Cálculo do Nascer e Pôr do Sol</title>
 
     <link href="./index.css" rel="stylesheet">
-    <script type="text/javascript" src="../Modules/api-request.js"></script>
-    <script type="text/javascript" src="../Modules/formulas.js"></script>
+    <script type="text/javascript" src="../modules/apiRequest.js"></script>
+    <script type="text/javascript" src="../modules/formulas.js"></script>
     <script type="text/javascript" src="./calc.JS"></script>
 
     <!-- Mapa -->
@@ -28,10 +28,10 @@
 <body>
     <div>
         <nav>
-            <a href="../Calculo-Por-Nasc-Sol/index.html">Nascer e Pôr do Sol</a>
+            <a href="../calculoPorNascSol/index.html">Nascer e Pôr do Sol</a>
         </nav>
         <nav>
-            <a href="../Ecliptica-Sol/index.html">Ecliptica do Sol</a>
+            <a href="../eclipticaSol/index.html">Ecliptica do Sol</a>
         </nav>
     </div>
 
@@ -55,12 +55,12 @@
 
                     <div>
                         <label for="latitude">Latitude:</label>
-                        <input class="input" type="number" min="99" max="99999999" id="latitude" name="latitude">
+                        <input class="input" type="number" id="latitude" name="latitude">
                     </div>
 
                     <div>
                         <label for="longitude">Longitude:</label>
-                        <input class="input" type="number" min="99" max="99999999" id="longitude" name="longitude">
+                        <input class="input" type="number" id="longitude" name="longitude">
                     </div>
 
                     <div>
@@ -69,7 +69,7 @@
                     </div>
 
                     <div>
-                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()">
+                        <input class="input" type="button" id="submit_button" name="submit" value="Calcular" onclick="enter()" required>
                     </div>
                 </form>
             </fieldset>
