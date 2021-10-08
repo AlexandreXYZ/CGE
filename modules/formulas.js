@@ -99,9 +99,8 @@ function bicesto(ano) {
     return verify;
 }
 
-function anguloHorario(hour, min, seg) {
-    var seg = seg / 60;
-    var min = (seg + min) / 60;
+function anguloHorario(hour, min) {
+    var min = min / 60;
     var hour = (min + hour) - 12;
 
     const angle = hour * 15;

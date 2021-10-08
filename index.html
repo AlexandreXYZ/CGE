@@ -1,56 +1,74 @@
+<!--
+ !	@authors Alexandre Costa Belettini
+ ! 		 	 Pedro Otávio Furtado Duarte
+ !
+ !	@class 3º ano A
+ !	@TCC: CGE (Calibrador do Gnômon Eletrônico)
+ -->
+ 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./index.css" rel="stylesheet">
-  
-  <title>Document</title>
+	<title>CGE - Calibrador de Gnômon Eletrônico</title>
+	<link href="./index.css" rel="stylesheet">
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<script type="text/javascript" src="./index.js"></script>
+	<script type="text/javascript" src="./calc.js"></script>
+	<script type="text/javascript" src="./modules/apiRequest.js"></script>
+    <script type="text/javascript" src="./modules/formulas.js"></script>
 </head>
+
 <body>
-  <div id="container">
-    <div class="container_inputs">
-      <h1 class="container_inputs_title">Gnomon</h1>
-      <input type="search" placeholder="Cidade/Estado"/>
-      <input type="number" placeholder="Latitude"/>
-      <input type="number" placeholder="Longitude"/>
-      <input type="date" />
-      <input type="time"/>
-      <input type="submit" id="submit" value="Calcular"/>
-    </div>
-    
-    <div class="container_outputs">
-      <h1 class="container_outputs_title">Virtual</h1>
-      <div>
-        <span>Nascer do sol</span>
-        <output>06:54:44</output>
-      </div>
-      <div>
-        <span>Pôr do sol</span>
-        <output>19:23:22</output>
-      </div>
-      <div>
-        <span>Altura Angular</span>
-        <output>24°</output>
-      </div>
-      <div>
-        <span>Azimute</span>
-        <output>44°</output>
-      </div>
-      <div>
-        <span>Coordenada X</span>
-        <output>12</output>
-      </div>
-      <div>
-        <span>Coordenada Y</span>
-        <output>22</output>
-      </div>
-      <div>
-        <span>Coordenada Z</span>
-        <output>4</output>
-      </div>
-    </div>
-  </div>
+	<div id="container">
+		<div class="container_inputs">
+			<h1 class="container_inputs_title">Gnômon</h1>
+
+			<input type="search" placeholder="Cidade/Estado" id="cidade" />
+			<input type="number" placeholder="Latitude" id="latitude" />
+			<input type="number" placeholder="Longitude" id="longitude" />
+			<input type="date" id="date" />
+			<input type="time" id="time" />
+			<input type="button" id="submit" value="Calcular" onClick="enter()" />
+		</div>
+		
+		<div class="container_outputs">
+			<h1 class="container_outputs_title">Virtual</h1>
+
+			<div>
+				<span>Nascer do sol:</span>
+				<output id="nascer"></output>
+			</div>
+			<div>
+				<span>Pôr do sol:</span>
+				<output id="por"></output>
+			</div>
+			<div>
+				<span>Altura Angular:</span>
+				<output id="altura"></output>
+			</div>
+			<div>
+				<span>Azimute:</span>
+				<output id="azimute"></output>
+			</div>
+			<div>
+				<span>Coordenada X:</span>
+				<output id="coordX"></output>
+			</div>
+			<div>
+				<span>Coordenada Y:</span>
+				<output id="coordY"></output>
+			</div>
+			<div>
+				<span>Coordenada Z:</span>
+				<output id="coordZ"></output>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html>

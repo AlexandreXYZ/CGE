@@ -46,7 +46,7 @@ function cityCoords(cityName) {
 
                     document.getElementById("latitude").value = coords.lat;
                     document.getElementById("longitude").value = coords.lng;
-                    document.getElementById("submit_button").click();
+                    document.getElementById("submit").click();
                 });
         })
         .catch(error => {
