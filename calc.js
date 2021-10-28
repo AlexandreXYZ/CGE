@@ -1,87 +1,91 @@
 class Calibrador {
-	constructor(coord, horario, data) {
+	constructor(coord, time, date) {
 		this.latitude = toRadian(coord.lat);
 		this.longitude = toRadian(coord.lng);
-		this.h = anguloHorario(horario.hora, horario.min, horario.seg);
-		this.dia_sequencial = diaAno(data.dia, data.mes, data.ano);
+		this.hourAngle = hourAngle(time.hour, time.min);
+		this.sequentialDay = sequentialDay(date.day, date.month, date.year);
 	}
 
 	Sunrise() {
-		var T = duracaoDia(toDegree(this.latitude), this.dia_sequencial); //day_length()
-		var decimal_sunrise = 12 - (toDegree(T) / 2); // Horario formato decimal
+		// mudar nome da variavel
+		var T = dayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunrise = 12 - (toDegree(T) / 2); // Horario formato decimal
 
 		var sunrise = new Object();
-		sunrise.hour = Math.trunc(decimal_sunrise);
-		sunrise.min = Math.abs((decimal_sunrise - sunrise.hour) * 60);
+		sunrise.hour = Math.trunc(decimalSunrise);
+		sunrise.min = Math.abs((decimalSunrise - sunrise.hour) * 60);
 		sunrise.seg = Math.abs((sunrise.min - Math.trunc(sunrise.min)) * 60);
 
 		// Saída (output)
-		var schedule_adjusted = corret_long(toDegree(this.longitude), sunrise);
-		document.getElementById("nascer").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
+		var scheduleAdjusted = fixLong(toDegree(this.longitude), sunrise);
+		document.getElementById("sunrise").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
 	}
 
 	Sunset() {
-		var T = duracaoDia(toDegree(this.latitude), this.dia_sequencial); //day_length()
-		var decimal_sunset = 12 + (toDegree(T) / 2); // Horario formato decimal
+		// mudar nome da variavel
+		var T = dayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunset = 12 + (toDegree(T) / 2); // Horario formato decimal
 
 		var sunset = new Object();
-		sunset.hour = Math.trunc(decimal_sunset);
-		sunset.min = Math.abs((decimal_sunset - sunset.hour) * 60);
+		sunset.hour = Math.trunc(decimalSunset);
+		sunset.min = Math.abs((decimalSunset - sunset.hour) * 60);
 		sunset.seg = Math.abs((sunset.min - Math.trunc(sunset.min)) * 60);
 
 		// Saída (output)
-		var schedule_adjusted = corret_long(toDegree(this.longitude), sunset);
-		document.getElementById("por").innerHTML = (schedule_adjusted.hour + "h " + schedule_adjusted.min + "min " + schedule_adjusted.seg + "s");
+		var scheduleAdjusted = fixLong(toDegree(this.longitude), sunset);
+		document.getElementById("sunset").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
 	}
 
 	// Equação 1
-	Altura_Sol() {
-		const declination = declinacao(this.dia_sequencial);
+	Elevation_Angle() {
+		// mudar nome da variavel
+		const D = declination(this.sequentialDay);
 
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		const altura_sol = Math.asin(Math.cos(this.h) * Math.cos(declination) * Math.cos(this.latitude) + Math.sin(declination) * Math.sin(this.latitude));
-		this.altura_sol = altura_sol;
+		const elevationAngle = Math.asin(Math.cos(this.hourAngle) * Math.cos(D) * Math.cos(this.latitude) + Math.sin(D) * Math.sin(this.latitude));
+		this.elevationAngle = elevationAngle;
 
 		// OUTPUT
-		document.getElementById("altura").innerHTML = toDegree(altura_sol).toFixed(2);
+		document.getElementById("elevation").innerHTML = toDegree(elevationAngle).toFixed(2);
 	}
 
 	// Equação 2
-	Azimute_Sol() {
-		const declination = declinacao(this.dia_sequencial);
+	Azimuth_Angle() {
+		// mudar nome da variavel
+		const D = declination(this.sequentialDay);
 
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
-		var azimute_sol = (Math.sin(declination) - Math.sin(this.altura_sol) * Math.sin(this.latitude)) / (Math.cos(this.altura_sol) * Math.cos(this.latitude));
+		var azimuthAngle = (Math.sin(D) - Math.sin(this.elevationAngle) * Math.sin(this.latitude)) / (Math.cos(this.elevationAngle) * Math.cos(this.latitude));
 
-		if (azimute_sol > 1 || azimute_sol < -1) {
+		if (azimuthAngle > 1 || azimuthAngle < -1) {
 			// Checa pra ver se o JS nao colocou número a mais (sim, isso acontece)
-			var azimute_sol = Math.trunc(azimute_sol);
+			var azimuthAngle = Math.trunc(azimuthAngle);
 		}
 
-		var azimute_sol = Math.acos(azimute_sol);
+		var azimuthAngle = Math.acos(azimuthAngle);
 
-		if (this.h > 0) {
+		if (this.hourAngle > 0) {
 			// Se for depois do meio dia, subtrai de o azimute de 360
-			var azimute_sol = toRadian(360) - azimute_sol;
+			var azimuthAngle = toRadian(360) - azimuthAngle;
 		}
 
-		this.azimute_sol = azimute_sol;
-		document.getElementById("azimute").innerHTML = toDegree(azimute_sol).toFixed(2);
+		this.azimuthAngle = azimuthAngle;
+		document.getElementById("azimuth").innerHTML = toDegree(azimuthAngle).toFixed(2);
 	}
 
 	// Nome da cidade
-	CidadeNome() {
+	City_Name() {
 		cityName(toDegree(this.latitude), toDegree(this.longitude))
 	}
 
 	// Coordenada da cidade
-	CidadeCoord() {
-		cityCoords(document.getElementById("cidade").value)
+	City_Coord() {
+		cityCoords(document.getElementById("city").value)
 	}
 
-	CoordenadasCartesianas() {
-		if (this.altura_sol && this.azimute_sol) {
-			const coordsGnomonVirtual = toCartesian(this.altura_sol, this.azimute_sol);
+	Cartesian_Coordinates() {
+		if (this.elevationAngle && this.azimuthAngle) {
+			const coordsGnomonVirtual = toCartesian(this.elevationAngle, this.azimuthAngle);
 			document.getElementById("coordX").innerHTML = coordsGnomonVirtual.x.toFixed(3);
 			document.getElementById("coordY").innerHTML = coordsGnomonVirtual.y.toFixed(3);
 			document.getElementById("coordZ").innerHTML = coordsGnomonVirtual.z.toFixed(3);

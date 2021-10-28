@@ -4,35 +4,35 @@ function getValues() {
         lng: parseFloat(parseFloat(document.getElementById("longitude").value).toFixed(8))
     };
 
-    let data = {
-        dia: parseInt((document.getElementById("date").value).split("-")[2]),
-        mes: parseInt((document.getElementById("date").value).split("-")[1]),
-        ano: parseInt((document.getElementById("date").value).split("-")[0])
+    let date = {
+        day: parseInt((document.getElementById("date").value).split("-")[2]),
+        month: parseInt((document.getElementById("date").value).split("-")[1]),
+        year: parseInt((document.getElementById("date").value).split("-")[0])
     };
 
-    let horario = {
-        hora: parseInt((document.getElementById("time").value).split(":")[0]),
+    let time = {
+        hour: parseInt((document.getElementById("time").value).split(":")[0]),
         min: parseInt((document.getElementById("time").value).split(":")[1])
     };
 
-    // /* ------- */ let cge = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
-    // /*solarsena*/ let cge = new Calibrador({lat: 32.22,lng: -110.9756}, {hora: 14,min: 00,seg: 00}, {dia: 02,mes: 03,ano: 2020}); //4debug
-    let cge = new Calibrador(coord, horario, data);
-    // console.log(coord, horario, data);
+    // /* ------- */ let cge = new Calibrador({lat: 3.633056,lng: 6.543333}, {hour: 15,min: 0}, {day: 29,month: 10,year: 2018}); //4debug
+    // /*solarsena*/ let cge = new Calibrador({lat: 32.22,lng: -110.9756}, {hour: 14,min: 00}, {day: 02,month: 03,year: 2020}); //4debug
+    let cge = new Calibrador(coord, time, date);
+    // console.log(coord, time, date);
 
-    if (!horario.hora || !data.dia) {
+    if (!time.hour || !date.day) {
         alert("Missing parameters!");
     } else {
         if (coord.lat && coord.lng) {
             cge.Sunrise()
             cge.Sunset()
-            cge.Altura_Sol()
-            cge.Azimute_Sol()
-            cge.CidadeNome()
+            cge.Elevation_Angle()
+            cge.Azimuth_Angle()
+            cge.City_Name()
         } else {
-            cge.CidadeCoord()
+            cge.City_Coord()
         }
     }
 
-    cge.CoordenadasCartesianas()
+    cge.Cartesian_Coordinates()
 }

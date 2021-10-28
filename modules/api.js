@@ -15,10 +15,10 @@ function cityName(lat, lng) {
                     .then(response => response.json())
                     .then(data => {
                         var country = data._links["city:country"].href.slice(-3, -1);
-                        document.getElementById("cidade").value = city + ', ' + country;
+                        document.getElementById("city").value = city + ', ' + country;
                     });
             } else {
-                document.getElementById("cidade").value = "No cities found";
+                document.getElementById("city").value = "No cities found";
             }
         })
         .catch(error => {

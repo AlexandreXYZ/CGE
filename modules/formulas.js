@@ -1,9 +1,9 @@
-function diaAno(dia, mes, ano) {
+function sequentialDay(day, month, year) {
     var jan = mar = mai = jul = ago = out = dez = 31;
     var abr = jun = set = nov = 30;
-    var fev = (bicesto(ano) == true) ? 28 : 29;
+    var fev = (bicesto(year) == true) ? 28 : 29;
 
-    switch(mes) {
+    switch(month) {
         case 01: var tot_meses = 0; break;
         case 02: var tot_meses = jan; break;
         case 03: var tot_meses = jan + fev; break;
@@ -18,7 +18,7 @@ function diaAno(dia, mes, ano) {
         case 12: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out + nov; break;
         default: var tot_meses = 0; break;
     }
-    return dia + tot_meses;
+    return day + tot_meses;
 }
 
 function toRadian(degree) {
@@ -31,17 +31,17 @@ function toDegree(radian) {
     return degree;
 }
 
-function declinacao(dia_seq) {
-    var declinacao = 23.45 * Math.sin(toRadian((360 / 365) * (284 + dia_seq)));
-    return toRadian(declinacao);
+function declination(dia_seq) {
+    var declination = 23.45 * Math.sin(toRadian((360 / 365) * (284 + dia_seq)));
+    return toRadian(declination);
 }
 
-function duracaoDia(latitude, diaAno) {
-    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declinacao(diaAno)));
+function dayLength(latitude, sequentialDay) {
+    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declination(sequentialDay)));
     return T;
 }
 
-function corret_long(longitude, schedule_original) {
+function fixLong(longitude, schedule_original) {
     // Calcula qual o fuso horário do usuário
 
     // Checa se o número é divisível por 15
@@ -67,23 +67,23 @@ function corret_long(longitude, schedule_original) {
         schedule_dif.min -= 60;
     }
 
-    var schedule_adjusted = {
+    var scheduleAdjusted = {
         hour: Math.abs(schedule_original.hour + schedule_dif.hour),
         min: Math.abs(Math.trunc(schedule_original.min + schedule_dif.min)),
         seg: Math.abs(Math.round(schedule_original.seg + schedule_dif.seg))
     }
 
-    return schedule_adjusted;
+    return scheduleAdjusted;
 }
 
-function bicesto(ano) {
-    var etapa1 = ano % 4;
+function bicesto(year) {
+    var etapa1 = year % 4;
 
     if (etapa1 == 0) {
-        var etapa2 = ano % 100;
+        var etapa2 = year % 100;
 
         if (etapa2 == 0) {
-            var etapa3 = ano % 400;
+            var etapa3 = year % 400;
 
             if (etapa3 == 0) {
                 var verify = true;
@@ -99,7 +99,7 @@ function bicesto(ano) {
     return verify;
 }
 
-function anguloHorario(hour, min) {
+function hourAngle(hour, min) {
     var min = min / 60;
     var hour = (min + hour) - 12;
 
@@ -107,12 +107,12 @@ function anguloHorario(hour, min) {
     return toRadian(angle);
 }
 
-function toCartesian(altura, azimute) {
+function toCartesian(elevation, azimuth) {
     const r = 1;
     cartesianCoords = {
-        x: r * Math.cos(altura) * Math.sin(azimute),
-        y: r * Math.cos(altura) * Math.cos(azimute),
-        z: r * Math.sin(altura)
+        x: r * Math.cos(elevation) * Math.sin(azimuth),
+        y: r * Math.cos(elevation) * Math.cos(azimuth),
+        z: r * Math.sin(elevation)
     }
 
     return cartesianCoords;
