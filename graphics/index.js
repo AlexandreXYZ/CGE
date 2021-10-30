@@ -1,10 +1,9 @@
-function graphics(id, name, dadosVirtuais, dadosReais) {
-	dadosVirtuais.type = 'lines';
-	dadosVirtuais.name = 'Gnômon Virtual';
-	dadosReais.type = 'lines';
-	dadosReais.name = 'Gnômon Real';
+function graphics(id, name, virtualData, realData) {
+	virtualData.type = realData.type = 'lines';
+	virtualData.name = 'Gnômon Virtual';
+	realData.name = 'Gnômon Real';
 
-	var data = [dadosVirtuais, dadosReais];
+	var data = [virtualData, realData];
 
 	var layout = {
 		title: name,
@@ -15,37 +14,72 @@ function graphics(id, name, dadosVirtuais, dadosReais) {
 	Plotly.newPlot(id, data, layout);
 }
 
-const horario = ['15:00', '15:30', '16:00', '16:30'];
-const dadosReais = {
+function graphicsError(id, name, errorMargin) {
+	errorMargin.x.type = errorMargin.y.type = errorMargin.z.type = 'lines';
+	errorMargin.x.name = 'X';
+	errorMargin.y.name = 'Y';
+	errorMargin.z.name = 'Z';
+
+	var data = [errorMargin.x, errorMargin.y, errorMargin.z];
+
+	var layout = {
+		title: name,
+		xaxis: {
+			title: 'Horário'
+		}
+	};
+	Plotly.newPlot(id, data, layout);
+}
+
+const time = ['15:00', '15:30', '16:00', '16:30']; // 26/10
+// gnomon bonitinho
+const virtualData = {
 	x: {
-		x: horario,
-		y: [0.687, 0.771, 0.841, 0.897]
+		x: time,
+		y: [-0.687, -0.771, -0.841, -0.897]
 	},
 	y: {
-		x: horario,
+		x: time,
 		y: [0.126, 0.080, 0.028, -0.027]
 	},
 	z: {
-		x: horario,
+		x: time,
 		y: [0.716, 0.632, 0.540, 0.441]
 	}
 };
 
-const dadosVirtuais = {
+// random
+const realData = {
 	x: {
-		x: horario,
-		y: [0.149, 0.161, 0.178, 0.126]
+		x: time,
+		y: [-0.864, -0.913, -0.940, -0.927]
 	},
 	y: {
-		x: horario,
-		y: [0.035, 0.090, 0.018, 0.022]
+		x: time,
+		y: [-0.020, -0.106, -0.156, -0.167]
 	},
 	z: {
-		x: horario,
-		y: [0.034, 0.048, 0.024, 0.041]
+		x: time,
+		y: [0.550, 0.526, 0.449, 0.437]
 	}
 };
 
-graphics('graphicX', 'Coordenadas X', dadosReais.x, dadosVirtuais.x)
-graphics('graphicY', 'Coordenadas Y', dadosReais.y, dadosVirtuais.y)
-graphics('graphicZ', 'Coordenadas Z', dadosReais.z, dadosVirtuais.z)
+const errorMargin = {
+	x: {
+		x: time,
+		y: [0.177, 0.143, 0.099, 0.030]
+	},
+	y: {
+		x: time,
+		y: [0.106, 0.027, 0.127, 0.140]
+	},
+	z: {
+		x: time,
+		y: [0.166, 0.107, 0.091, 0.004]
+	}
+};
+
+graphics('graphicX', 'Coordenadas X', realData.x, virtualData.x)
+graphics('graphicY', 'Coordenadas Y', realData.y, virtualData.y)
+graphics('graphicZ', 'Coordenadas Z', realData.z, virtualData.z)
+graphicsError('graphicError', 'Margem de erro', errorMargin)

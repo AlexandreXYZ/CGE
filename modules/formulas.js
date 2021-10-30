@@ -118,12 +118,16 @@ function toCartesian(elevation, azimuth) {
     return cartesianCoords;
 }
 
-function dadosSimulados(coordsGnomonVirtual) {
-    coordsDif = {
-        x: Math.abs(coordsGnomonVirtual.x - Math.random()) / 10,
-        y: Math.abs(coordsGnomonVirtual.y - Math.random()) / 10,
-        z: Math.abs(coordsGnomonVirtual.z - Math.random()) / 10
+function simulatedData(coordsGnomonVirtual) {
+    // console.log(coordsGnomonVirtual.x - (Math.random() / 10));
+
+    simulatedCoords = {
+        x: coordsGnomonVirtual.x - (Math.random() / 5),
+        y: coordsGnomonVirtual.y - (Math.random() / 5),
+        z: coordsGnomonVirtual.z - (Math.random() / 5)
     }
 
-    return coordsDif;
+    // console.log(Math.abs(coordsDif.x) - Math.abs(coordsGnomonVirtual.x))
+
+    return simulatedCoords;
 }

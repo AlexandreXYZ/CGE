@@ -73,12 +73,10 @@ class Calibrador {
 		document.getElementById("azimuth").innerHTML = toDegree(azimuthAngle).toFixed(2);
 	}
 
-	// Nome da cidade
 	City_Name() {
 		cityName(toDegree(this.latitude), toDegree(this.longitude))
 	}
 
-	// Coordenada da cidade
 	City_Coord() {
 		cityCoords(document.getElementById("city").value)
 	}
@@ -90,11 +88,21 @@ class Calibrador {
 			document.getElementById("coordY").innerHTML = coordsGnomonVirtual.y.toFixed(3);
 			document.getElementById("coordZ").innerHTML = coordsGnomonVirtual.z.toFixed(3);
 
-			const coordsDif = dadosSimulados(coordsGnomonVirtual)
+			const simulatedCoords = simulatedData(coordsGnomonVirtual)
+			console.log('Simulated Coords:');
+			console.log("X:", simulatedCoords.x.toFixed(3));
+			console.log("Y:", simulatedCoords.y.toFixed(3));
+			console.log("Z:", simulatedCoords.z.toFixed(3));
+
+			const coordsDif = {
+				x: Math.abs(Math.abs(simulatedCoords.x) - Math.abs(coordsGnomonVirtual.x)),
+				y: Math.abs(Math.abs(simulatedCoords.y) - Math.abs(coordsGnomonVirtual.y)),
+				z: Math.abs(Math.abs(simulatedCoords.z) - Math.abs(coordsGnomonVirtual.z))
+			};
 			console.log("Difference:");
-			console.log("X:", coordsDif.x);
-			console.log("Y:", coordsDif.y);
-			console.log("Z:", coordsDif.z);
+			console.log("X:", coordsDif.x.toFixed(3));
+			console.log("Y:", coordsDif.y.toFixed(3));
+			console.log("Z:", coordsDif.z.toFixed(3));
 		}
 	}
 }
