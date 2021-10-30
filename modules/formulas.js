@@ -119,15 +119,11 @@ function toCartesian(elevation, azimuth) {
 }
 
 function simulatedData(coordsGnomonVirtual) {
-    // console.log(coordsGnomonVirtual.x - (Math.random() / 10));
-
     simulatedCoords = {
         x: coordsGnomonVirtual.x - (Math.random() / 5),
         y: coordsGnomonVirtual.y - (Math.random() / 5),
         z: coordsGnomonVirtual.z - (Math.random() / 5)
     }
-
-    // console.log(Math.abs(coordsDif.x) - Math.abs(coordsGnomonVirtual.x))
 
     return simulatedCoords;
 }

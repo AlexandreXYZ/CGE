@@ -18,7 +18,6 @@ function getValues() {
     // /* ------- */ let cge = new Calibrador({lat: 3.633056,lng: 6.543333}, {hour: 15,min: 0}, {day: 29,month: 10,year: 2018}); //4debug
     // /*solarsena*/ let cge = new Calibrador({lat: 32.22,lng: -110.9756}, {hour: 14,min: 00}, {day: 02,month: 03,year: 2020}); //4debug
     let cge = new Calibrador(coord, time, date);
-    // console.log(coord, time, date);
 
     if (!time.hour || !date.day) {
         alert("Missing parameters!");
