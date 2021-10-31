@@ -18,8 +18,8 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 	Apoio: https://www.if.ufrgs.br/~fatima/fis2016/tempo/tempo.htm
 	       https://solarsena.com/solar-declination-angle-calculator
 
-	O '360/365 * (284 + day)' serve para calcular o ângulo em relação à posição da terra no primeiro day do ano.
-	O seno serve para calcular a distância em relação a linha do primeiro day do ano.
+	O '360/365 * (284 + dia)' serve para calcular o ângulo em relação à posição da terra no primeiro dia do ano.
+	O seno serve para calcular a distância em relação a linha do primeiro dia do ano.
 
 	Obs: A fórmula com cosseno e 'n + 10' retorna quase o mesmo valor da fórmula com seno 'n + 284'
 
@@ -28,7 +28,7 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 
 	Apoio: https://pt.qaz.wiki/wiki/Hour_angle
 	
-	É o ângulo do sol em relação ao meio day. Pela manhã é negativo e pela tarde é positivo.
+	É o ângulo do sol em relação ao meio dia. Pela manhã é negativo e pela tarde é positivo.
 	Calcula-se multiplicando 15° pelo número de horas passadas.
 
 #### Excentricidade:
@@ -55,7 +55,7 @@ Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para exp
 	Ângulo do sol em relação ao norte.
 
 #### Ângulo Zenital:
-	'angulo_zenite = Math.acos(Math.sin(this.elevationAngle));'
+	'zenitalAngle = Math.acos(Math.sin(this.elevationAngle));'
 
 	Apoio: https://solarsena.com/solar-elevation-angle-altitude
 
