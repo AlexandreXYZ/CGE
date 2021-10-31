@@ -1,38 +1,37 @@
-function enter() {
+function getValues() {
     let coord = {
         lat: parseFloat(parseFloat(document.getElementById("latitude").value).toFixed(8)),
         lng: parseFloat(parseFloat(document.getElementById("longitude").value).toFixed(8))
     };
 
-    let data = {
-        dia: parseInt((document.getElementById("date").value).split("-")[2]),
-        mes: parseInt((document.getElementById("date").value).split("-")[1]),
-        ano: parseInt((document.getElementById("date").value).split("-")[0])
+    let date = {
+        day: parseInt((document.getElementById("date").value).split("-")[2]),
+        month: parseInt((document.getElementById("date").value).split("-")[1]),
+        year: parseInt((document.getElementById("date").value).split("-")[0])
     };
 
-    let horario = {
-        hora: parseInt((document.getElementById("time").value).split(":")[0]),
-        min: parseInt((document.getElementById("time").value).split(":")[1]),
+    let time = {
+        hour: parseInt((document.getElementById("time").value).split(":")[0]),
+        min: parseInt((document.getElementById("time").value).split(":")[1])
     };
 
-    // let a = new Calibrador({lat: 3.633056,lng: 6.543333}, {hora: 15,min: 0,seg: 0}, {dia: 29,mes: 10,ano: 2018}); //4debug
-    // /*solarsena*/ let a = new Calibrador({lat: 32.22,lng: -110.9756}, {hora: 14,min: 00,seg: 00}, {dia: 02,mes: 03,ano: 2020}); //4debug
-    let a = new Calibrador(coord, horario, data);
-    // console.log(coord, horario, data);
+    // /* ------- */ let cge = new Calibrator({lat: 3.633056,lng: 6.543333}, {hour: 15,min: 0}, {day: 29,month: 10,year: 2018}); //4debug
+    // /*solarsena*/ let cge = new Calibrator({lat: 32.22,lng: -110.9756}, {hour: 14,min: 00}, {day: 02,month: 03,year: 2020}); //4debug
+    let cge = new Calibrator(coord, time, date);
 
-    if (!horario.hora || !data.dia) {
-        alert("Missing parameters!")
+    if (!time.hour || !date.day) {
+        alert("Missing parameters!");
     } else {
         if (coord.lat && coord.lng) {
-            a.Sunrise()
-            a.Sunset()
-            a.Altura_Sol()
-            a.Azimute_Sol()
-            a.CidadeNome()
+            cge.Sunrise()
+            cge.Sunset()
+            cge.Elevation_Angle()
+            cge.Azimuth_Angle()
+            cge.City_Name()
         } else {
-            a.CidadeCoord()
+            cge.City_Coord()
         }
     }
 
-    a.CoordenadasCartesianas()
+    cge.Cartesian_Coordinates()
 }
