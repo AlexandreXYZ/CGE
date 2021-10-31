@@ -1,4 +1,4 @@
-class Calibrador {
+class Calibrator {
 	constructor(coord, time, date) {
 		this.latitude = toRadian(coord.lat);
 		this.longitude = toRadian(coord.lng);
