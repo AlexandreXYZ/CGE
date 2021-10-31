@@ -7,9 +7,8 @@ class Calibrator {
 	}
 
 	Sunrise() {
-		// mudar nome da variavel
-		var T = dayLength(toDegree(this.latitude), this.sequentialDay);
-		var decimalSunrise = 12 - (toDegree(T) / 2); // Horario formato decimal
+		var DayLength = dayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunrise = 12 - (toDegree(DayLength) / 2); // Horario formato decimal
 
 		var sunrise = new Object();
 		sunrise.hour = Math.trunc(decimalSunrise);
@@ -22,9 +21,8 @@ class Calibrator {
 	}
 
 	Sunset() {
-		// mudar nome da variavel
-		var T = dayLength(toDegree(this.latitude), this.sequentialDay);
-		var decimalSunset = 12 + (toDegree(T) / 2); // Horario formato decimal
+		var DayLength = dayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunset = 12 + (toDegree(DayLength) / 2); // Horario formato decimal
 
 		var sunset = new Object();
 		sunset.hour = Math.trunc(decimalSunset);
@@ -38,11 +36,10 @@ class Calibrator {
 
 	// Equação 1
 	Elevation_Angle() {
-		// mudar nome da variavel
-		const D = declination(this.sequentialDay);
+		const Declination = declination(this.sequentialDay);
 
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		const elevationAngle = Math.asin(Math.cos(this.hourAngle) * Math.cos(D) * Math.cos(this.latitude) + Math.sin(D) * Math.sin(this.latitude));
+		const elevationAngle = Math.asin(Math.cos(this.hourAngle) * Math.cos(Declination) * Math.cos(this.latitude) + Math.sin(Declination) * Math.sin(this.latitude));
 		this.elevationAngle = elevationAngle;
 
 		// OUTPUT
@@ -51,11 +48,10 @@ class Calibrator {
 
 	// Equação 2
 	Azimuth_Angle() {
-		// mudar nome da variavel
-		const D = declination(this.sequentialDay);
+		const Declination = declination(this.sequentialDay);
 
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
-		var azimuthAngle = (Math.sin(D) - Math.sin(this.elevationAngle) * Math.sin(this.latitude)) / (Math.cos(this.elevationAngle) * Math.cos(this.latitude));
+		var azimuthAngle = (Math.sin(Declination) - Math.sin(this.elevationAngle) * Math.sin(this.latitude)) / (Math.cos(this.elevationAngle) * Math.cos(this.latitude));
 
 		if (azimuthAngle > 1 || azimuthAngle < -1) {
 			// Checa pra ver se o JS nao colocou número a mais (sim, isso acontece)
