@@ -3,9 +3,9 @@ function graphics(id, name, virtualData, realData) {
 	virtualData.name = 'Gnômon Virtual';
 	realData.name = 'Gnômon Real';
 
-	var data = [virtualData, realData];
+	const data = [virtualData, realData];
 
-	var layout = {
+	const layout = {
 		title: name,
 		xaxis: {
 			title: 'Horário'
@@ -20,9 +20,9 @@ function graphicsError(id, name, errorMargin) {
 	errorMargin.y.name = 'Y';
 	errorMargin.z.name = 'Z';
 
-	var data = [errorMargin.x, errorMargin.y, errorMargin.z];
+	const data = [errorMargin.x, errorMargin.y, errorMargin.z];
 
-	var layout = {
+	const layout = {
 		title: name,
 		xaxis: {
 			title: 'Horário'
