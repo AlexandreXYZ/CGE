@@ -1,7 +1,7 @@
-import { Router } from 'express'
-import { GetAzimuthAngleController } from './controllers/GetAzimuthAngleController'
-import { GetElevationAngleController } from './controllers/GetElevationAngleController'
-import { GetSolarCoordinatesController } from './controllers/GetSolarCoordinatesController'
+import { Router } from "express"
+import { GetAzimuthAngleController } from "./controllers/GetAzimuthAngleController"
+import { GetElevationAngleController } from "./controllers/GetElevationAngleController"
+import { GetSolarCoordinatesController } from "./controllers/GetSolarCoordinatesController"
 
 export const router = Router()
 
