@@ -1,24 +1,24 @@
-function diaAno(dia, mes, ano) {
-    var jan = mar = mai = jul = ago = out = dez = 31;
-    var abr = jun = set = nov = 30;
-    var fev = (bicesto(ano) == true) ? 28 : 29;
+function sequentialDay(day, month, year) {
+    var jan = mar = may = jul = aug = oct = 31;
+    var apr = jun = sep = nov = 30;
+    var feb = (isBicesto(year) == true) ? 28 : 29;
 
-    switch(mes) {
-        case 01: var tot_meses = 0; break;
-        case 02: var tot_meses = jan; break;
-        case 03: var tot_meses = jan + fev; break;
-        case 04: var tot_meses = jan + fev + mar; break;
-        case 05: var tot_meses = jan + fev + mar + abr; break;
-        case 06: var tot_meses = jan + fev + mar + abr + mai; break;
-        case 07: var tot_meses = jan + fev + mar + abr + mai + jun; break;
-        case 08: var tot_meses = jan + fev + mar + abr + mai + jun + jul; break;
-        case 09: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago; break;
-        case 10: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set; break;
-        case 11: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out; break;
-        case 12: var tot_meses = jan + fev + mar + abr + mai + jun + jul + ago + set + out + nov; break;
-        default: var tot_meses = 0; break;
+    switch(month) {
+        case 01: var totalMonth = 0; break;
+        case 02: var totalMonth = jan; break;
+        case 03: var totalMonth = jan + feb; break;
+        case 04: var totalMonth = jan + feb + mar; break;
+        case 05: var totalMonth = jan + feb + mar + apr; break;
+        case 06: var totalMonth = jan + feb + mar + apr + may; break;
+        case 07: var totalMonth = jan + feb + mar + apr + may + jun; break;
+        case 08: var totalMonth = jan + feb + mar + apr + may + jun + jul; break;
+        case 09: var totalMonth = jan + feb + mar + apr + may + jun + jul + aug; break;
+        case 10: var totalMonth = jan + feb + mar + apr + may + jun + jul + aug + sep; break;
+        case 11: var totalMonth = jan + feb + mar + apr + may + jun + jul + aug + sep + oct; break;
+        case 12: var totalMonth = jan + feb + mar + apr + may + jun + jul + aug + sep + oct + nov; break;
+        default: var totalMonth = 0; break;
     }
-    return dia + tot_meses;
+    return day + totalMonth;
 }
 
 function toRadian(degree) {
@@ -31,17 +31,17 @@ function toDegree(radian) {
     return degree;
 }
 
-function declinacao(dia_seq) {
-    var declinacao = 23.45 * Math.sin(toRadian((360 / 365) * (284 + dia_seq)));
-    return toRadian(declinacao);
+function declination(sequentialDay) {
+    var declination = 23.45 * Math.sin(toRadian((360 / 365) * (284 + sequentialDay)));
+    return toRadian(declination);
 }
 
-function duracaoDia(latitude, diaAno) {
-    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declinacao(diaAno)));
+function dayLength(latitude, sequentialDay) {
+    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declination(sequentialDay)));
     return T;
 }
 
-function corret_long(longitude, schedule_original) {
+function fixLong(longitude, scheduleOriginal) {
     // Calcula qual o fuso horário do usuário
 
     // Checa se o número é divisível por 15
@@ -52,40 +52,40 @@ function corret_long(longitude, schedule_original) {
         timezone -= 15;
     }
 
-    var dif_Grau = longitude - timezone;
-    var schedule_dif = new Object();
-    schedule_dif.hour = 0;
-    schedule_dif.min = (dif_Grau * 60) / 15;
-    schedule_dif.seg = Math.round((schedule_dif.min - Math.trunc(schedule_dif.min)) * 60);
+    var difDegree = longitude - timezone;
+    var scheduleDif = new Object();
+    scheduleDif.hour = 0;
+    scheduleDif.min = (difDegree * 60) / 15;
+    scheduleDif.seg = Math.round((scheduleDif.min - Math.trunc(scheduleDif.min)) * 60);
 
-    // Caso a soma entre 'schedule_original.seg' e 'schedule_dif.seg' sejam > 60, 'schedule_dif.seg' ficará negativo
-    if ((Math.round(schedule_original.seg + schedule_dif.seg)) > 60) {
-        schedule_dif.seg -= 60;
+    // Caso a soma entre 'scheduleOriginal.seg' e 'scheduleDif.seg' sejam > 60, 'scheduleDif.seg' ficará negativo
+    if ((Math.round(scheduleOriginal.seg + scheduleDif.seg)) > 60) {
+        scheduleDif.seg -= 60;
     }
-    if (Math.trunc(schedule_original.min + schedule_dif.min) > 59) {
-        schedule_dif.hour += 1;
-        schedule_dif.min -= 60;
-    }
-
-    var schedule_adjusted = {
-        hour: Math.abs(schedule_original.hour + schedule_dif.hour),
-        min: Math.abs(Math.trunc(schedule_original.min + schedule_dif.min)),
-        seg: Math.abs(Math.round(schedule_original.seg + schedule_dif.seg))
+    if (Math.trunc(scheduleOriginal.min + scheduleDif.min) > 59) {
+        scheduleDif.hour += 1;
+        scheduleDif.min -= 60;
     }
 
-    return schedule_adjusted;
+    var scheduleAdjusted = {
+        hour: Math.abs(scheduleOriginal.hour + scheduleDif.hour),
+        min: Math.abs(Math.trunc(scheduleOriginal.min + scheduleDif.min)),
+        seg: Math.abs(Math.round(scheduleOriginal.seg + scheduleDif.seg))
+    }
+
+    return scheduleAdjusted;
 }
 
-function bicesto(ano) {
-    var etapa1 = ano % 4;
+function isBicesto(year) {
+    var step1 = year % 4;
 
-    if (etapa1 == 0) {
-        var etapa2 = ano % 100;
+    if (step1 == 0) {
+        var step2 = year % 100;
 
-        if (etapa2 == 0) {
-            var etapa3 = ano % 400;
+        if (step2 == 0) {
+            var step3 = year % 400;
 
-            if (etapa3 == 0) {
+            if (step3 == 0) {
                 var verify = true;
             } else {
                 var verify = false;
@@ -99,7 +99,7 @@ function bicesto(ano) {
     return verify;
 }
 
-function anguloHorario(hour, min) {
+function hourAngle(hour, min) {
     var min = min / 60;
     var hour = (min + hour) - 12;
 
@@ -107,23 +107,23 @@ function anguloHorario(hour, min) {
     return toRadian(angle);
 }
 
-function toCartesian(altura, azimute) {
+function toCartesian(elevation, azimuth) {
     const r = 1;
     cartesianCoords = {
-        x: r * Math.cos(altura) * Math.sin(azimute),
-        y: r * Math.cos(altura) * Math.cos(azimute),
-        z: r * Math.sin(altura)
+        x: r * Math.cos(elevation) * Math.sin(azimuth),
+        y: r * Math.cos(elevation) * Math.cos(azimuth),
+        z: r * Math.sin(elevation)
     }
 
     return cartesianCoords;
 }
 
-function dadosSimulados(coordsGnomonVirtual) {
-    coordsDif = {
-        x: Math.abs(coordsGnomonVirtual.x - Math.random()) / 10,
-        y: Math.abs(coordsGnomonVirtual.y - Math.random()) / 10,
-        z: Math.abs(coordsGnomonVirtual.z - Math.random()) / 10
+function simulatedData(coordsGnomonVirtual) {
+    simulatedCoords = {
+        x: coordsGnomonVirtual.x - (Math.random() / 5),
+        y: coordsGnomonVirtual.y - (Math.random() / 5),
+        z: coordsGnomonVirtual.z - (Math.random() / 5)
     }
 
-    return coordsDif;
+    return simulatedCoords;
 }
