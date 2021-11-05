@@ -2,6 +2,18 @@
 # yarn lockfile v1
 
 
+"@prisma/client@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-3.4.0.tgz#d94eca61847be13c505751b8875d7cb8951476ad"
+  integrity sha512-rjnp7dPVArqT/VgeWllUN+5927u224Gud//d16omL2hyXl9BnWzmeZJQ0plTYuP5yCR/M1N4iUC8ysDPlhA08g==
+  dependencies:
+    "@prisma/engines-version" "3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85"
+
+"@prisma/engines-version@3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85":
+  version "3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85.tgz#87868281c28b6b9b9e13ee844bd93edf0f38390a"
+  integrity sha512-acL30wD3lj6qGAN9JIA+fhcd8j5I+Db9d1Pge2jwmK/QVbmbnH+lhTMV5pYIdgxbZWs9R+DoNnOHvUQCOW1xeQ==
+
 "@prisma/engines@3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85":
   version "3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85"
   resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-3.4.0-27.1c9fdaa9e2319b814822d6dbfd0a69e1fcc13a85.tgz#5ec71566f215f6834b0f4be267cd9690e086210a"
@@ -555,7 +567,7 @@ picomatch@^2.0.4, picomatch@^2.2.1:
   resolved "https://registry.yarnpkg.com/picomatch/-/picomatch-2.3.0.tgz#f1f061de8f6a4bf022892e2d128234fb98302972"
   integrity sha512-lY1Q/PiJGC2zOv/z391WOTD+Z02bCgsFfvxoXXf6h7kv9o+WmsmzYqrAwY63sNgOxE4xEdq0WyUnXfKeBrSvYw==
 
-prisma@^3.4.0:
+prisma@3.4.0:
   version "3.4.0"
   resolved "https://registry.yarnpkg.com/prisma/-/prisma-3.4.0.tgz#3ac310c9bf390c366b198d4aec14f728e390752d"
   integrity sha512-W0AFjVxPOLW5SEnf0ZwbOu4k8ElX98ioFC1E8Gb9Q/nuO2brEwxFJebXglfG+N6zphGbu2bG1I3VAu7aYzR3VA==
