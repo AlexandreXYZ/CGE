@@ -1,5 +1,5 @@
 import { ICoordinates } from "../interface/ICoordinates"
-import { getFormatedCorrdinates } from "../utils/getFormatedCoordinates"
+import { getFormatedCoordinates } from "../utils/getFormatedCoordinates"
 
 export class GetDifferenceCoordinatesService {
 	execute(solarCoordinates: ICoordinates) {
@@ -15,6 +15,6 @@ export class GetDifferenceCoordinatesService {
 			z: Math.abs(Math.abs(simulatedCoordinates.z) - Math.abs(solarCoordinates.z))
 		}
 	
-		return getFormatedCorrdinates(differenceCoordinates)
+		return getFormatedCoordinates(differenceCoordinates)
 	}
 }
