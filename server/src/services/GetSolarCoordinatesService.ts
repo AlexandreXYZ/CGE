@@ -1,4 +1,4 @@
-import { getFormatedCorrdinates } from "../utils/getFormatedCoordinates"
+import { getFormatedCoordinates } from "../utils/getFormatedCoordinates"
 
 export class GetSolarCoordinatesService {
 	execute(elevationAngle: number, azimuthAngle: number) {
@@ -9,6 +9,6 @@ export class GetSolarCoordinatesService {
 			z: r * Math.sin(elevationAngle)
 		}
 
-		return getFormatedCorrdinates(cartesianCoords)
+		return getFormatedCoordinates(cartesianCoords)
 	}
 }
