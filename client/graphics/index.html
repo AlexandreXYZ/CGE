@@ -11,18 +11,74 @@
 
 <head>
 	<title>Gráficos</title>
-	<link href="./graphics.css" rel="stylesheet">
+	<link href="./styles.css" rel="stylesheet">
 
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-	<div id='graphicX'></div>
-	<div id='graphicY'></div>
-	<div id='graphicZ'></div>
-	<div id='graphicError'></div>
+	<div class="container" id="coordX">
+		<div class="container_header">
+			<h1 class="container_header_title">Coordenada X</h1>
+			<p class="container_header_legend">maecenas accumsan lacus vel facilisis volutpat est velit egestas dui id ornare arcu odio ut</p>
+		</div>
+		<div class="container_graphics">
+			<div>
+				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+				<div id='graphicX' class="graphics"></div>
+			</div>
+			<div>
+				<h2 class="container_graphics_title">Dados da diferença</h2>
+				<div id='graphicXDiference' class="graphics"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container" id="coordY" >
+		<div class="container_header">
+			<h1 class="container_header_title">Coordenada Y</h1>
+			<p class="container_header_legend">maecenas accumsan lacus vel facilisis volutpat est velit egestas dui id ornare arcu odio ut</p>
+		</div>
+		<div class="container_graphics">
+			<div>
+				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+				<div id='graphicY' class="graphics"></div>
+			</div>
+			<div>
+				<h2 class="container_graphics_title">Dados da diferença</h2>
+				<div id='graphicYDiference' class="graphics"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container" id="coordZ">
+		<div class="container_header" id="colorYellow">
+			<h1 class="container_header_title">Coordenada Z</h1>
+			<p class="container_header_legend">maecenas accumsan lacus vel facilisis volutpat est velit egestas dui id ornare arcu odio ut</p>
+		</div>
+		<div class="container_graphics" id="colorYellow">
+			<div>
+				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+				<div id='graphicZ' class="graphics"></div>
+			</div>
+			<div>
+				<h2 class="container_graphics_title">Dados da diferença</h2>
+				<div id='graphicZDiference' class="graphics"></div>
+			</div>
+		</div>
+	</div>
+	<nav id='navegation'>
+		<a class="navegationBall" href="#coordX" title="Coordenada X"></a>
+		<a class="navegationBall" href="#coordY" title="Coordenada Y"></a>
+		<a class="navegationBall" href="#coordZ" title="Coordenada Z"></a>
+	</nav>
+
 
 	<script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
 	<script type="text/javascript" src="./index.js"></script>
