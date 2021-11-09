@@ -2,8 +2,8 @@ import { ICoordinates } from "../interface/ICoordinates"
 import prismaClient from "../prisma"
 
 export class SaveCoordinatesService {
-	execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates: ICoordinates, date: Date): void {
-		prismaClient.gnomon_V.create({
+	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates: ICoordinates, date: Date) {
+		await prismaClient.gnomon_V.create({
 			data: {
 				x_V: realCoordinates.x,
 				y_V: realCoordinates.y,
@@ -12,7 +12,7 @@ export class SaveCoordinatesService {
 			}
 		})
 
-		prismaClient.gnomon_R.create({
+		await prismaClient.gnomon_R.create({
 			data: {
 				x_R: virtualCoordinates.x,
 				y_R: virtualCoordinates.y,
@@ -21,7 +21,7 @@ export class SaveCoordinatesService {
 			}
 		})
 
-		prismaClient.calc_Dados.create({
+		await prismaClient.calc_Dados.create({
 			data: {
 				x_Calc: differenceCoordinates.x,
 				y_Calc: differenceCoordinates.y,
