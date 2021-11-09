@@ -18,6 +18,6 @@ export class GetDatesService {
 			min: date.getMinutes()
 		}
 
-		return { sequentialDay: sequentialDay, time: time }
+		return { date: date, sequentialDay: sequentialDay, time: time }
 	}
 }

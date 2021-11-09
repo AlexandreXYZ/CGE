@@ -7,56 +7,24 @@ generator client {
 	provider = "prisma-client-js"
 }
 
-model PosiSol_V {
+model Gnomon_V {
 	id 			Int @id @default(autoincrement())
 	x_V			Float
 	y_V			Float
 	z_V			Float
-
-	@@map("posiSol_V")
-	gnomon_V	Gnomon_V[]
-}
-
-model Gnomon_V {
-	id 			Int @id @default(autoincrement())
-
-	posiSol		PosiSol_V @relation(fields: [posiSol_id], references: [id])
+	date		DateTime @default(now())
 
 	@@map("gnomon_V")
-	posiSol_id	Int
-	calc_Dados	Calc_Dados[]
-}
-
-model PosiGnomon_R {
-	id 			Int @id @default(autoincrement())
-	lati_R		Float @ignore @default(-29.1018555850) // IFC-CAS
-	longi_R		Float @ignore @default(-49.6385230231)
-
-	@@map("posiGnomon_R")
-	gnomon_R 	Gnomon_R[]
-}
-
-model PosiSol_R {
-	id 			Int @id @default(autoincrement())
-	x_R			Float
-	y_R			Float
-	z_R			Float
-
-	@@map("posiSol_R")
-	gnomon_R 	Gnomon_R[]
 }
 
 model Gnomon_R {
 	id 			Int @id @default(autoincrement())
-	data_R		DateTime @default(now())
-
-	posiGnomon_R 	PosiGnomon_R @relation(fields: [posiGnomon_R_id], references: [id])
-	posiSol_R		PosiSol_R @relation(fields: [posiSol_R_id], references: [id])
+	x_R			Float
+	y_R			Float
+	z_R			Float
+	date		DateTime @default(now())
 
 	@@map("gnomon_R")
-	posiGnomon_R_id Int
-	posiSol_R_id 	Int
-	calc_Dados	Calc_Dados[]
 }
 
 model Calc_Dados {
@@ -64,12 +32,7 @@ model Calc_Dados {
 	x_Calc		Float
 	y_Calc		Float
 	z_Calc		Float
-	data_Calc	DateTime @default(now())
-
-	gnomon_V	Gnomon_V @relation(fields: [gnomon_V_id], references: [id])
-	gnomon_R	Gnomon_R @relation(fields: [gnomon_R_id], references: [id])
+	date_Calc	DateTime @default(now())
 
 	@@map("calc_Dados")
-	gnomon_V_id	Int
-	gnomon_R_id	Int
 }
