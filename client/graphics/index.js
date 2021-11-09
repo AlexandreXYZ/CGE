@@ -80,6 +80,12 @@ const errorMargin = {
 };
 
 graphics('graphicX', 'Coordenadas X', realData.x, virtualData.x)
+graphics('graphicXDiference', 'Coordenadas X', realData.x, virtualData.x)
+
 graphics('graphicY', 'Coordenadas Y', realData.y, virtualData.y)
+graphics('graphicYDiference', 'Coordenadas Y', realData.x, virtualData.x)
+
 graphics('graphicZ', 'Coordenadas Z', realData.z, virtualData.z)
-graphicsError('graphicError', 'Margem de erro', errorMargin)
+graphics('graphicZDiference', 'Coordenadas Z', realData.x, virtualData.x)
+
+// graphicsError('graphicError', 'Margem de erro', errorMargin)
