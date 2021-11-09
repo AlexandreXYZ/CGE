@@ -2,7 +2,7 @@ import { ICoordinates } from "../interface/ICoordinates"
 import prismaClient from "../prisma"
 
 export class SaveCoordinatesService {
-	execute(coordinates: ICoordinates) {
+	execute(coordinates: ICoordinates): void {
 		prismaClient.calc_Dados.create({
 			data: {
 				x_Calc: coordinates.x,

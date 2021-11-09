@@ -1,20 +1,20 @@
 import { Request, Response } from "express"
 import { GetAzimuthAngleService } from "../services/GetAzimuthAngleService"
 import { GetElevationAngleService } from "../services/GetElevationAngleService"
-import { GetSolarCoordinatesService } from "../services/GetSolarCoordinatesService"
+import { GetVirtualCoordinatesService } from "../services/GetVirtualCoordinatesService"
 
-export class GetSolarCoordinatesController {
+export class GetVirtualCoordinatesController {
 	handle(request: Request, response: Response) {
 		const { sequentialDay, time, latitude } = request.body
 
 		const getElevationAngle = new GetElevationAngleService()
 		const getAzimuthAngle = new GetAzimuthAngleService()
-		const getSolarCoordinates = new GetSolarCoordinatesService()
+		const getVirtualCoordinates = new GetVirtualCoordinatesService()
 
 		const elevationAngle = getElevationAngle.execute(sequentialDay, time, latitude)
 		const azimuthAngle = getAzimuthAngle.execute(sequentialDay, elevationAngle, time, latitude)
-		const solarCoordinates = getSolarCoordinates.execute(elevationAngle, azimuthAngle)
+		const virtualCoordinates = getVirtualCoordinates.execute(elevationAngle, azimuthAngle)
 
-		return response.json(solarCoordinates)
+		return response.json(virtualCoordinates)
 	}
 }
