@@ -1,7 +1,7 @@
 ## API Requests
 Request | Method | Route URI | Query parameters | Body | Response
 --- | --- | --- | --- | --- | ---
-Elevation Angle | POST | /elevationAngle | --- | { <br> "sequentialDay": number, <br> "time": { <br> "hour": number, <br> "min": number <br>}, <br> "latitude": number <br> } | { <br>"elevationAngle": number <br>}
-Azimuth Angle | POST | /azimuthAngle | --- | { <br> "sequentialDay": number, <br> "elevationAngle": number, <br> "time": { <br> "hour": number, <br> "min": number  <br> }, <br> "latitude": number <br> } | { <br> "azimuthAngle": number <br>}
-Solar Coordinates | POST | /solarCoordinates | --- | { <br> "sequentialDay": number, <br> "time": { <br> "hour": number, <br> "min": number <br> }, <br> "latitude": number <br> } | { <br> "x": number, "y": number,<br> "z": number <br>}
+Virtual Coordinates | POST | /virtualCoordinates | --- | { <br> "sequentialDay": number, <br> "time": { <br> "hour": number, <br> "min": number <br> }, <br> "latitude": number <br> } | { <br> "x": number, "y": number,<br> "z": number <br>}
 Difference Coordinates | POST | /differenceCoordinates | --- | { <br> "sequentialDay": number, <br> "time": { "hour": number, <br> "min": number <br> }, <br> "latitude": number <br> } | { <br> "x": number, <br> "y": number, <br> "z": number <br> }
+All Coordinates | POST | /coordinates | --- | { <br> "latitude": number <br> } | { <br> "virtualCoordinates": { <br> "x": number, <br> "y": number, <br> "z": number <br> }, <br> "realCoordinates": { <br> "x": number, <br> "y": number, <br> "z": number <br> }, <br> "differenceCoordinates": { <br> "x": number, <br> "y": number, <br> "z": number <br> } <br> }
+Get Coordinates | GET | /coordinates | num: number | --- | { <br> "coordsReal": [ <br> { <br> "id": number, <br> "x_R": number, <br> "y_R": number, <br> "z_R": number, <br> "date": date <br> } <br> ], <br> "coordsVirtual": [ <br> { <br> "id": number, <br> "x_V": number, <br> "y_V": number, <br> "z_V": number, <br> "date": date <br> } <br> ], <br> "coordsDifference": [ <br> { <br> "id": number, <br> "x_Calc": number, <br> "y_Calc": number, <br> "z_Calc": number, <br> "date_Calc": date <br> } <br> ] <br> }
