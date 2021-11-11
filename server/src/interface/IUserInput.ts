@@ -1,7 +1,8 @@
+import { IDate } from "./IDate";
 import { ITime } from "./ITime"
 
 export interface IUserInput {
-	sequentialDay?: number,
-	time: ITime,
-	latitude?: number
+	date?: IDate,
+	time?: ITime,
+	latitude: number
 }

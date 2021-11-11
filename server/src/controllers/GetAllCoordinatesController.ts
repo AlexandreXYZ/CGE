@@ -10,14 +10,17 @@ import { SaveCoordinatesService } from "../services/SaveCoordinatesService"
 
 export class GetAllCoordinatesController {
 	handle(request: Request, response: Response) {
-		var { sequentialDay, time, latitude }:IUserInput = request.body
+		var { date, time, latitude }:IUserInput = request.body
 		
-		if (!sequentialDay || !time) {
-			const getDates = new GetDatesService()
+		const getDates = new GetDatesService()
 
-			var { date, sequentialDay, time } = getDates.execute()
+		if (date && time) {
+			var { dateISO, sequentialDay } = getDates.execute(date, time)
+		} else {
+			var { dateISO, sequentialDay, time } = getDates.now()
 		}
-		
+		console.log(date, time, dateISO)
+
 		const getElevationAngle = new GetElevationAngleService()
 		const getAzimuthAngle = new GetAzimuthAngleService()
 		const getVirtualCoordinates = new GetVirtualCoordinatesService()
@@ -30,7 +33,7 @@ export class GetAllCoordinatesController {
 		const virtualCoordinates = getVirtualCoordinates.execute(elevationAngle, azimuthAngle)
 		const realCoordinates = getRealCoordinatesService.execute(virtualCoordinates)
 		const differenceCoordinates = getDifferenceCoordinatesService.execute(virtualCoordinates, realCoordinates)
-		const saveCoordinates = saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, date)
+		const saveCoordinates = saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, dateISO)
 
 		const _response = {
 			virtualCoordinates: virtualCoordinates,

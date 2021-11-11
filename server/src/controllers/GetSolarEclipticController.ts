@@ -6,12 +6,14 @@ import { GetElevationAngleService } from "../services/GetElevationAngleService"
 
 export class GetSolarEclipticController {
 	handle(request: Request, response: Response) {
-		var { sequentialDay, time, latitude }:IUserInput = request.body
+		var { date, time, latitude }:IUserInput = request.body
 		
-		if (!sequentialDay || !time) {
-			const getDates = new GetDatesService()
+		const getDates = new GetDatesService()
 
-			var { sequentialDay, time } = getDates.execute()
+		if (date && time) {
+			var { sequentialDay } = getDates.execute(date, time)
+		} else {
+			var { sequentialDay, time } = getDates.now()
 		}
 
 		const getElevationAngle = new GetElevationAngleService()
