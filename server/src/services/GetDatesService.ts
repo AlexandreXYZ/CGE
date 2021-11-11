@@ -7,14 +7,14 @@ export class GetDatesService {
 		const date = new Date()
 		const today: IDate = {
 			day: date.getDate(),
-			month: date.getMonth(),
+			month: date.getMonth() + 1,
 			year: date.getFullYear()
 		}
 
 		const sequentialDay = getSequentialDay(today)
 
 		const time: ITime = {
-			hour: date.getHours(),
+			hour: date.getHours() - 1,
 			min: date.getMinutes()
 		}
 
