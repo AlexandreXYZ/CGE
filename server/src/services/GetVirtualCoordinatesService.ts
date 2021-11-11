@@ -1,7 +1,8 @@
+import { ICoordinates } from "../interface/ICoordinates"
 import { getFormatedCoordinates } from "../utils/getFormatedCoordinates"
 
-export class GetSolarCoordinatesService {
-	execute(elevationAngle: number, azimuthAngle: number) {
+export class GetVirtualCoordinatesService {
+	execute(elevationAngle: number, azimuthAngle: number): ICoordinates {
 		const r = 1
 		const cartesianCoords = {
 			x: r * Math.cos(elevationAngle) * Math.sin(azimuthAngle),
