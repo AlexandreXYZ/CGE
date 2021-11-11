@@ -1,5 +1,5 @@
 ## API Requests
-Parameters with "**?**" are opcional (*date* and *time*).
+Parameters with "**?**" are optional (*date* and *time*).
 
 Request | Method | Route URI | Query parameters | Body | Response
 --- | --- | --- | --- | --- | ---
