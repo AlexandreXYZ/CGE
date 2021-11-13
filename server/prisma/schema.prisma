@@ -6,3 +6,33 @@ datasource db {
 generator client {
 	provider = "prisma-client-js"
 }
+
+model Gnomon_V {
+	id 			Int @id @default(autoincrement())
+	x_V			Float
+	y_V			Float
+	z_V			Float
+	date		DateTime @default(now())
+
+	@@map("gnomon_V")
+}
+
+model Gnomon_R {
+	id 			Int @id @default(autoincrement())
+	x_R			Float
+	y_R			Float
+	z_R			Float
+	date		DateTime @default(now())
+
+	@@map("gnomon_R")
+}
+
+model Calc_Dados {
+	id 			Int @id @default(autoincrement())
+	x_Calc		Float
+	y_Calc		Float
+	z_Calc		Float
+	date_Calc	DateTime @default(now())
+
+	@@map("calc_Dados")
+}
