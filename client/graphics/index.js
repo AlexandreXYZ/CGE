@@ -105,6 +105,4 @@ getCoordinates().then( (data) => {
 	graphics('graphicX', 'Coordenadas X', xGraphic.realData, xGraphic.virtualData)
 	graphics('graphicY', 'Coordenadas Y', yGraphic.realData, yGraphic.virtualData)
 	graphics('graphicZ', 'Coordenadas Z', zGraphic.realData, zGraphic.virtualData)
-	
 })
-// graphicsError('graphicError', 'Margem de erro', errorMargin)
