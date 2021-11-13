@@ -31,55 +31,80 @@ function graphicsError(id, name, errorMargin) {
 	Plotly.newPlot(id, data, layout);
 }
 
-const time = ['15:00', '15:30', '16:00', '16:30']; // 26/10
-// gnomon bonitinho
-const virtualData = {
-	x: {
-		x: time,
-		y: [-0.687, -0.771, -0.841, -0.897]
-	},
-	y: {
-		x: time,
-		y: [0.126, 0.080, 0.028, -0.027]
-	},
-	z: {
-		x: time,
-		y: [0.716, 0.632, 0.540, 0.441]
+function dataMap({route, dateType}){
+	switch (dateType){
+		case 'x_R':
+			y = route.map(function(e, indice){
+				return route[indice].x_R
+			})
+			return y;
+		case 'y_R':
+			y = route.map(function(e, indice){
+				return route[indice].y_R
+			})
+			return y;
+		case 'z_R':
+			y = route.map(function(e, indice){
+				return route[indice].z_R
+			})
+			return y;
+		case 'x_V':
+			y = route.map(function(e, indice){
+				return route[indice].x_V
+			})
+			return y;
+		case 'y_V':
+			y = route.map(function(e, indice){
+				return route[indice].y_V
+			})
+			return y;
+		case 'z_V':
+			y = route.map(function(e, indice){
+				return route[indice].z_V
+			})
+			return y;
+		case 'date':
+			x = route.map(function(e, indice){
+				return route[indice].date
+			})
+			return x;
 	}
-};
+}
 
-// random
-const realData = {
-	x: {
-		x: time,
-		y: [-0.864, -0.913, -0.940, -0.927]
-	},
-	y: {
-		x: time,
-		y: [-0.020, -0.106, -0.156, -0.167]
-	},
-	z: {
-		x: time,
-		y: [0.550, 0.526, 0.449, 0.437]
+getCoordinates().then( (data) => {
+	const xGraphic = {
+		realData: {
+			x: dataMap({route: data.coordsReal, dateType: 'date'}),
+			y: dataMap({route: data.coordsReal, dateType: 'x_R'})
+		},
+		virtualData: {
+			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
+			y: dataMap({route: data.coordsVirtual, dateType: 'x_V'})
+		}
 	}
-};
-
-const errorMargin = {
-	x: {
-		x: time,
-		y: [0.177, 0.143, 0.099, 0.030]
-	},
-	y: {
-		x: time,
-		y: [0.106, 0.027, 0.127, 0.140]
-	},
-	z: {
-		x: time,
-		y: [0.166, 0.107, 0.091, 0.004]
+	const yGraphic = {
+		realData: {
+			x: dataMap({route: data.coordsReal, dateType: 'date'}),
+			y: dataMap({route: data.coordsReal, dateType: 'y_R'})
+		},
+		virtualData: {
+			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
+			y: dataMap({route: data.coordsVirtual, dateType: 'y_V'})
+		}
 	}
-};
-
-graphics('graphicX', 'Coordenadas X', realData.x, virtualData.x)
-graphics('graphicY', 'Coordenadas Y', realData.y, virtualData.y)
-graphics('graphicZ', 'Coordenadas Z', realData.z, virtualData.z)
-graphicsError('graphicError', 'Margem de erro', errorMargin)
+	const zGraphic = {
+		realData: {
+			x: dataMap({route: data.coordsReal, dateType: 'date'}),
+			y: dataMap({route: data.coordsReal, dateType: 'z_R'})
+		},
+		virtualData: {
+			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
+			y: dataMap({route: data.coordsVirtual, dateType: 'z_V'})
+		}
+	}
+	graphics('graphicX', 'Coordenadas X', xGraphic.realData, xGraphic.virtualData)
+	graphics('graphicY', 'Coordenadas Y', yGraphic.realData, yGraphic.virtualData)
+	graphics('graphicZ', 'Coordenadas Z', zGraphic.realData, zGraphic.virtualData)
+	
+})
+// graphicsError('graphicError', 'Margem de erro', errorMargin)
