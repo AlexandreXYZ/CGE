@@ -11,19 +11,9 @@ function postCoordinates(body) {
 		},
 		body: JSON.stringify({
 			"sequentialDay": body.sequentialDay,
-            "time": {
-                "hour": body.time.hour,
-                "min": body.time.min,
-            },
 			"latitude": body.latitude,
 		})
 	})
-    .then(response => response.json())
-    .then(data => {
-        console.log({
-          "ElevationAngle": data,
-        });
-    })
 }
 
 async function getCoordinates(){
@@ -32,8 +22,3 @@ async function getCoordinates(){
 		return data;
 
 }
-
-setInterval(function(){
-  elevationAngle(data)
-}, 3000)
-//300000 = 5min
