@@ -1,4 +1,5 @@
 export interface ITime {
 	hour: number,
-	min: number
+	min: number,
+	seg?: number
 }

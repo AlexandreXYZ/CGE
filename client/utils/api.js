@@ -53,3 +53,25 @@ function cityCoords(cityName) {
             console.error('Error:', error);
         });
 }
+
+function elevation() {
+    fetch('http://localhost:4000/elevationAngle', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            "sequentialDay": 123,
+            "time": {
+                "hour": 13,
+                "min": 12,
+            },
+            "latitude": 123,
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+    })
+}
