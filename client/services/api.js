@@ -1,21 +1,23 @@
 const url = 'http://localhost:4000';
 
-function elevationAngle(body) {
-    fetch(`${url}/elevationAngle`, {
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            "sequentialDay": body.sequentialDay,
+
+
+function postCoordinates(body) {
+	fetch(`${url}/coordinates`, {
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			"sequentialDay": body.sequentialDay,
             "time": {
                 "hour": body.time.hour,
                 "min": body.time.min,
             },
-            "latitude": body.latitude,
-        })
-    })
+			"latitude": body.latitude,
+		})
+	})
     .then(response => response.json())
     .then(data => {
         console.log({
