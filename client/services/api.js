@@ -26,14 +26,11 @@ function postCoordinates(body) {
     })
 }
 
-//Input Exemple
-const data = {
-  "sequentialDay": 123,
-  "time": {
-    "hour": 12,
-    "min": 12,
-  },
-  "latitude": 123,
+async function getCoordinates(){
+		const response = await fetch(`${url}/coordinates?num=3`);
+		const data = response.json();
+		return data;
+
 }
 
 setInterval(function(){
