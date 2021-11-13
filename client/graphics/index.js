@@ -92,6 +92,7 @@ getCoordinates().then( (data) => {
 			y: dataMap({route: data.coordsVirtual, dateType: 'y_V'})
 		}
 	}
+
 	const zGraphic = {
 		realData: {
 			x: dataMap({route: data.coordsReal, dateType: 'date'}),
