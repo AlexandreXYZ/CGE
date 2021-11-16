@@ -107,3 +107,24 @@ getCoordinates().then( (data) => {
 	graphics('graphicY', 'Coordenadas Y', yGraphic.realData, yGraphic.virtualData)
 	graphics('graphicZ', 'Coordenadas Z', zGraphic.realData, zGraphic.virtualData)
 })
+
+
+const graphicOne = document.getElementsByClassName('container_graphics_one')
+const graphicTwo = document.getElementsByClassName('container_graphics_two')
+for(i = 0; i != 3; i++){
+	graphicOne[i].style.display = 'block'
+	graphicTwo[i].style.display = 'none'
+}
+
+function next(index){
+	if(graphicOne[index].style.display === 'block'){
+		graphicOne[index].style.display = 'none'
+		graphicTwo[index].style.display = 'block'
+		return
+	}
+	if(graphicTwo[index].style.display === 'block'){
+		graphicTwo[index].style.display = 'none'
+		graphicOne[index].style.display = 'block'
+		return
+	}
+}
