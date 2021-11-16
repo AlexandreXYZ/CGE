@@ -34,12 +34,12 @@
 			<p class="container_header_legend">Gráfico da relação da posição X do sol gerada por ambos os gnômons.</p>
 		</div>
 		<div class="container_graphics">
-			<div>
-				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+			<div class="container_graphics_one">
+				<h2 class="container_graphics_title">Dados dos dois Gnomon <a class="buttonNext" onclick="next(0)">></a></h2>
 				<div id='graphicX' class="graphics"></div>
 			</div>
-			<div>
-				<h2 class="container_graphics_title">Dados da diferença</h2>
+			<div class="container_graphics_two">
+				<h2 class="container_graphics_title">Dados da diferença <a class="buttonNext" onclick="next(0)">></a></h2>
 				<div id='graphicXDiference' class="graphics"></div>
 			</div>
 		</div>
@@ -50,30 +50,30 @@
 			<h1 class="container_header_title">Coordenada Y</h1>
 			<p class="container_header_legend">Gráfico da relação da posição Y do sol gerada por ambos os gnômons.</p>
 		</div>
-		<div class="container_graphics">
-			<div>
-				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+		<div class="container_graphics container_graphicsY" >
+			<div class="container_graphics_one">
+				<h2 class="container_graphics_title">Dados dos dois Gnomon <a class="buttonNext" id="colorYellow" onclick="next(1)">></a></h2>
 				<div id='graphicY' class="graphics"></div>
 			</div>
-			<div>
-				<h2 class="container_graphics_title">Dados da diferença</h2>
+			<div class="container_graphics_two">
+				<h2 class="container_graphics_title">Dados da diferença <a class="buttonNext" id="colorYellow" onclick="next(1)">></a></h2>
 				<div id='graphicYDiference' class="graphics"></div>
 			</div>
 		</div>
 	</div>
 	
 	<div class="container" id="coordZ">
-		<div class="container_header" id="colorYellow">
+		<div class="container_header">
 			<h1 class="container_header_title">Coordenada Z</h1>
 			<p class="container_header_legend">Gráfico da relação da posição Z do sol gerada por ambos os gnômons.</p>
 		</div>
-		<div class="container_graphics" id="colorYellow">
-			<div>
-				<h2 class="container_graphics_title">Dados dos dois Gnomon</h2>
+		<div class="container_graphics" >
+			<div class="container_graphics_one" style="display: flex;">
+				<h2 class="container_graphics_title">Dados dos dois Gnomon <a class="buttonNext" onclick="next(2)">></a></h2>
 				<div id='graphicZ' class="graphics"></div>
 			</div>
-			<div>
-				<h2 class="container_graphics_title">Dados da diferença</h2>
+			<div class="container_graphics_two">
+				<h2 class="container_graphics_title">Dados da diferença <a class="buttonNext" onclick="next(2)">></a></h2>
 				<div id='graphicZDiference' class="graphics"></div>
 			</div>
 		</div>
