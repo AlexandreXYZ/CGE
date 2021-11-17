@@ -1,17 +1,17 @@
 import { Router } from "express"
-import { GetAzimuthAngleController } from "./controllers/GetAzimuthAngleController"
-import { GetDifferenceCoordinatesController } from "./controllers/GetDifferenceCoordinatesController"
-import { GetElevationAngleController } from "./controllers/GetElevationAngleController"
-import { GetSolarCoordinatesController } from "./controllers/GetSolarCoordinatesController"
+import { GetAllCoordinatesController } from "./controllers/GetAllCoordinatesController"
+import { GetSavedCoordinatesController } from "./controllers/GetSavedCoordinatesController"
+import { GetSolarEclipticController } from "./controllers/GetSolarEclipticController"
+import { GetVirtualCoordinatesController } from "./controllers/GetVirtualCoordinatesController"
 
 export const router = Router()
 
-const getElevationAngleController = new GetElevationAngleController()
-const getAzimuthAngleController = new GetAzimuthAngleController()
-const getSolarCoordinatesController = new GetSolarCoordinatesController()
-const getDifferenceCoordinatesController = new GetDifferenceCoordinatesController()
+const getSolarEclipticController = new GetSolarEclipticController()
+const getVirtualCoordinatesController = new GetVirtualCoordinatesController()
+const getAllCoordinatesController = new GetAllCoordinatesController()
+const getSavedCoordinatesController = new GetSavedCoordinatesController()
 
-router.post('/elevationAngle', getElevationAngleController.handle)
-router.post('/azimuthAngle', getAzimuthAngleController.handle)
-router.post('/solarCoordinates', getSolarCoordinatesController.handle)
-router.post('/differenceCoordinates', getDifferenceCoordinatesController.handle)
+router.post('/ecliptic', getSolarEclipticController.handle)
+router.post('/virtualCoordinates', getVirtualCoordinatesController.handle)
+router.post('/coordinates', getAllCoordinatesController.handle)
+router.get('/coordinates', getSavedCoordinatesController.handle)
