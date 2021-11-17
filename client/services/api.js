@@ -15,7 +15,7 @@ function postCoordinates(body) {
 }
 
 async function getCoordinates(){
-		const response = await fetch(`${url}/coordinates?num=5`);
+		const response = await fetch(`${url}/coordinates?num=3`);
 		const data = response.json();
 		return data;
 }
