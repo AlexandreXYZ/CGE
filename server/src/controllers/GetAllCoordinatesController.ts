@@ -19,7 +19,6 @@ export class GetAllCoordinatesController {
 		} else {
 			var { dateISO, sequentialDay, time } = getDates.now()
 		}
-		console.log(date, time, dateISO)
 
 		const getElevationAngle = new GetElevationAngleService()
 		const getAzimuthAngle = new GetAzimuthAngleService()

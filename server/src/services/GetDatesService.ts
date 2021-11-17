@@ -4,7 +4,7 @@ import { getSequentialDay } from "../utils/getSequentialDay"
 
 export class GetDatesService {
 	// Tem muita gambiarra nesse arquivo, pois o Node se buga inteiro quando o assunto é data
-	execute(date: IDate, time: ITime) {
+	execute(date: IDate, time: ITime): { sequentialDay: number; dateISO: Date } {
 		if (!time.seg) {
 			time.seg = 0
 		}
@@ -16,8 +16,8 @@ export class GetDatesService {
 		return {sequentialDay: sequentialDay, dateISO: dateISO}
 	}
 
-	now() {
-		var dateISO = new Date(new Date().toLocaleString("pt-BR", {timeZone: "America/New_York"}))
+	now(): { dateISO: Date; sequentialDay: number; time: ITime } {
+		var dateISO = new Date(new Date().toLocaleString("en-US", {timeZone: "America/New_York"}))
 
 		const today: IDate = {
 			day: dateISO.getDate(),
