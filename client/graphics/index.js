@@ -1,8 +1,11 @@
 function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
-	virtualData.type = realData.type = calcData.type = 'lines';
+	
+  virtualData.type = realData.type = calcData.type = 'lines';
 	virtualData.name = 'Gnômon Virtual';
-	realData.name = 'Gnômon Real';
+	
+  realData.name = 'Gnômon Real';
 	calcData.name = 'Média dos Gnomons';
+  
 	const data = [virtualData, realData, calcData];
 
 	const layout = {
