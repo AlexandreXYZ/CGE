@@ -1,9 +1,9 @@
 function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 	
   virtualData.type = realData.type = calcData.type = 'lines';
-	virtualData.name = 'Virtual';
 	
   realData.name = 'Real';
+	virtualData.name = 'Virtual';
 	calcData.name = 'Média dos dois';
   
 	const data = [virtualData, realData, calcData];
@@ -104,16 +104,48 @@ getCoordinates().then( (data) => {
 		}
 	}
 
-	graphics({id: 'graphicX', name: 'Coordenadas X', realData: xGraphic.realData, virtualData: xGraphic.virtualData})
-	graphics({id: 'graphicXDiference', name: 'Coordenadas D', calcData: xGraphic.calcData})
-	
-	graphics({id: 'graphicY', name: 'Coordenadas Y', realData: yGraphic.realData, virtualData: yGraphic.virtualData})
-	graphics({id: 'graphicYDiference', name: 'Coordenadas D', calcData: yGraphic.calcData})
-	
-	graphics({id: 'graphicZ', name: 'Coordenadas Z', realData: zGraphic.realData, virtualData: zGraphic.virtualData})
-	graphics({id: 'graphicZDiference', name: 'Coordenadas D', calcData: zGraphic.calcData})
-})
+	graphics(
+		{
+			id: 'graphicX',
+			name: 'Coordenadas X',
+			realData: xGraphic.realData,
+			virtualData: xGraphic.virtualData
+		})
+	graphics(
+		{
+			id: 'graphicXDiference',
+			name: 'Coordenadas D',
+			calcData: xGraphic.calcData
+		})
 
+	graphics(
+		{
+			id: 'graphicY',
+			name: 'Coordenadas Y',
+			realData: yGraphic.realData,
+			virtualData: yGraphic.virtualData
+		})
+	graphics(
+		{
+			id: 'graphicYDiference',
+			name: 'Coordenadas D',
+			calcData: yGraphic.calcData
+		})
+	
+	graphics(
+		{
+			id: 'graphicZ',
+			name: 'Coordenadas Z',
+			realData: zGraphic.realData,
+			virtualData: zGraphic.virtualData
+		})
+	graphics(
+		{
+			id: 'graphicZDiference',
+			name: 'Coordenadas D',
+			calcData: zGraphic.calcData
+		})
+})
 
 
 const graphicOne = document.getElementsByClassName('container_graphics_one');
@@ -127,7 +159,6 @@ for(i = 0; i != 3; i++){
 
 	graphicButtonRight[i].style.display = 'block';
 	graphicButtonLeft[i].style.display = 'none';
-
 }
 
 function next(index){
