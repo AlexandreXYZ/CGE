@@ -9,9 +9,9 @@ generator client {
 
 model Gnomon_V {
 	id 			Int @id @default(autoincrement())
-	x_V			Float
-	y_V			Float
-	z_V			Float
+	x			Float
+	y			Float
+	z			Float
 	date		DateTime @default(now())
 
 	@@map("gnomon_V")
@@ -19,9 +19,9 @@ model Gnomon_V {
 
 model Gnomon_R {
 	id 			Int @id @default(autoincrement())
-	x_R			Float
-	y_R			Float
-	z_R			Float
+	x			Float
+	y			Float
+	z			Float
 	date		DateTime @default(now())
 
 	@@map("gnomon_R")
@@ -29,10 +29,10 @@ model Gnomon_R {
 
 model Calc_Dados {
 	id 			Int @id @default(autoincrement())
-	x_Calc		Float
-	y_Calc		Float
-	z_Calc		Float
-	date_Calc	DateTime @default(now())
+	x			Float
+	y			Float
+	z			Float
+	date		DateTime @default(now())
 
 	@@map("calc_Dados")
 }

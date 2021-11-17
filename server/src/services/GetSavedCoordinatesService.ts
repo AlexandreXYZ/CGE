@@ -19,7 +19,7 @@ export class GetSavedCoordinatesService {
 		const coordsDifference = await prismaClient.calc_Dados.findMany({
 			take: num,
 			orderBy: {
-				date_Calc: 'desc'
+				date: 'desc'
 			}
 		})
 
