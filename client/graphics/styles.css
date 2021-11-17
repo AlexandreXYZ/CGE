@@ -1,0 +1,203 @@
+*{
+  padding: 0;
+  margin: 0;
+  outline: none;
+
+  font-family: "Roboto";
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+button{
+  border: none;
+  padding: none;
+  margin: none;
+  outline: none;
+}
+
+.container{
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 90vh;
+  min-height: 40rem;
+
+  background-color: #192633;
+  color: #FF9900;  
+}
+
+.container:nth-child(2){
+  background-color: #FF9900;
+  color: #192633;
+}
+
+.container:nth-child(3){
+  height: 100vh;  
+}
+
+.container_header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  margin: 2.5% 0 2.5rem 0;
+
+}
+.container_header_title{
+  font-weight: 400;
+  font-size: 3.3rem;
+
+  margin: .5rem;
+}
+.container_header_legend{
+  font-size: 1.5rem;
+  width: 75%;
+  margin-inline: auto;
+}
+
+.container_graphics{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  
+}
+.container_graphics_one{
+  position: relative;
+  display: block;
+  width: 30.4rem;
+}
+
+.container_graphics_two{
+  position: relative;
+  display: none;
+  transition: 1s;
+  width: 30.4rem ;
+  
+}
+.container_graphics_title{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  
+  font-weight: 400;
+  
+  width: 100%;
+  margin-bottom: .5rem;
+  
+  position: relative;
+}
+.graphics{
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30rem ;
+  height: 20rem;
+  border: .2rem solid;
+  border-color: initial;
+}
+.graphics > div > div, div > svg {
+  width: inherit;
+  height: inherit;
+}  
+.buttonNextLeft, .buttonNextRight{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  
+  background-color: #192633;
+  filter: brightness(0.8);
+  
+  user-select: none;
+  cursor: pointer;
+  z-index: 1;
+}
+.buttonNextRight{
+  margin-left: -2rem;  
+}
+.buttonNextLeft{
+  margin-right: -2rem;  
+}
+.buttonNextLeft:hover, .buttonNextRight:hover{
+  filter: brightness(0.7);
+}
+.buttonNextLeft:active, .buttonNextRight:active{
+  filter: brightness(0.6);
+}
+#navegation{
+  display: block;
+  position: fixed;
+  top: 50%;
+  right: 1rem;
+  
+}
+.navegationBall{
+  display: block;
+
+  width: 1rem;
+  height: 1rem;
+  margin-block: 1rem;
+  background: #834f01;
+  border-radius: 100%;
+}
+
+#colorYellow{
+  background-color: #FF9900;
+  color: #192633 ;
+}
+
+@media screen and (max-width: 800px) {
+  .container_header{
+    margin:  1.5% 0 2.5rem 0;
+  }
+  .container_header_title{
+    font-weight: 400;
+    font-size: 2.5rem;
+  }
+  .container_header_legend{
+    font-size: 1.2rem;
+    width: 90%;
+  }
+  #navegation{
+    display: none;
+  }
+}
+@media screen and (max-width: 510px) {  
+  
+  .container_header_title{
+    font-size: 2.2rem;
+    margin: .5rem;
+  }
+  .container_header_legend{
+    font-size: 1rem;
+  }
+  
+  .container_graphics_one{
+    width: 19.4rem;
+  }
+  
+  .container_graphics_two{
+    width: 19.4rem ;
+  }
+  .container_graphics_title{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .graphics{
+    width: 19rem;
+    height: 20rem;
+  }
+  .graphics > div > div, div > svg {
+    
+    width: inherit;
+    height: inherit;
+  }  
+}

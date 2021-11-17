@@ -11,21 +11,101 @@
 
 <head>
 	<title>Gráficos</title>
-	<link href="./graphics.css" rel="stylesheet">
-
+  
+	<link href="./styles.css" rel="stylesheet">
+  
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <script src='https://cdn.plot.ly/plotly-2.4.2.min.js' defer></script>
+	<script src="../services/api.js" defer></script>
+	<script type="text/javascript" src="./index.js" defer></script>
 </head>
 
 <body>
-	<div id='graphicX'></div>
-	<div id='graphicY'></div>
-	<div id='graphicZ'></div>
-	<div id='graphicError'></div>
+	<div class="container" id="coordX">
+		<div class="container_header">
+			<h1 class="container_header_title">Coordenada X</h1>
+			<p class="container_header_legend">Gráfico da relação da posição X do sol gerada por ambos os gnômons.</p>
+		</div>
+		<div class="container_graphics">
+			<button  class="buttonNextLeft" id="colorYellow" onclick="next(0)"><</button>
 
-	<script src='https://cdn.plot.ly/plotly-2.4.2.min.js'></script>
-	<script type="text/javascript" src="./index.js"></script>
+			<div class="container_graphics_one">
+				<h2 class="container_graphics_title">
+					Dados dos dois Gnomon
+				</h2>
+				<div id='graphicX' class="graphics"></div>
+			</div>
+			<div class="container_graphics_two">
+				<h2 class="container_graphics_title">
+					Dados da diferença 
+				</h2>
+				<div id='graphicXDiference' class="graphics"></div>
+			</div>
+			<button  class="buttonNextRight" id="colorYellow" onclick="next(0)">></button>
+
+		</div>
+	</div>
+
+	<div class="container" id="coordY" >
+		<div class="container_header">
+			<h1 class="container_header_title">Coordenada Y</h1>
+			<p class="container_header_legend">Gráfico da relação da posição Y do sol gerada por ambos os gnômons.</p>
+		</div>
+		<div class="container_graphics container_graphicsY" >
+			<button type="button" class="buttonNextLeft" id="colorYellow" onclick="next(1)"><</button>
+			<div class="container_graphics_one">
+				<h2 class="container_graphics_title">
+					Dados dos dois Gnomon 
+				</h2>
+					<div id='graphicY' class="graphics"></div>
+				</div>
+				<div class="container_graphics_two">
+					<h2 class="container_graphics_title">
+						Dados da diferença 
+					</h2>
+					<div id='graphicYDiference' class="graphics"></div>
+				</div>
+				<button type="button" class="buttonNextRight" id="colorYellow" onclick="next(1)">></button>
+		</div>
+	</div>
+	
+	<div class="container" id="coordZ">
+		<div class="container_header">
+			<h1 class="container_header_title">Coordenada Z</h1>
+			<p class="container_header_legend">Gráfico da relação da posição Z do sol gerada por ambos os gnômons.</p>
+		</div>
+		<div class="container_graphics" >
+			<button  class="buttonNextLeft" id="colorYellow" onclick="next(2)"><</button>
+
+			<div class="container_graphics_one" style="display: flex;">
+				<h2 class="container_graphics_title">
+					Dados dos dois Gnomon 
+				</h2>
+				<div id='graphicZ' class="graphics"></div>
+			</div>
+			<div class="container_graphics_two">
+				<h2 class="container_graphics_title">
+					Dados da diferença 
+				</h2>
+				<div id='graphicZDiference' class="graphics"></div>
+			</div>
+			<button  class="buttonNextRight" id="colorYellow" onclick="next(2)">></button>
+
+		</div>
+	</div>
+	<nav id='navegation'>
+		<a class="navegationBall" href="#coordX" title="Coordenada X"></a>
+		<a class="navegationBall" href="#coordY" title="Coordenada Y"></a>
+		<a class="navegationBall" href="#coordZ" title="Coordenada Z"></a>
+	</nav>
+
 </body>
 
 </html>
