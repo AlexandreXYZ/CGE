@@ -1,7 +1,7 @@
 function graphics(id, name, virtualData, realData) {
 	virtualData.type = realData.type = 'lines';
-	virtualData.name = 'Gnômon Virtual';
-	realData.name = 'Gnômon Real';
+	virtualData.name = 'Virtual';
+	realData.name = 'Real';
 
 	const data = [virtualData, realData];
 

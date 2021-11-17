@@ -22,7 +22,7 @@ button{
   flex-direction: column;
 
   width: 100%;
-  height: 95vh;
+  height: 90vh;
   min-height: 40rem;
 
   background-color: #192633;
@@ -44,7 +44,7 @@ button{
   justify-content: center;
   text-align: center;
 
-  margin: 2.5rem 2.5%;
+  margin: 2.5% 0 2.5rem 0;
 
 }
 .container_header_title{
@@ -54,7 +54,7 @@ button{
   margin: .5rem;
 }
 .container_header_legend{
-  font-size: 24px;
+  font-size: 1.5rem;
   width: 75%;
   margin-inline: auto;
 }
@@ -68,12 +68,9 @@ button{
 .container_graphics_one{
   position: relative;
   display: block;
-  width: 30.4rem ;
-  transition: 1s;
-  transition: 1s;
-  transition-duration: 1s;
-
+  width: 30.4rem;
 }
+
 .container_graphics_two{
   position: relative;
   display: none;
@@ -155,4 +152,52 @@ button{
 #colorYellow{
   background-color: #FF9900;
   color: #192633 ;
+}
+
+@media screen and (max-width: 800px) {
+  .container_header{
+    margin:  1.5% 0 2.5rem 0;
+  }
+  .container_header_title{
+    font-weight: 400;
+    font-size: 2.5rem;
+  }
+  .container_header_legend{
+    font-size: 1.2rem;
+    width: 90%;
+  }
+  #navegation{
+    display: none;
+  }
+}
+@media screen and (max-width: 510px) {  
+  
+  .container_header_title{
+    font-size: 2.2rem;
+    margin: .5rem;
+  }
+  .container_header_legend{
+    font-size: 1rem;
+  }
+  
+  .container_graphics_one{
+    width: 19.4rem;
+  }
+  
+  .container_graphics_two{
+    width: 19.4rem ;
+  }
+  .container_graphics_title{
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .graphics{
+    width: 19rem;
+    height: 20rem;
+  }
+  .graphics > div > div, div > svg {
+    
+    width: inherit;
+    height: inherit;
+  }  
 }
