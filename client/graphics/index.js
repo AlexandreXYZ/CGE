@@ -109,22 +109,36 @@ getCoordinates().then( (data) => {
 })
 
 
-const graphicOne = document.getElementsByClassName('container_graphics_one')
-const graphicTwo = document.getElementsByClassName('container_graphics_two')
+
+const graphicOne = document.getElementsByClassName('container_graphics_one');
+const graphicTwo = document.getElementsByClassName('container_graphics_two');
+const graphicButtonRight = document.getElementsByClassName('buttonNextRight');
+const graphicButtonLeft = document.getElementsByClassName('buttonNextLeft');
+
 for(i = 0; i != 3; i++){
-	graphicOne[i].style.display = 'block'
-	graphicTwo[i].style.display = 'none'
+	graphicOne[i].style.display = 'block';
+	graphicTwo[i].style.display = 'none';
+
+	graphicButtonRight[i].style.display = 'block';
+	graphicButtonLeft[i].style.display = 'none';
+
 }
 
 function next(index){
 	if(graphicOne[index].style.display === 'block'){
-		graphicOne[index].style.display = 'none'
-		graphicTwo[index].style.display = 'block'
-		return
+		graphicOne[index].style.display = 'none';
+		graphicButtonRight[index].style.display = 'none';
+
+		graphicTwo[index].style.display = 'block';
+		graphicButtonLeft[index].style.display = 'block';
+		return;
 	}
 	if(graphicTwo[index].style.display === 'block'){
-		graphicTwo[index].style.display = 'none'
-		graphicOne[index].style.display = 'block'
-		return
+		graphicTwo[index].style.display = 'none';
+		graphicButtonLeft[index].style.display = 'none'
+
+		graphicOne[index].style.display = 'block';
+		graphicButtonRight[index].style.display = 'block';
+		return;
 	}
 }

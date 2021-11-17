@@ -10,6 +10,13 @@ html{
   scroll-behavior: smooth;
 }
 
+button{
+  border: none;
+  padding: none;
+  margin: none;
+  outline: none;
+}
+
 .container{
   display: flex;
   flex-direction: column;
@@ -99,26 +106,35 @@ html{
   width: inherit;
   height: inherit;
 }  
-.buttonNext{
-  position: absolute;
-  right: 0;
+.buttonNextLeft, .buttonNextRight{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   width: 2rem;
-  padding: .1rem;
-
+  height: 2rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  
   background-color: #192633;
   filter: brightness(0.8);
   
   user-select: none;
   cursor: pointer;
+  z-index: 1;
 }
-.buttonNext:hover{
+.buttonNextRight{
+  margin-left: -2rem;  
+}
+.buttonNextLeft{
+  margin-right: -2rem;  
+}
+.buttonNextLeft:hover, .buttonNextRight:hover{
   filter: brightness(0.7);
 }
-.buttonNext:active{
+.buttonNextLeft:active, .buttonNextRight:active{
   filter: brightness(0.6);
 }
-
 #navegation{
   display: block;
   position: fixed;
