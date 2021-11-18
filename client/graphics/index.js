@@ -33,62 +33,58 @@ function graphicsError(id, name, errorMargin) {
 	Plotly.newPlot(id, data, layout);
 }
 
-function dataMap({route, dateType}){
-	switch (dateType){
-		case 'x':
-			return route.map((rout) => rout.x);
-		case 'y':
-			return route.map((rout) => rout.y);
-		case 'z':
-			return route.map((rout) => rout.z);
-		case 'date':
-			return route.map((rout) => rout.date);
-	}
+function dataMap(route){
+	return {
+			x: route.map((element) => element.x),
+			y: route.map((element) => element.y),
+			z: route.map((element) => element.z),
+			date: route.map((element) => element.date)
+		}
 }
 
 getCoordinates().then( (data) => {
 	const xGraphic = {
 		realData: {
-			x: dataMap({route: data.coordsReal, dateType: 'date'}),
-			y: dataMap({route: data.coordsReal, dateType: 'x'})
+			x: dataMap(data.coordsReal).date,
+			y: dataMap(data.coordsReal).x
 		},
 		virtualData: {
-			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
-			y: dataMap({route: data.coordsVirtual, dateType: 'x'})
+			x: dataMap(data.coordsVirtual).date,
+			y: dataMap(data.coordsVirtual).x
 		},
 		calcData: {
-			x: dataMap({route: data.coordsDifference, dateType: 'date'}),
-			y: dataMap({route: data.coordsDifference, dateType: 'x'}), 
+			x: dataMap(data.coordsDifference).date,
+			y: dataMap(data.coordsDifference).x, 
 		}
 	}
 
 	const yGraphic = {
 		realData: {
-			x: dataMap({route: data.coordsReal, dateType: 'date'}),
-			y: dataMap({route: data.coordsReal, dateType: 'y'})
+			x: dataMap(data.coordsReal).date,
+			y: dataMap(data.coordsReal).y
 		},
 		virtualData: {
-			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
-			y: dataMap({route: data.coordsVirtual, dateType: 'y'})
+			x: dataMap(data.coordsVirtual).date,
+			y: dataMap(data.coordsVirtual).y
 		},
 		calcData: {
-			x: dataMap({route: data.coordsDifference, dateType: 'date_Calc'}),
-			y: dataMap({route: data.coordsDifference, dateType: 'y'}), 
+			x: dataMap(data.coordsDifference).date,
+			y: dataMap(data.coordsDifference).y, 
 		}
 	}
 
 	const zGraphic = {
 		realData: {
-			x: dataMap({route: data.coordsReal, dateType: 'date'}),
-			y: dataMap({route: data.coordsReal, dateType: 'z'})
+			x: dataMap(data.coordsReal).date,
+			y: dataMap(data.coordsReal).z
 		},
 		virtualData: {
-			x: dataMap({route: data.coordsVirtual, dateType: 'date'}),
-			y: dataMap({route: data.coordsVirtual, dateType: 'z'})
+			x: dataMap(data.coordsVirtual).date,
+			y: dataMap(data.coordsVirtual).z
 		},
 		calcData: {
-			x: dataMap({route: data.coordsDifference, dateType: 'date'}),
-			y: dataMap({route: data.coordsDifference, dateType: 'z'}), 
+			x: dataMap(data.coordsDifference).date,
+			y: dataMap(data.coordsDifference).z, 
 		}
 	}
 
