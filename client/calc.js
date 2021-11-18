@@ -70,11 +70,11 @@ class Calibrator {
 	}
 
 	City_Name() {
-		cityName(toDegree(this.latitude), toDegree(this.longitude))
+		getCityName(toDegree(this.latitude), toDegree(this.longitude))
 	}
 
 	City_Coord() {
-		cityCoords(document.getElementById("city").value)
+		getCityCoords(document.getElementById("city").value)
 	}
 
 	Cartesian_Coordinates() {
