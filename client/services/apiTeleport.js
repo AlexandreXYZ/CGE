@@ -20,7 +20,7 @@ async function getCityName(lat, lng) {
 				const country = _links['city:country'].href.slice(-3, -1);
 
 				document.getElementById('city').value = `${cityName}, ${country}`;
-				getCityCoords(document.getElementById("city").value, true)
+				getCityCoords(document.getElementById('city').value, true)
 			} catch(err) {
 				console.error(`Error in get country name: ${err}`)
 			}
@@ -38,7 +38,7 @@ async function getCityCoords(cityName, redirect = false) {
             	mode: 'cors'
 	        })
 		const { _embedded } = await responseCityID.json();
-		var cityID = _embedded["city:search-results"][0]._links["city:item"].href.split(':')[2];
+		var cityID = _embedded['city:search-results'][0]._links['city:item'].href.split(':')[2];
 
 		try {
 			const responseCoords = await fetch(`${urlTeleport}/cities/geonameid:${cityID}`, {
@@ -51,10 +51,10 @@ async function getCityCoords(cityName, redirect = false) {
 				lng: location.latlon.longitude
 			}
 
-			document.getElementById("latitude").value = coords.lat;
-			document.getElementById("longitude").value = coords.lng;
+			document.getElementById('latitude').value = coords.lat;
+			document.getElementById('longitude').value = coords.lng;
 
-			!redirect? document.getElementById("submit").click(): 0
+			!redirect? document.getElementById('submit').click(): 0
 		} catch(err) {
 			console.error(`Error in get city coordinates: ${err}`)
 		}

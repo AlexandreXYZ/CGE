@@ -1,24 +1,24 @@
 function getValues() {
     let coord = {
-        lat: parseFloat(parseFloat(document.getElementById("latitude").value).toFixed(8)),
-        lng: parseFloat(parseFloat(document.getElementById("longitude").value).toFixed(8))
+        lat: parseFloat(parseFloat(document.getElementById('latitude').value).toFixed(8)),
+        lng: parseFloat(parseFloat(document.getElementById('longitude').value).toFixed(8))
     };
 
     let date = {
-        day: parseInt((document.getElementById("date").value).split("-")[2]),
-        month: parseInt((document.getElementById("date").value).split("-")[1]),
-        year: parseInt((document.getElementById("date").value).split("-")[0])
+        day: parseInt((document.getElementById('date').value).split('-')[2]),
+        month: parseInt((document.getElementById('date').value).split('-')[1]),
+        year: parseInt((document.getElementById('date').value).split('-')[0])
     };
 
     let time = {
-        hour: parseInt((document.getElementById("time").value).split(":")[0]),
-        min: parseInt((document.getElementById("time").value).split(":")[1])
+        hour: parseInt((document.getElementById('time').value).split(':')[0]),
+        min: parseInt((document.getElementById('time').value).split(':')[1])
     };
 
     let cge = new Calibrator(coord, time, date);
 
     if (!time.hour || !date.day) {
-        alert("Missing parameters!");
+        alert('Missing parameters!');
     } else {
         if (coord.lat && coord.lng) {
             cge.Sunrise()

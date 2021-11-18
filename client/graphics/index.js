@@ -1,8 +1,7 @@
-function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
+function graphics({id, name, virtualData = [], realData = [], calcData = []}) {	
+  	virtualData.type = realData.type = calcData.type = 'lines';	
 	
-  virtualData.type = realData.type = calcData.type = 'lines';
-	
-  realData.name = 'Real';
+  	realData.name = 'Real';
 	virtualData.name = 'Virtual';
 	calcData.name = 'Média dos dois';
   
@@ -39,22 +38,22 @@ function dataMap({route, dateType}){
 		case 'x':
 			y = route.map(function(e, indice){
 				return route[indice].x
-			})
+			});
 			return y;
 		case 'y':
 			y = route.map(function(e, indice){
 				return route[indice].y
-			})
+			});
 			return y;
 		case 'z':
 			y = route.map(function(e, indice){
 				return route[indice].z
-			})
+			});
 			return y;
 		case 'date':
 			x = route.map(function(e, indice){
 				return route[indice].date
-			})
+			});
 			return x;
 	}
 }
@@ -74,6 +73,7 @@ getCoordinates().then( (data) => {
 			y: dataMap({route: data.coordsDifference, dateType: 'x'}), 
 		}
 	}
+
 	const yGraphic = {
 		realData: {
 			x: dataMap({route: data.coordsReal, dateType: 'date'}),
@@ -113,7 +113,7 @@ getCoordinates().then( (data) => {
 		})
 	graphics(
 		{
-			id: 'graphicXDiference',
+			id: 'graphicXDifference',
 			name: 'Coordenadas D',
 			calcData: xGraphic.calcData
 		})
@@ -127,7 +127,7 @@ getCoordinates().then( (data) => {
 		})
 	graphics(
 		{
-			id: 'graphicYDiference',
+			id: 'graphicYDifference',
 			name: 'Coordenadas D',
 			calcData: yGraphic.calcData
 		})
@@ -141,7 +141,7 @@ getCoordinates().then( (data) => {
 		})
 	graphics(
 		{
-			id: 'graphicZDiference',
+			id: 'graphicZDifference',
 			name: 'Coordenadas D',
 			calcData: zGraphic.calcData
 		})
@@ -162,7 +162,7 @@ for(i = 0; i != 3; i++){
 }
 
 function next(index){
-	if(graphicOne[index].style.display === 'block'){
+	if (graphicOne[index].style.display === 'block') {
 		graphicOne[index].style.display = 'none';
 		graphicButtonRight[index].style.display = 'none';
 
@@ -170,7 +170,7 @@ function next(index){
 		graphicButtonLeft[index].style.display = 'block';
 		return;
 	}
-	if(graphicTwo[index].style.display === 'block'){
+	if (graphicTwo[index].style.display === 'block') {
 		graphicTwo[index].style.display = 'none';
 		graphicButtonLeft[index].style.display = 'none'
 

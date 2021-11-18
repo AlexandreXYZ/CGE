@@ -132,14 +132,14 @@ button{
 .buttonNextLeft:active, .buttonNextRight:active{
   filter: brightness(0.6);
 }
-#navegation{
+#navigation{
   display: block;
   position: fixed;
   top: 50%;
   right: 1rem;
   
 }
-.navegationBall{
+.navigationBall{
   display: block;
 
   width: 1rem;
@@ -166,7 +166,7 @@ button{
     font-size: 1.2rem;
     width: 90%;
   }
-  #navegation{
+  #navigation{
     display: none;
   }
 }

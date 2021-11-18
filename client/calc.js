@@ -17,7 +17,7 @@ class Calibrator {
 
 		// Saída (output)
 		var scheduleAdjusted = fixLongitude(toDegree(this.longitude), sunrise);
-		document.getElementById("sunrise").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
+		document.getElementById('sunrise').innerHTML = (scheduleAdjusted.hour + 'h ' + scheduleAdjusted.min + 'min ' + scheduleAdjusted.seg + 's');
 	}
 
 	Sunset() {
@@ -31,7 +31,7 @@ class Calibrator {
 
 		// Saída (output)
 		var scheduleAdjusted = fixLongitude(toDegree(this.longitude), sunset);
-		document.getElementById("sunset").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
+		document.getElementById('sunset').innerHTML = (scheduleAdjusted.hour + 'h ' + scheduleAdjusted.min + 'min ' + scheduleAdjusted.seg + 's');
 	}
 
 	// Equação 1
@@ -43,7 +43,7 @@ class Calibrator {
 		this.elevationAngle = elevationAngle;
 
 		// OUTPUT
-		document.getElementById("elevation").innerHTML = toDegree(elevationAngle).toFixed(2);
+		document.getElementById('elevation').innerHTML = toDegree(elevationAngle).toFixed(2);
 	}
 
 	// Equação 2
@@ -66,7 +66,7 @@ class Calibrator {
 		}
 
 		this.azimuthAngle = azimuthAngle;
-		document.getElementById("azimuth").innerHTML = toDegree(azimuthAngle).toFixed(2);
+		document.getElementById('azimuth').innerHTML = toDegree(azimuthAngle).toFixed(2);
 	}
 
 	City_Name() {
@@ -74,31 +74,31 @@ class Calibrator {
 	}
 
 	City_Coord() {
-		getCityCoords(document.getElementById("city").value)
+		getCityCoords(document.getElementById('city').value)
 	}
 
 	Cartesian_Coordinates() {
 		if (this.elevationAngle && this.azimuthAngle) {
 			const coordsGnomonVirtual = toCartesian(this.elevationAngle, this.azimuthAngle);
-			document.getElementById("coordX").innerHTML = coordsGnomonVirtual.x.toFixed(3);
-			document.getElementById("coordY").innerHTML = coordsGnomonVirtual.y.toFixed(3);
-			document.getElementById("coordZ").innerHTML = coordsGnomonVirtual.z.toFixed(3);
+			document.getElementById('coordX').innerHTML = coordsGnomonVirtual.x.toFixed(3);
+			document.getElementById('coordY').innerHTML = coordsGnomonVirtual.y.toFixed(3);
+			document.getElementById('coordZ').innerHTML = coordsGnomonVirtual.z.toFixed(3);
 
 			const simulatedCoords = getSimulatedData(coordsGnomonVirtual)
 			console.log('Simulated Coords:');
-			console.log("X:", simulatedCoords.x.toFixed(3));
-			console.log("Y:", simulatedCoords.y.toFixed(3));
-			console.log("Z:", simulatedCoords.z.toFixed(3));
+			console.log('X:', simulatedCoords.x.toFixed(3));
+			console.log('Y:', simulatedCoords.y.toFixed(3));
+			console.log('Z:', simulatedCoords.z.toFixed(3));
 
 			const coordsDif = {
 				x: Math.abs(Math.abs(simulatedCoords.x) - Math.abs(coordsGnomonVirtual.x)),
 				y: Math.abs(Math.abs(simulatedCoords.y) - Math.abs(coordsGnomonVirtual.y)),
 				z: Math.abs(Math.abs(simulatedCoords.z) - Math.abs(coordsGnomonVirtual.z))
 			};
-			console.log("Difference:");
-			console.log("X:", coordsDif.x.toFixed(3));
-			console.log("Y:", coordsDif.y.toFixed(3));
-			console.log("Z:", coordsDif.z.toFixed(3));
+			console.log('Difference:');
+			console.log('X:', coordsDif.x.toFixed(3));
+			console.log('Y:', coordsDif.y.toFixed(3));
+			console.log('Z:', coordsDif.z.toFixed(3));
 		}
 	}
 }
