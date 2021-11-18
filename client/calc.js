@@ -2,13 +2,13 @@ class Calibrator {
 	constructor(coord, time, date) {
 		this.latitude = toRadian(coord.lat);
 		this.longitude = toRadian(coord.lng);
-		this.hourAngle = hourAngle(time.hour, time.min);
-		this.sequentialDay = sequentialDay(date.day, date.month, date.year);
+		this.hourAngle = getHourAngle(time.hour, time.min);
+		this.sequentialDay = getSequentialDay(date.day, date.month, date.year);
 	}
 
 	Sunrise() {
-		var DayLength = dayLength(toDegree(this.latitude), this.sequentialDay);
-		var decimalSunrise = 12 - (toDegree(DayLength) / 2); // Horario formato decimal
+		var dayLength = getDayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunrise = 12 - (toDegree(dayLength) / 2); // Horario formato decimal
 
 		var sunrise = new Object();
 		sunrise.hour = Math.trunc(decimalSunrise);
@@ -16,13 +16,13 @@ class Calibrator {
 		sunrise.seg = Math.abs((sunrise.min - Math.trunc(sunrise.min)) * 60);
 
 		// Saída (output)
-		var scheduleAdjusted = fixLong(toDegree(this.longitude), sunrise);
+		var scheduleAdjusted = fixLongitude(toDegree(this.longitude), sunrise);
 		document.getElementById("sunrise").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
 	}
 
 	Sunset() {
-		var DayLength = dayLength(toDegree(this.latitude), this.sequentialDay);
-		var decimalSunset = 12 + (toDegree(DayLength) / 2); // Horario formato decimal
+		var dayLength = getDayLength(toDegree(this.latitude), this.sequentialDay);
+		var decimalSunset = 12 + (toDegree(dayLength) / 2); // Horario formato decimal
 
 		var sunset = new Object();
 		sunset.hour = Math.trunc(decimalSunset);
@@ -30,16 +30,16 @@ class Calibrator {
 		sunset.seg = Math.abs((sunset.min - Math.trunc(sunset.min)) * 60);
 
 		// Saída (output)
-		var scheduleAdjusted = fixLong(toDegree(this.longitude), sunset);
+		var scheduleAdjusted = fixLongitude(toDegree(this.longitude), sunset);
 		document.getElementById("sunset").innerHTML = (scheduleAdjusted.hour + "h " + scheduleAdjusted.min + "min " + scheduleAdjusted.seg + "s");
 	}
 
 	// Equação 1
 	Elevation_Angle() {
-		const Declination = declination(this.sequentialDay);
+		const declination = getDeclination(this.sequentialDay);
 
 		// a = arcsen [cos (h) cos (δ) cos (φ) + sen (δ) sin (φ)]
-		const elevationAngle = Math.asin(Math.cos(this.hourAngle) * Math.cos(Declination) * Math.cos(this.latitude) + Math.sin(Declination) * Math.sin(this.latitude));
+		const elevationAngle = Math.asin(Math.cos(this.hourAngle) * Math.cos(declination) * Math.cos(this.latitude) + Math.sin(declination) * Math.sin(this.latitude));
 		this.elevationAngle = elevationAngle;
 
 		// OUTPUT
@@ -48,10 +48,10 @@ class Calibrator {
 
 	// Equação 2
 	Azimuth_Angle() {
-		const Declination = declination(this.sequentialDay);
+		const declination = getDeclination(this.sequentialDay);
 
 		// A = arccos [(sen(δ) − sen(a) * sen(φ)) / (cos(a) * cos(φ))]
-		var azimuthAngle = (Math.sin(Declination) - Math.sin(this.elevationAngle) * Math.sin(this.latitude)) / (Math.cos(this.elevationAngle) * Math.cos(this.latitude));
+		var azimuthAngle = (Math.sin(declination) - Math.sin(this.elevationAngle) * Math.sin(this.latitude)) / (Math.cos(this.elevationAngle) * Math.cos(this.latitude));
 
 		if (azimuthAngle > 1 || azimuthAngle < -1) {
 			// Checa pra ver se o JS nao colocou número a mais (sim, isso acontece)
@@ -84,7 +84,7 @@ class Calibrator {
 			document.getElementById("coordY").innerHTML = coordsGnomonVirtual.y.toFixed(3);
 			document.getElementById("coordZ").innerHTML = coordsGnomonVirtual.z.toFixed(3);
 
-			const simulatedCoords = simulatedData(coordsGnomonVirtual)
+			const simulatedCoords = getSimulatedData(coordsGnomonVirtual)
 			console.log('Simulated Coords:');
 			console.log("X:", simulatedCoords.x.toFixed(3));
 			console.log("Y:", simulatedCoords.y.toFixed(3));

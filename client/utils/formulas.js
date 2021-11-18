@@ -1,4 +1,4 @@
-function sequentialDay(day, month, year) {
+function getSequentialDay(day, month, year) {
     var jan = mar = may = jul = aug = oct = 31;
     var apr = jun = sep = nov = 30;
     var feb = (isBicesto(year) == true) ? 28 : 29;
@@ -31,17 +31,17 @@ function toDegree(radian) {
     return degree;
 }
 
-function declination(sequentialDay) {
+function getDeclination(sequentialDay) {
     var declination = 23.45 * Math.sin(toRadian((360 / 365) * (284 + sequentialDay)));
     return toRadian(declination);
 }
 
-function dayLength(latitude, sequentialDay) {
-    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(declination(sequentialDay)));
+function getDayLength(latitude, sequentialDay) {
+    var T = 2 / 15 * Math.acos(-Math.tan(toRadian(latitude)) * Math.tan(getDeclination(sequentialDay)));
     return T;
 }
 
-function fixLong(longitude, scheduleOriginal) {
+function fixLongitude(longitude, scheduleOriginal) {
     // Calcula qual o fuso horário do usuário
 
     // Checa se o número é divisível por 15
@@ -99,7 +99,7 @@ function isBicesto(year) {
     return verify;
 }
 
-function hourAngle(hour, min) {
+function getHourAngle(hour, min) {
     var min = min / 60;
     var hour = (min + hour) - 12;
 
@@ -118,7 +118,7 @@ function toCartesian(elevation, azimuth) {
     return cartesianCoords;
 }
 
-function simulatedData(coordsGnomonVirtual) {
+function getSimulatedData(coordsGnomonVirtual) {
     simulatedCoords = {
         x: coordsGnomonVirtual.x - (Math.random() / 5),
         y: coordsGnomonVirtual.y - (Math.random() / 5),
