@@ -36,25 +36,13 @@ function graphicsError(id, name, errorMargin) {
 function dataMap({route, dateType}){
 	switch (dateType){
 		case 'x':
-			y = route.map(function(e, indice){
-				return route[indice].x
-			});
-			return y;
+			return route.map((rout) => rout.x);
 		case 'y':
-			y = route.map(function(e, indice){
-				return route[indice].y
-			});
-			return y;
+			return route.map((rout) => rout.y);
 		case 'z':
-			y = route.map(function(e, indice){
-				return route[indice].z
-			});
-			return y;
+			return route.map((rout) => rout.z);
 		case 'date':
-			x = route.map(function(e, indice){
-				return route[indice].date
-			});
-			return x;
+			return route.map((rout) => rout.date);
 	}
 }
 
