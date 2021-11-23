@@ -28,7 +28,7 @@ export class GetDatesService {
 		const sequentialDay = getSequentialDay(today)
 		
 		const time: ITime = {
-			hour: dateISO.getHours() + 2,
+			hour: dateISO.getHours() + 3,
 			min: dateISO.getMinutes(),
 			seg: dateISO.getSeconds()
 		}
@@ -36,7 +36,7 @@ export class GetDatesService {
 		return { dateISO: dateISO, sequentialDay: sequentialDay, time: time }
 	}
 
-	sequentialDay(dateISO: Date): { sequentialDay: number } {
+	localDate(dateISO: Date): { sequentialDay: number, time: ITime } {
 		dateISO = new Date(dateISO)
 		const today: IDate = {
 			day: dateISO.getDate(),
@@ -46,6 +46,12 @@ export class GetDatesService {
 		
 		const sequentialDay = getSequentialDay(today)
 
-		return { sequentialDay: sequentialDay }		
+		const time = {
+			hour: dateISO.getHours() + 3,
+			min: dateISO.getMinutes(),
+			seg: dateISO.getSeconds()
+		}
+
+		return { sequentialDay: sequentialDay, time: time }		
 	}
 }
