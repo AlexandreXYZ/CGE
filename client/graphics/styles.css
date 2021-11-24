@@ -10,7 +10,7 @@ html{
   scroll-behavior: smooth;
 }
 
-button{
+button, input, fieldset{
   border: none;
   padding: none;
   margin: none;
@@ -45,64 +45,150 @@ button{
   text-align: center;
 
   margin: 2.5% 0 2.5rem 0;
-
 }
+
 .container_header_title{
-  font-weight: 400;
-  font-size: 3.3rem;
-
   margin: .5rem;
+  
+  font-size: 3.3rem;
+  font-weight: 400;
+
+  transition: .5s;
 }
+
 .container_header_legend{
-  font-size: 1.5rem;
   width: 75%;
   margin-inline: auto;
+
+  font-size: 1.5rem;
+
+  transition: .5s;
 }
 
 .container_graphics{
   display: flex;
   justify-content: center;
   text-align: center;
-  
 }
+
 .container_graphics_one{
-  position: relative;
   display: block;
+
   width: 30.4rem;
+
+  transition: .5s;
 }
 
 .container_graphics_two{
-  position: relative;
   display: none;
-  transition: 1s;
+
   width: 30.4rem ;
-  
+
+  transition: .5s;
 }
+
 .container_graphics_title{
   display: flex;
   flex-direction: column;
   text-align: center;
   
-  font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 500;
   
   width: 100%;
   margin-bottom: .5rem;
   
   position: relative;
+
+  transition: .5s;
 }
-.graphics{
+
+.container_graphics_graphic{
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.graphic{
   width: 30rem ;
   height: 20rem;
+  
   border: .2rem solid;
   border-color: initial;
+
+  transition: .5s;
 }
-.graphics > div > div, div > svg {
+
+.plotly {
   width: inherit;
   height: inherit;
 }  
+
+.graphic_filter{
+  display: flex;
+  flex-basis: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+
+  transition: 1.5s;
+}
+
+.graphic_filter_option{
+  text-align: center;
+  
+  margin: .5rem .5rem;
+  
+  font-size: 1rem;
+  font-weight: 500;
+  
+  background-color: #192633;
+  color: #FF9900;
+  opacity: 0.8;
+
+  cursor: pointer;
+}
+
+.graphic_filter_option:hover{
+  opacity: 1;
+}
+
+.graphic_filter_option > fieldset{
+  text-align: center;
+}
+
+.graphic_filter_custom{
+  width: 9rem;
+  padding: 0.2rem;
+
+  border: 0.1rem solid;
+  border-radius: .4rem;
+  border-color: inherit;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  background: transparent;
+  color: inherit;
+  opacity: 0.8;
+
+  cursor: pointer;
+}
+
+.graphic_filter_custom:hover{
+  opacity: 1;
+}
+
+.graphic_filter_custom::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  filter: invert();
+
+  cursor: pointer;
+}
+
+.graphic_filter_custom::-webkit-calendar-picker-indicator:hover{
+  opacity: 1;
+}
+
 .buttonNextLeft, .buttonNextRight{
   display: flex;
   justify-content: center;
@@ -120,62 +206,74 @@ button{
   cursor: pointer;
   z-index: 1;
 }
+
 .buttonNextRight{
   margin-left: -2rem;  
 }
+
 .buttonNextLeft{
   margin-right: -2rem;  
 }
+
 .buttonNextLeft:hover, .buttonNextRight:hover{
   filter: brightness(0.7);
 }
+
 .buttonNextLeft:active, .buttonNextRight:active{
   filter: brightness(0.6);
 }
+
 #navigation{
   display: block;
   position: fixed;
   top: 50%;
-  right: 1rem;
-  
+  right: 1rem;  
 }
+
 .navigationBall{
   display: block;
 
   width: 1rem;
   height: 1rem;
   margin-block: 1rem;
-  background: #834f01;
+
   border-radius: 100%;
+
+  background: #834f01;
 }
 
 #colorYellow{
-  background-color: #FF9900;
-  color: #192633 ;
+  background-color: #FF9900 !important;
+  color: #192633 !important;
 }
 
 @media screen and (max-width: 800px) {
   .container_header{
     margin:  1.5% 0 2.5rem 0;
   }
+
   .container_header_title{
-    font-weight: 400;
     font-size: 2.5rem;
   }
+
   .container_header_legend{
     font-size: 1.2rem;
     width: 90%;
   }
+
   #navigation{
     display: none;
   }
 }
+
 @media screen and (max-width: 510px) {  
   
   .container_header_title{
     font-size: 2.2rem;
+  
     margin: .5rem;
   }
+
   .container_header_legend{
     font-size: 1rem;
   }
@@ -187,17 +285,22 @@ button{
   .container_graphics_two{
     width: 19.4rem ;
   }
+  
   .container_graphics_title{
     font-size: 1.2rem;
+  
     margin-bottom: 1rem;
   }
-  .graphics{
+  
+  .graphic{
     width: 19rem;
     height: 20rem;
   }
-  .graphics > div > div, div > svg {
+  
+  .plotly{
     
     width: inherit;
     height: inherit;
   }  
+  
 }

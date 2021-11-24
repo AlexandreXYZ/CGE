@@ -20,7 +20,7 @@
 
 	<link rel='preconnect' href='https://fonts.googleapis.com'>
 	<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-	<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 	
 	<script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
 
@@ -42,13 +42,33 @@
 				<h2 class='container_graphics_title'>
 					Dados dos dois Gnômons
 				</h2>
-				<div id='graphicX' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+					<div id='graphicX' class='graphic'></div>
+					<div class="graphic_filter">
+						<button type="button" class="graphic_filter_option graphic_filter_option1">Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2">Ontem</button>
+						<fieldset>
+							<label class="graphic_filter_option graphic_filter_option3" for="customX">Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customX"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 			<div class='container_graphics_two'>
 				<h2 class='container_graphics_title'>
 					Dados da diferença 
 				</h2>
-				<div id='graphicXDifference' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+					<div id='graphicXDifference' class='graphic'></div>
+					<div class="graphic_filter">
+						<button type="button" class="graphic_filter_option graphic_filter_option1">Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2">Ontem</button>
+						<fieldset>
+							<label class="graphic_filter_option graphic_filter_option3" for="customDifferenceX">Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customDifferenceX"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 
 			<button class='buttonNextRight' id='colorYellow' onclick='next(0)'>></button>
@@ -67,13 +87,33 @@
 				<h2 class='container_graphics_title'>
 					Dados dos dois Gnômons
 				</h2>
-				<div id='graphicY' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+				<div id='graphicY' class='graphic'></div>
+				<div class="graphic_filter" >
+						<button type="button" class="graphic_filter_option graphic_filter_option1" id='colorYellow'>Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2" id='colorYellow'>Ontem</button>
+						<fieldset id='colorYellow'>
+							<label class="graphic_filter_option graphic_filter_option3" for="customY" id='colorYellow'>Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customY"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 			<div class='container_graphics_two'>
 				<h2 class='container_graphics_title'>
 					Dados da diferença 
 				</h2>
-				<div id='graphicYDifference' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+				<div id='graphicYDifference' class='graphic'></div>
+				<div class="graphic_filter">
+						<button type="button" class="graphic_filter_option graphic_filter_option1" id='colorYellow'>Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2" id='colorYellow'>Ontem</button>
+						<fieldset id='colorYellow'>
+							<label class="graphic_filter_option graphic_filter_option3" for="customDifferenceY" id='colorYellow'>Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customDifferenceY"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 
 			<button type='button' class='buttonNextRight' id='colorYellow' onclick='next(1)'>></button>
@@ -92,13 +132,33 @@
 				<h2 class='container_graphics_title'>
 					Dados dos dois Gnômons
 				</h2>
-				<div id='graphicZ' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+				<div id='graphicZ' class='graphic'></div>
+				<div class="graphic_filter" >
+						<button type="button" class="graphic_filter_option graphic_filter_option1">Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2">Ontem</button>
+						<fieldset>
+							<label class="graphic_filter_option graphic_filter_option3" for="customZ">Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customZ"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 			<div class='container_graphics_two'>
 				<h2 class='container_graphics_title'>
 					Dados da diferença 
 				</h2>
-				<div id='graphicZDifference' class='graphics'></div>
+				<div class='container_graphics_graphic'>
+				<div id='graphicZDifference' class='graphic'></div>
+				<div class="graphic_filter">
+						<button type="button" class="graphic_filter_option graphic_filter_option1">Hoje</button>
+						<button type="button" class="graphic_filter_option graphic_filter_option2">Ontem</button>
+						<fieldset>
+							<label class="graphic_filter_option graphic_filter_option3" for="customDifferenceZ">Personalizado:</label>
+							<input type="date" class="graphic_filter_custom" id="customDifferenceZ"/>
+						</fieldset>
+					</div>
+				</div>
 			</div>
 
 			<button  class='buttonNextRight' id='colorYellow' onclick='next(2)'>></button>
