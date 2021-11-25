@@ -14,6 +14,7 @@ export class GetCoordinatesNowController {
 
 			const { sequentialDay, time } = getDatesService.localDate(dateISO)
 			const coordinates = await getCoordinatesService.execute(sequentialDay, time, latitude, dateISO)
+			coordinates.time = time
 
 			return response.json(coordinates)
 		}
