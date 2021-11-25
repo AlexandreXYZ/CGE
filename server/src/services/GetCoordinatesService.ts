@@ -14,6 +14,7 @@ export class GetCoordinatesService {
 		latitude: number,
 		dateISO: Date
 		): Promise<IAllCoordinates> {
+
 		const getElevationAngle = new GetElevationAngleService()
 		const getAzimuthAngle = new GetAzimuthAngleService()
 		const getVirtualCoordinates = new GetVirtualCoordinatesService()
@@ -26,7 +27,7 @@ export class GetCoordinatesService {
 		const virtualCoordinates = getVirtualCoordinates.execute(elevationAngle, azimuthAngle)
 		const realCoordinates = getRealCoordinatesService.execute(virtualCoordinates)
 		const differenceCoordinates = getDifferenceCoordinatesService.execute(virtualCoordinates, realCoordinates)
-		// await saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, dateISO)
+		const saveCoordinates = await saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, dateISO)
 
 		const allCoordinates: IAllCoordinates = {
 			virtualCoordinates: virtualCoordinates,
