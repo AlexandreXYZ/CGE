@@ -16,23 +16,6 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 	Plotly.newPlot(id, data, layout);
 }
 
-function graphicsError(id, name, errorMargin) {
-	errorMargin.x.type = errorMargin.y.type = errorMargin.z.type = 'lines';
-	errorMargin.x.name = 'X';
-	errorMargin.y.name = 'Y';
-	errorMargin.z.name = 'Z';
-
-	const data = [errorMargin.x, errorMargin.y, errorMargin.z];
-
-	const layout = {
-		title: name,
-		xaxis: {
-			title: 'Horário'
-		}
-	};
-	Plotly.newPlot(id, data, layout);
-}
-
 PostCoordinatesWithTime().then( (data) => {
 	const xGraphic = {
 		realData: {
