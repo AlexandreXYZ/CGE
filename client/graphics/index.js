@@ -1,7 +1,7 @@
 function graphics({id, name, virtualData = [], realData = [], calcData = []}) {	
-  	virtualData.type = realData.type = calcData.type = 'lines';	
+	virtualData.type = realData.type = calcData.type = 'lines';	
 	
-  	realData.name = 'Real';
+	realData.name = 'Real';
 	virtualData.name = 'Virtual';
 	calcData.name = 'Média dos dois';
   
@@ -33,58 +33,47 @@ function graphicsError(id, name, errorMargin) {
 	Plotly.newPlot(id, data, layout);
 }
 
-function dataMap(route){
-	return {
-			x: route.map((element) => element.x),
-			y: route.map((element) => element.y),
-			z: route.map((element) => element.z),
-			date: route.map((element) => element.date)
-		}
-}
-
-getCoordinates().then( (data) => {
+PostCoordinatesWithTime().then( (data) => {
 	const xGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).x
+			x: data.map((e) => e.realCoordinates.x),
+			y: data.map((e) => e.time),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).x
+			x: data.map((e) => e.virtualCoordinates.x),
+			y: data.map((e) => e.time)
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).x, 
+			x: data.map((e) => e.differenceCoordinates.x),
+			y: data.map((e) => e.time), 
 		}
 	}
-
 	const yGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).y
+			x: data.map((e) => e.realCoordinates.y),
+			y: data.map((e) => e.time),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).y
+			x: data.map((e) => e.virtualCoordinates.y),
+			y: data.map((e) => e.time)
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).y, 
+			x: data.map((e) => e.differenceCoordinates.y),
+			y: data.map((e) => e.time), 
 		}
 	}
-
 	const zGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).z
+			x: data.map((e) => e.realCoordinates.z),
+			y: data.map((e) => e.time),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).z
+			x: data.map((e) => e.virtualCoordinates.z),
+			y: data.map((e) => e.time)
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).z, 
+			x: data.map((e) => e.differenceCoordinates.z),
+			y: data.map((e) => e.time), 
 		}
 	}
 
@@ -130,6 +119,96 @@ getCoordinates().then( (data) => {
 			calcData: zGraphic.calcData
 		})
 })
+
+// getCoordinates}().then( (data) => {
+// 	console.log(data)
+// 	const xGraphic = {
+// 		realData: {
+// 			x: dataMap({data: data, route: realCoordinates}).date,
+// 			y: dataMap({data: data, route: realCoordinates}).x
+// 		},
+// 		virtualData: {
+// 			x: dataMap({data: data, route: virtualCoordinates}).date,
+// 			y: dataMap({data: data, route: virtualCoordinates}).x
+// 		},
+// 		calcData: {
+// 			x: dataMap({data: data, route: differenceCoordinates}).date,
+// 			y: dataMap({data: data, route: differenceCoordinates}).x, 
+// 		}
+// 	}
+
+// 	const yGraphic = {
+// 		realData: {
+// 			x: dataMap({data: data, route: realCoordinates}).date,
+// 			y: dataMap({data: data, route: realCoordinates}).y
+// 		},
+// 		virtualData: {
+// 			x: dataMap({data: data, route: virtualCoordinates}).date,
+// 			y: dataMap({data: data, route: virtualCoordinates}).y
+// 		},
+// 		calcData: {
+// 			x: dataMap({data: data, route: differenceCoordinates}).date,
+// 			y: dataMap({data: data, route: differenceCoordinates}).y, 
+// 		}
+// 	}
+
+// 	const zGraphic = {
+// 		realData: {
+// 			x: dataMap({data: data, route: realCoordinates}).date,
+// 			y: dataMap({data: data, route: realCoordinates}).z
+// 		},
+// 		virtualData: {
+// 			x: dataMap({data: data, route: virtualCoordinates}).date,
+// 			y: dataMap({data: data, route: virtualCoordinates}).z
+// 		},
+// 		calcData: {
+// 			x: dataMap({data: data, route: differenceCoordinates}).date,
+// 			y: dataMap({data: data, route: differenceCoordinates}).z, 
+// 		}
+// 	}
+
+// 	graphics(
+// 		{
+// 			id: 'graphicX',
+// 			name: 'Coordenadas X',
+// 			realData: xGraphic.realData,
+// 			virtualData: xGraphic.virtualData
+// 		})
+// 	graphics(
+// 		{
+// 			id: 'graphicXDifference',
+// 			name: 'Coordenadas D',
+// 			calcData: xGraphic.calcData
+// 		})
+
+// 	graphics(
+// 		{
+// 			id: 'graphicY',
+// 			name: 'Coordenadas Y',
+// 			realData: yGraphic.realData,
+// 			virtualData: yGraphic.virtualData
+// 		})
+// 	graphics(
+// 		{
+// 			id: 'graphicYDifference',
+// 			name: 'Coordenadas D',
+// 			calcData: yGraphic.calcData
+// 		})
+	
+// 	graphics(
+// 		{
+// 			id: 'graphicZ',
+// 			name: 'Coordenadas Z',
+// 			realData: zGraphic.realData,
+// 			virtualData: zGraphic.virtualData
+// 		})
+// 	graphics(
+// 		{
+// 			id: 'graphicZDifference',
+// 			name: 'Coordenadas D',
+// 			calcData: zGraphic.calcData
+// 		})
+// })
 
 
 const graphicOne = document.getElementsByClassName('container_graphics_one');
