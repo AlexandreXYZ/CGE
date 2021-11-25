@@ -53,3 +53,7 @@ function isBicesto(year) {
     }
     return verify;
 }
+
+function convertApiTime(time){
+    return `${time.hour}:${time.min}`
+}

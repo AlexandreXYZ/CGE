@@ -19,44 +19,44 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 PostCoordinatesWithTime().then( (data) => {
 	const xGraphic = {
 		realData: {
-			x: data.map((e) => e.realCoordinates.x),
-			y: data.map((e) => e.time),
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.x),
 		},
 		virtualData: {
-			x: data.map((e) => e.virtualCoordinates.x),
-			y: data.map((e) => e.time)
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.x),
 		},
 		calcData: {
-			x: data.map((e) => e.differenceCoordinates.x),
-			y: data.map((e) => e.time), 
+			x: data.map((e) => convertApiTime(e.time)), 
+			y: data.map((e) => e.differenceCoordinates.x),
 		}
 	}
 	const yGraphic = {
 		realData: {
-			x: data.map((e) => e.realCoordinates.y),
-			y: data.map((e) => e.time),
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.y),
 		},
 		virtualData: {
-			x: data.map((e) => e.virtualCoordinates.y),
-			y: data.map((e) => e.time)
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.y),
 		},
 		calcData: {
-			x: data.map((e) => e.differenceCoordinates.y),
-			y: data.map((e) => e.time), 
+			x: data.map((e) => convertApiTime(e.time)), 
+			y: data.map((e) => e.differenceCoordinates.y),
 		}
 	}
 	const zGraphic = {
 		realData: {
-			x: data.map((e) => e.realCoordinates.z),
-			y: data.map((e) => e.time),
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.z),
 		},
 		virtualData: {
-			x: data.map((e) => e.virtualCoordinates.z),
-			y: data.map((e) => e.time)
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.z),
 		},
 		calcData: {
-			x: data.map((e) => e.differenceCoordinates.z),
-			y: data.map((e) => e.time), 
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.differenceCoordinates.z),
 		}
 	}
 
