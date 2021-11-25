@@ -39,7 +39,7 @@ async function PostCoordinatesWithTime(){
 			},
 			body: JSON.stringify({
 				// 'dateISO': new Date,
-				"dateISO": "2021-11-24T05:39:29.339Z"
+				"dateISO": new Date
 			})
 		});
 		const data = response.json();

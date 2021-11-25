@@ -70,7 +70,7 @@ PostCoordinatesWithTime().then( (data) => {
 	graphics(
 		{
 			id: 'graphicXDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: xGraphic.calcData
 		})
 
@@ -84,7 +84,7 @@ PostCoordinatesWithTime().then( (data) => {
 	graphics(
 		{
 			id: 'graphicYDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: yGraphic.calcData
 		})
 	
@@ -98,7 +98,7 @@ PostCoordinatesWithTime().then( (data) => {
 	graphics(
 		{
 			id: 'graphicZDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: zGraphic.calcData
 		})
 })
