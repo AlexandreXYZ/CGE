@@ -135,3 +135,21 @@ function next(index){
 		return;
 	}
 }
+
+function NavFilterForm(filterOn = false){
+	const form = document.querySelector(".header_filter_form").style; 
+	if(!filterOn){
+		form.opacity = 0;
+		return setTimeout(form.display = 'none', 105);
+	}
+	form.opacity = 1;
+	return setTimeout(form.display = 'flex', 105);
+}
+
+function NavFilterFormCustom(filterOn = false){
+	const form = document.querySelector(".header_filter_form_custom_input").style; 
+	if(!filterOn){
+		return form.opacity = 0;
+	}
+	return form.opacity = 1;
+}
