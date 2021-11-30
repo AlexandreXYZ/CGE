@@ -359,7 +359,7 @@ li::marker{
     border-top: #FF9900 solid .1rem;
     box-sizing: border-box;
     width: 100%;
-    padding-inline: 25%;
+    padding-inline: 35%;
   }
   
 }
@@ -401,4 +401,10 @@ li::marker{
     height: inherit;
   }  
   
+  .header_filter_form_custom_input > input{
+    border-top: #FF9900 solid .1rem;
+    box-sizing: border-box;
+    width: 100%;
+    padding-inline: 20%;
+  }
 }
