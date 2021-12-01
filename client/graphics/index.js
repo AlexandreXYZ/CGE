@@ -16,7 +16,7 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 	Plotly.newPlot(id, data, layout);
 }
 
-PostCoordinatesWithTime().then( (data) => {
+const renderizeGraphic = (date = new Date) => PostCoordinatesWithTime(date).then( (data) => {
 	const xGraphic = {
 		realData: {
 			x: data.map((e) => convertApiTime(e.time)),
@@ -104,6 +104,7 @@ PostCoordinatesWithTime().then( (data) => {
 })
 
 
+
 const graphicOne = document.getElementsByClassName('container_graphics_one');
 const graphicTwo = document.getElementsByClassName('container_graphics_two');
 const graphicButtonRight = document.getElementsByClassName('buttonNextRight');
@@ -121,7 +122,7 @@ function next(index){
 	if (graphicOne[index].style.display === 'block') {
 		graphicOne[index].style.display = 'none';
 		graphicButtonRight[index].style.display = 'none';
-
+		
 		graphicTwo[index].style.display = 'block';
 		graphicButtonLeft[index].style.display = 'block';
 		return;
@@ -140,10 +141,10 @@ function NavFilterForm(filterOn = false){
 	const form = document.querySelector(".header_filter_form").style; 
 	if(!filterOn){
 		form.opacity = 0;
-		return setTimeout(form.display = 'none', 105);
+		return setTimeout(() => form.display = 'none', 105);
 	}
 	form.opacity = 1;
-	return setTimeout(form.display = 'flex', 105);
+	return setTimeout(() => form.display = 'flex', 105);
 }
 
 function NavFilterFormCustom(filterOn = false){
@@ -153,3 +154,19 @@ function NavFilterFormCustom(filterOn = false){
 	}
 	return form.opacity = 1;
 }
+
+	
+
+async function filter(id){
+	const dateTag = document.querySelector(`#${id}`).value;
+
+	switch (dateTag) {
+		case 'today':
+			return await renderizeGraphic(filterDate().today)
+		case 'yesterday':
+			return await renderizeGraphic(filterDate().yesterday)
+		default:
+			return await renderizeGraphic(filterDate(dateTag).custom)
+	}
+}
+renderizeGraphic()
