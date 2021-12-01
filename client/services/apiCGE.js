@@ -29,7 +29,7 @@ async function getCoordinates() {
 	}
 }
 
-async function PostCoordinatesWithTime(){
+async function PostCoordinatesWithTime(date = new Date){
 	try {
 		const response = await fetch(`${urlCGE}/coordinates/time`, {
 			method: 'POST',
@@ -38,8 +38,7 @@ async function PostCoordinatesWithTime(){
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
-				// 'dateISO': new Date,
-				"dateISO": new Date
+				"dateISO": date
 			})
 		});
 		const data = response.json();
