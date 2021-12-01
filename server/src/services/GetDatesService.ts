@@ -47,7 +47,7 @@ export class GetDatesService {
 		const sequentialDay = getSequentialDay(today)
 
 		const time = {
-			hour: dateISO.getHours() + 3,
+			hour: dateISO.getHours(),
 			min: dateISO.getMinutes(),
 			seg: dateISO.getSeconds()
 		}
