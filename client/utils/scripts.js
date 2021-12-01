@@ -57,3 +57,19 @@ function isBicesto(year) {
 function convertApiTime(time){
     return `${time.hour}:${time.min}`
 }
+
+const filterDate = (date = 0) => {
+	const dateToday = new Date;
+	let dateCustom = new Date;
+	
+	if(date){
+		dateCustom = new Date(date);
+		dateCustom.setHours(20) // fix error 
+	}
+
+	return {
+		'today': new Date(dateToday.setDate(dateToday.getDate())),
+		'yesterday': new Date(dateToday.setDate(dateToday.getDate() - 1)),
+		'custom': new Date(dateCustom.setDate(dateCustom.getDate() + (date ? 1 : 0)))
+	}
+}
