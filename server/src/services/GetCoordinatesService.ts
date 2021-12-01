@@ -14,6 +14,7 @@ export class GetCoordinatesService {
 		latitude: number,
 		dateISO: Date
 		): Promise<IAllCoordinates> {
+
 		const getElevationAngle = new GetElevationAngleService()
 		const getAzimuthAngle = new GetAzimuthAngleService()
 		const getVirtualCoordinates = new GetVirtualCoordinatesService()
