@@ -10,106 +10,135 @@
 <html lang='pt-br'>
 
 <head>
-	<title>Gráficos</title>
+	<title>Comparação Entre os Gnom</title>
   
 	<link href='./styles.css' rel='stylesheet'>
   
 	<meta charset='UTF-8'>
 	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
 	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<meta name="description" content="Comparação entre as coordenadas cartesianas de um Gnômon Eletrônico com um Gnômon Virtual">
 
-	<link rel='preconnect' href='https://fonts.googleapis.com'>
-	<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
-	<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>
-	
-	<script src="https://cdn.plot.ly/plotly-latest.min.js" ></script>
+	<script src='https://cdn.plot.ly/plotly-latest.min.js' defer></script>
 
+	<script type='text/javascript' src='../utils/scripts.js' defer></script>
 	<script type='text/javascript' src='../services/apiCGE.js' defer></script>
 	<script type='text/javascript' src='./index.js' defer></script>
 </head>
 
 <body>
-	<div class='container' id='coordX'>
-		<div class='container_header'>
-			<h1 class='container_header_title'>Coordenada X</h1>
-			<p class='container_header_legend'>Gráfico da relação da posição X do sol gerada por ambos os gnômons.</p>
+	<header class="header">
+		<div class="header_filter" >
+			<span class="header_filter_text" onmouseenter="NavFilterForm(true)">Filtro</span>
+			<form class="header_filter_form">
+				<button type="button" class="header_filter_form_input" onclick="NavFilterForm(false), NavFilterFormCustom(false)">Hoje</button>
+				<button type="button" class="header_filter_form_input" onclick="NavFilterForm(false), NavFilterFormCustom(false)">Ontem</button>
+				<fieldset class="header_filter_form_custom">
+					<button type="button" class="header_filter_form_input" onclick="NavFilterFormCustom(true)">Personalizado</button>
+					<div class="header_filter_form_custom_input">
+						<input type="date" class="header_filter_form_input">
+						<button type="button" class="header_filter_form_input" onclick="NavFilterForm(false), NavFilterFormCustom(false)">Concluir</button>
+					</div>
+				</fieldset>
+			</form>
 		</div>
 
-		<div class='container_graphics'>
-			<button  class='buttonNextLeft' id='colorYellow' onclick='next(0)'><</button>
-
-			<div class='container_graphics_one'>
-				<h2 class='container_graphics_title'>
-					Dados dos dois Gnômons
-				</h2>
-				<div id='graphicX' class='graphics'></div>
-			</div>
-			<div class='container_graphics_two'>
-				<h2 class='container_graphics_title'>
-					Dados da diferença 
-				</h2>
-				<div id='graphicXDifference' class='graphics'></div>
+		<nav id='navigation'>
+			<a class='navigation_coord' href='#coordX' title='Coordenada X'>Coordenada X</a>
+			<a class='navigation_coord' href='#coordY' title='Coordenada Y'>Coordenada Y</a>
+			<a class='navigation_coord' href='#coordZ' title='Coordenada Z'>Coordenada Z</a>
+		</nav>
+	</header>
+	<main onclick="NavFilterForm(false), NavFilterFormCustom(false)">
+		<div class='container' id='coordX'>
+			<div class='container_header'>
+				<h1 class='container_header_title'>Coordenada X</h1>
+				<p class='container_header_legend'>Gráfico da relação da posição X do sol gerada por ambos os gnômons.</p>
 			</div>
 
-			<button class='buttonNextRight' id='colorYellow' onclick='next(0)'>></button>
+			<div class='container_graphics'>
+				<button  class='buttonNextLeft' id='colorYellow' onclick='next(0)'><</button>
+
+				<div class='container_graphics_one'>
+					<h2 class='container_graphics_title'>
+						Dados dos dois Gnômons
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicX' class='graphic'></div>
+					</div>
+				</div>
+				<div class='container_graphics_two'>
+					<h2 class='container_graphics_title'>
+						Dados da diferença 
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicXDifference' class='graphic'></div>
+					</div>
+				</div>
+
+				<button class='buttonNextRight' id='colorYellow' onclick='next(0)'>></button>
+			</div>
 		</div>
-	</div>
 
-	<div class='container' id='coordY'>
-		<div class='container_header'>
-			<h1 class='container_header_title'>Coordenada Y</h1>
-			<p class='container_header_legend'>Gráfico da relação da posição Y do sol gerada por ambos os gnômons.</p>
-		</div>
-		<div class='container_graphics container_graphicsY'>
-			<button type='button' class='buttonNextLeft' id='colorYellow' onclick='next(1)'><</button>
-
-			<div class='container_graphics_one'>
-				<h2 class='container_graphics_title'>
-					Dados dos dois Gnômons
-				</h2>
-				<div id='graphicY' class='graphics'></div>
+		<div class='container' id='coordY'>
+			<div class='container_header'>
+				<h1 class='container_header_title'>Coordenada Y</h1>
+				<p class='container_header_legend'>Gráfico da relação da posição Y do sol gerada por ambos os gnômons.</p>
 			</div>
-			<div class='container_graphics_two'>
-				<h2 class='container_graphics_title'>
-					Dados da diferença 
-				</h2>
-				<div id='graphicYDifference' class='graphics'></div>
+			<div class='container_graphics container_graphicsY'>
+				<button type='button' class='buttonNextLeft' id='colorYellow' onclick='next(1)'><</button>
+
+				<div class='container_graphics_one'>
+					<h2 class='container_graphics_title'>
+						Dados dos dois Gnômons
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicY' class='graphic'></div>
+					</div>
+				</div>
+				<div class='container_graphics_two'>
+					<h2 class='container_graphics_title'>
+						Dados da diferença 
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicYDifference' class='graphic'></div>
+					</div>
+				</div>
+
+				<button type='button' class='buttonNextRight' id='colorYellow' onclick='next(1)'>></button>
 			</div>
-
-			<button type='button' class='buttonNextRight' id='colorYellow' onclick='next(1)'>></button>
 		</div>
-	</div>
-	
-	<div class='container' id='coordZ'>
-		<div class='container_header'>
-			<h1 class='container_header_title'>Coordenada Z</h1>
-			<p class='container_header_legend'>Gráfico da relação da posição Z do sol gerada por ambos os gnômons.</p>
-		</div>
-		<div class='container_graphics'>
-			<button  class='buttonNextLeft' id='colorYellow' onclick='next(2)'><</button>
-
-			<div class='container_graphics_one' style='display: flex;'>
-				<h2 class='container_graphics_title'>
-					Dados dos dois Gnômons
-				</h2>
-				<div id='graphicZ' class='graphics'></div>
+		
+		<div class='container' id='coordZ'>
+			<div class='container_header'>
+				<h1 class='container_header_title'>Coordenada Z</h1>
+				<p class='container_header_legend'>Gráfico da relação da posição Z do sol gerada por ambos os gnômons.</p>
 			</div>
-			<div class='container_graphics_two'>
-				<h2 class='container_graphics_title'>
-					Dados da diferença 
-				</h2>
-				<div id='graphicZDifference' class='graphics'></div>
+			<div class='container_graphics'>
+				<button  class='buttonNextLeft' id='colorYellow' onclick='next(2)'><</button>
+
+				<div class='container_graphics_one' style='display: flex;'>
+					<h2 class='container_graphics_title'>
+						Dados dos dois Gnômons
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicZ' class='graphic'></div>
+					</div>
+				</div>
+				<div class='container_graphics_two'>
+					<h2 class='container_graphics_title'>
+						Dados da diferença 
+					</h2>
+					<div class='container_graphics_graphic'>
+						<div id='graphicZDifference' class='graphic'></div>
+					</div>
+				</div>
+
+				<button  class='buttonNextRight' id='colorYellow' onclick='next(2)'>></button>
 			</div>
-
-			<button  class='buttonNextRight' id='colorYellow' onclick='next(2)'>></button>
 		</div>
-	</div>
+	</main>
 
-	<nav id='navigation'>
-		<a class='navigationBall' href='#coordX' title='Coordenada X'></a>
-		<a class='navigationBall' href='#coordY' title='Coordenada Y'></a>
-		<a class='navigationBall' href='#coordZ' title='Coordenada Z'></a>
-	</nav>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 function graphics({id, name, virtualData = [], realData = [], calcData = []}) {	
-  	virtualData.type = realData.type = calcData.type = 'lines';	
+	virtualData.type = realData.type = calcData.type = 'lines';	
 	
-  	realData.name = 'Real';
+	realData.name = 'Real';
 	virtualData.name = 'Virtual';
 	calcData.name = 'Média dos dois';
   
@@ -16,75 +16,47 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 	Plotly.newPlot(id, data, layout);
 }
 
-function graphicsError(id, name, errorMargin) {
-	errorMargin.x.type = errorMargin.y.type = errorMargin.z.type = 'lines';
-	errorMargin.x.name = 'X';
-	errorMargin.y.name = 'Y';
-	errorMargin.z.name = 'Z';
-
-	const data = [errorMargin.x, errorMargin.y, errorMargin.z];
-
-	const layout = {
-		title: name,
-		xaxis: {
-			title: 'Horário'
-		}
-	};
-	Plotly.newPlot(id, data, layout);
-}
-
-function dataMap(route){
-	return {
-			x: route.map((element) => element.x),
-			y: route.map((element) => element.y),
-			z: route.map((element) => element.z),
-			date: route.map((element) => element.date)
-		}
-}
-
-getCoordinates().then( (data) => {
+PostCoordinatesWithTime().then( (data) => {
 	const xGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).x
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.x),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).x
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.x),
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).x, 
+			x: data.map((e) => convertApiTime(e.time)), 
+			y: data.map((e) => e.differenceCoordinates.x),
 		}
 	}
-
 	const yGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).y
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.y),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).y
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.y),
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).y, 
+			x: data.map((e) => convertApiTime(e.time)), 
+			y: data.map((e) => e.differenceCoordinates.y),
 		}
 	}
-
 	const zGraphic = {
 		realData: {
-			x: dataMap(data.coordsReal).date,
-			y: dataMap(data.coordsReal).z
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.realCoordinates.z),
 		},
 		virtualData: {
-			x: dataMap(data.coordsVirtual).date,
-			y: dataMap(data.coordsVirtual).z
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.virtualCoordinates.z),
 		},
 		calcData: {
-			x: dataMap(data.coordsDifference).date,
-			y: dataMap(data.coordsDifference).z, 
+			x: data.map((e) => convertApiTime(e.time)),
+			y: data.map((e) => e.differenceCoordinates.z),
 		}
 	}
 
@@ -98,7 +70,7 @@ getCoordinates().then( (data) => {
 	graphics(
 		{
 			id: 'graphicXDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: xGraphic.calcData
 		})
 
@@ -112,7 +84,7 @@ getCoordinates().then( (data) => {
 	graphics(
 		{
 			id: 'graphicYDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: yGraphic.calcData
 		})
 	
@@ -126,7 +98,7 @@ getCoordinates().then( (data) => {
 	graphics(
 		{
 			id: 'graphicZDifference',
-			name: 'Coordenadas D',
+			name: 'Diferença',
 			calcData: zGraphic.calcData
 		})
 })
@@ -162,4 +134,22 @@ function next(index){
 		graphicButtonRight[index].style.display = 'block';
 		return;
 	}
+}
+
+function NavFilterForm(filterOn = false){
+	const form = document.querySelector(".header_filter_form").style; 
+	if(!filterOn){
+		form.opacity = 0;
+		return setTimeout(form.display = 'none', 105);
+	}
+	form.opacity = 1;
+	return setTimeout(form.display = 'flex', 105);
+}
+
+function NavFilterFormCustom(filterOn = false){
+	const form = document.querySelector(".header_filter_form_custom_input").style; 
+	if(!filterOn){
+		return form.opacity = 0;
+	}
+	return form.opacity = 1;
 }

@@ -20,7 +20,28 @@ async function postCoordinates({sequentialDay, latitude}) {
 
 async function getCoordinates() {
 	try {
-		const response = await fetch(`${urlCGE}/coordinates?num=3`);
+		const response = await fetch(`${urlCGE}/coordinates?num=18`);
+		const data = response.json();
+
+		return data;
+	} catch(err) {
+		console.error(`Error: ${err}`)
+	}
+}
+
+async function PostCoordinatesWithTime(){
+	try {
+		const response = await fetch(`${urlCGE}/coordinates/time`, {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				// 'dateISO': new Date,
+				"dateISO": new Date
+			})
+		});
 		const data = response.json();
 
 		return data;
