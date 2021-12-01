@@ -1,9 +1,31 @@
 ## API Requests
-Parameters with "**?**" are optional (*date* and *time*).
+
+```
+!"coordinate" = {
+	x: number,
+	y: number,
+	z: number
+}
+!"date" = {
+	day: number,
+	month: number,
+	year: number
+}
+!"time" = {
+	hour: number,
+	min: number,
+	seg: number
+}
+```
+
+Parameters with "**!**" are described above (*"coordinate"*, *"date"* and *"time"*). <br>
+Parameters with "**?**" are optional (*"date"* and *"time"*).
 
 Request | Method | Route URI | Query parameters | Body | Response
 --- | --- | --- | --- | --- | ---
-Solar Ecliptic | POST | /ecliptic | --- | { <br> "date?": { <br> &nbsp;&nbsp; "day": number, <br> &nbsp;&nbsp; "month": number, <br> &nbsp;&nbsp; "year": number <br> }, <br> "time?": { <br> &nbsp;&nbsp; "hour": number, <br> &nbsp;&nbsp; "min": number, <br> &nbsp;&nbsp; "seg": number <br> }, <br> "latitude": number <br> } | { <br> "elevationAngle": number, "azimuthAngle": number <br> }
-Virtual Coordinates | POST | /virtualCoordinates | --- | { <br> "date?": { <br> &nbsp;&nbsp; "day": number, <br> &nbsp;&nbsp; "month": number, <br> &nbsp;&nbsp; "year": number <br> }, <br> "time?": { <br> &nbsp;&nbsp; "hour": number, <br> &nbsp;&nbsp; "min": number, <br> &nbsp;&nbsp; "seg": number <br> }, <br> "latitude": number <br> } |  { <br> "x": number, "y": number,<br> "z": number <br> }
-All Coordinates | POST | /coordinates | --- | { <br> "date?": { <br> &nbsp;&nbsp; "day": number, <br> &nbsp;&nbsp; "month": number, <br> &nbsp;&nbsp; "year": number <br> }, <br> "time?": { <br> &nbsp;&nbsp; "hour": number, <br> &nbsp;&nbsp; "min": number, <br> &nbsp;&nbsp; "seg": number <br> }, <br> "latitude": number <br> } |  { <br> "virtualCoordinates": { <br> &nbsp;&nbsp; "x": number, <br> &nbsp;&nbsp; "y": number, <br> &nbsp;&nbsp; "z": number <br> }, <br> "realCoordinates": { <br> &nbsp;&nbsp; "x": number, <br> &nbsp;&nbsp; "y": number, <br> &nbsp;&nbsp; "z": number <br> }, <br> "differenceCoordinates": { <br> &nbsp;&nbsp; "x": number, <br> &nbsp;&nbsp; "y": number, <br> &nbsp;&nbsp; "z": number <br> } <br> }
-Get Coordinates | GET | /coordinates | num: number | --- | { <br> "coordsReal": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; "x_R": number, <br> &nbsp;&nbsp; "y_R": number, <br> &nbsp;&nbsp; "z_R": number, <br> &nbsp;&nbsp; "date": date <br> &nbsp;&nbsp; } <br> ], <br> "coordsVirtual": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; "x_V": number, <br> &nbsp;&nbsp; "y_V": number, <br> &nbsp;&nbsp; "z_V": number, <br> &nbsp;&nbsp; "date": date <br> &nbsp;&nbsp; } <br> ], <br> "coordsDifference": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; "x_Calc": number, <br> &nbsp;&nbsp; "y_Calc": number, <br> &nbsp;&nbsp; "z_Calc": number, <br> &nbsp;&nbsp; "date_Calc": date <br> &nbsp;&nbsp; } <br> ] <br> }
+Solar Ecliptic | POST | /ecliptic | --- | { <br> !"date?", <br> !"time?", <br> "latitude": number <br> } | { <br> "elevationAngle": number, "azimuthAngle": number <br> }
+Virtual Coordinates | POST | /virtualCoordinates | --- | { <br> !"date?", <br> !"time?", <br> "latitude": number <br> } |  { <br> !"coordinate" <br> }
+All Coordinates | POST | /coordinates | --- | { <br> !"date?", <br> !"time?", <br> "latitude": number <br> } |  { <br> "virtualCoordinates": !coordinate, <br> "realCoordinates": !coordinate, <br> "differenceCoordinates": !coordinate <br> }
+Coordinates of a Time Space | POST | /coordinates/time | --- | { <br> "latitude?": number, <br> "longitude?": number, <br> "dateISO": Date <br> } |  [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "virtualCoordinates": !coordinate, <br> &nbsp;&nbsp; "realCoordinates": !coordinate, <br> &nbsp;&nbsp; "differenceCoordinates": !coordinate, <br> &nbsp;&nbsp; "time": !time <br> &nbsp;&nbsp; }, <br> &nbsp;&nbsp; ... <br> ]
+Coordinates of Now | POST | /coordinates/now | --- | { <br> "latitude?": number, <br> "longitude?": number, <br> "dateISO": Date <br> } |  { <br> "virtualCoordinates": !coordinate, <br> "realCoordinates": !coordinate, <br> "differenceCoordinates": !coordinate <br> "time": !time <br> }
+Get Saved Coordinates | GET | /coordinates | num: number | --- | { <br> "coordsReal": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; !"coordinate" <br> &nbsp;&nbsp; "date": Date <br> &nbsp;&nbsp; } <br> ], <br> "coordsVirtual": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; !"coordinate", <br> &nbsp;&nbsp; "date": date <br> &nbsp;&nbsp; } <br> ], <br> "coordsDifference": [ <br> &nbsp;&nbsp; { <br> &nbsp;&nbsp; "id": number, <br> &nbsp;&nbsp; !"coordinate", <br> &nbsp;&nbsp; "date_Calc": date <br> &nbsp;&nbsp; } <br> ] <br> }
