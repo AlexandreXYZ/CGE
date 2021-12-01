@@ -5,41 +5,45 @@ import { GetCoordinatesService } from "./GetCoordinatesService"
 
 export class LoopGetAllCoordinatesService {
 	async execute({timeStart, timeEnd}: IAllTimes, propsCGE: IPropsCGE): Promise<IAllCoordinates[]> {
-		timeStart.min = Math.round(timeStart.min / 3)
-		timeEnd.min = Math.round(timeEnd.min / 3)
-		
-		const getCoordinates = new GetCoordinatesService()
-				
-		var groupedAllCoordinates = []
-		function groupeCoordinates(allCoordinates: IAllCoordinates): void {
-			groupedAllCoordinates.push(allCoordinates)
-		}
-
-		while ((timeStart.hour === timeEnd.hour && timeStart.min != timeEnd.min) || timeStart.hour != timeEnd.hour) {
-			propsCGE.time = {
-				hour: timeStart.hour,
-				min: timeStart.min * 3 + 1,
-				seg: propsCGE.time.seg
+		try {	
+			timeStart.min = Math.round(timeStart.min / 3)
+			timeEnd.min = Math.round(timeEnd.min / 3)
+			
+			const getCoordinates = new GetCoordinatesService()
+					
+			var groupedAllCoordinates = []
+			function groupeCoordinates(allCoordinates: IAllCoordinates): void {
+				groupedAllCoordinates.push(allCoordinates)
 			}
 
-			var allCoordinates = await getCoordinates.execute(
-				propsCGE.sequentialDay,
-				propsCGE.time,
-				propsCGE.latitude,
-				propsCGE.dateISO
-				)
+			while ((timeStart.hour === timeEnd.hour && timeStart.min != timeEnd.min) || timeStart.hour != timeEnd.hour) {
+				propsCGE.time = {
+					hour: timeStart.hour,
+					min: timeStart.min * 3 + 1,
+					seg: propsCGE.time.seg
+				}
 
-			allCoordinates.time = propsCGE.time
+				var allCoordinates = await getCoordinates.execute(
+					propsCGE.sequentialDay,
+					propsCGE.time,
+					propsCGE.latitude,
+					propsCGE.dateISO
+					)
 
-			groupeCoordinates(allCoordinates)
+				allCoordinates.time = propsCGE.time
 
-			timeStart.min += 1
-			if (timeStart.min >= 20) {
-				timeStart.min -= 20
-				timeStart.hour += 1
+				groupeCoordinates(allCoordinates)
+
+				timeStart.min += 1
+				if (timeStart.min >= 20) {
+					timeStart.min -= 20
+					timeStart.hour += 1
+				}
 			}
-		}
 
-		return groupedAllCoordinates
+			return groupedAllCoordinates
+		} catch(err) {
+			throw new Error(err)
+		}
 	}
 }
