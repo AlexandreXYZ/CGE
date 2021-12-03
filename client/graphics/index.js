@@ -6,7 +6,7 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 	calcData.name = 'Média dos dois';
   
 	const data = [virtualData, realData, calcData];
-
+	
 	const layout = {
 		title: name,
 		xaxis: {
@@ -17,6 +17,10 @@ function graphics({id, name, virtualData = [], realData = [], calcData = []}) {
 }
 
 const renderizeGraphic = (date = new Date) => PostCoordinatesWithTime(date).then( (data) => {
+	
+	const download = document.getElementById('download');
+	download.href = `data:text/json;charset=utf-8, ${encodeURIComponent(JSON.stringify(data))}`;
+	
 	const xGraphic = {
 		realData: {
 			x: data.map((e) => convertApiTime(e.time)),
@@ -101,6 +105,7 @@ const renderizeGraphic = (date = new Date) => PostCoordinatesWithTime(date).then
 			name: 'Diferença',
 			calcData: zGraphic.calcData
 		})
+
 })
 
 
