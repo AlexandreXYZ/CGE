@@ -12,7 +12,7 @@ model Gnomon_V {
 	x			Float
 	y			Float
 	z			Float
-	date		DateTime @default(now())
+	date		DateTime
 
 	@@map("gnomon_V")
 }
@@ -22,7 +22,7 @@ model Gnomon_R {
 	x			Float
 	y			Float
 	z			Float
-	date		DateTime @default(now())
+	date		DateTime
 
 	@@map("gnomon_R")
 }
@@ -32,7 +32,7 @@ model Calc_Dados {
 	x			Float
 	y			Float
 	z			Float
-	date		DateTime @default(now())
+	date		DateTime
 
 	@@map("calc_Dados")
 }

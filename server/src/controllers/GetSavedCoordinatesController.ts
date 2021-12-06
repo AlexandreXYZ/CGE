@@ -3,7 +3,7 @@ import { GetSavedCoordinatesService } from "../services/GetSavedCoordinatesServi
 
 export class GetSavedCoordinatesController {
     async handle(request: Request, response: Response) {
-        const { num } = request.query
+        const { num = 5 } = request.query
 
         const getSavedCoordinates = new GetSavedCoordinatesService()
 

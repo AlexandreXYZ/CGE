@@ -27,7 +27,7 @@ export class GetCoordinatesService {
 		const virtualCoordinates = getVirtualCoordinates.execute(elevationAngle, azimuthAngle)
 		const realCoordinates = getRealCoordinatesService.execute(virtualCoordinates)
 		const differenceCoordinates = getDifferenceCoordinatesService.execute(virtualCoordinates, realCoordinates)
-		// await saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, dateISO)
+		await saveCoordinatesService.execute(virtualCoordinates, realCoordinates, differenceCoordinates, dateISO)
 
 		const allCoordinates: IAllCoordinates = {
 			virtualCoordinates: virtualCoordinates,
