@@ -44,9 +44,27 @@ function fixLongitude(longitude, scheduleOriginal) {
 }
 
 function getHourAngle(hour, min) {
-    const min = min / 60;
-    const hour = (min + hour) - 12;
+    min = min / 60;
+    hour = (min + hour) - 12;
 
     const angle = hour * 15;
     return toRadian(angle);
+}
+
+function toCartesian(elevation, azimuth) {
+    const r = 1;
+    cartesianCoords = {
+        x: r * Math.cos(elevation) * Math.sin(azimuth),
+        y: r * Math.cos(elevation) * Math.cos(azimuth),
+        z: r * Math.sin(elevation)
+    }
+
+    return cartesianCoords;
+}
+function getSimulatedData(coordsGnomonVirtual) {
+    return {
+        x: coordsGnomonVirtual.x + coordsGnomonVirtual.x * (Math.random() / 10),
+        y: coordsGnomonVirtual.y + coordsGnomonVirtual.y * (Math.random() / 10),
+        z: coordsGnomonVirtual.z + coordsGnomonVirtual.z * (Math.random() / 10)
+    }
 }

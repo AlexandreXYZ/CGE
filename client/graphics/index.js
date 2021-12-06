@@ -105,7 +105,6 @@ const renderizeGraphic = (date = new Date) => PostCoordinatesWithTime(date).then
 			name: 'Diferença',
 			calcData: zGraphic.calcData
 		})
-
 })
 
 
