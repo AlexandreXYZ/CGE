@@ -21,7 +21,7 @@ export class GetCoordinatesWithTimeController {
 			const getSunsetService = new GetSunsetService()
 			const loopGetAllCoordinatesService = new LoopGetAllCoordinatesService()
 
-			const { sequentialDay, time } = getDatesService.localDate(dateISO)
+			const { sequentialDay, date, time } = getDatesService.localDate(dateISO)
 			const sunrise = getSunriseService.execute(latitude, longitude, sequentialDay)
 			const sunset = getSunsetService.execute(latitude, longitude, sequentialDay)
 			const solarCicle = isDay(time, sunrise, sunset)
@@ -36,7 +36,7 @@ export class GetCoordinatesWithTimeController {
 					sequentialDay,
 					latitude,
 					time,
-					dateISO
+					date
 				})
 			} else {
 				if (solarCicle === "nigth") {
@@ -48,7 +48,7 @@ export class GetCoordinatesWithTimeController {
 						sequentialDay,
 						latitude,
 						time,
-						dateISO
+						date
 					})
 				} else {
 					if (solarCicle === "dusk") {

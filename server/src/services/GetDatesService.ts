@@ -2,7 +2,6 @@ import { IDate } from "../interface/IDate"
 import { ITime } from "../interface/ITime"
 import { getSequentialDay } from "../utils/getSequentialDay"
 
-// Tem muita gambiarra nesse arquivo, pois o Node se buga inteiro quando o assunto é data
 export class GetDatesService {
 	execute(date: IDate, time: ITime): { sequentialDay: number; dateISO: Date } {
 		if (!time.seg) {
@@ -11,13 +10,13 @@ export class GetDatesService {
 
 		const sequentialDay = getSequentialDay(date)
 
-		const dateISO = new Date(date.year, date.month - 1, date.day, time.hour - 2, time.min, time.seg)
+		const dateISO = new Date(date.year, date.month - 1, date.day, time.hour, time.min, time.seg)
 
 		return { sequentialDay: sequentialDay, dateISO: dateISO }
 	}
 
 	now(): { dateISO: Date; sequentialDay: number; time: ITime } {
-		var dateISO = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Chicago"}))
+		var dateISO = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}))
 
 		const today: IDate = {
 			day: dateISO.getDate() +1,
@@ -28,7 +27,7 @@ export class GetDatesService {
 		const sequentialDay = getSequentialDay(today)
 		
 		const time: ITime = {
-			hour: dateISO.getHours() + 3,
+			hour: dateISO.getHours(),
 			min: dateISO.getMinutes(),
 			seg: dateISO.getSeconds()
 		}
@@ -36,7 +35,7 @@ export class GetDatesService {
 		return { dateISO: dateISO, sequentialDay: sequentialDay, time: time }
 	}
 
-	localDate(dateISO: Date): { sequentialDay: number, time: ITime } {
+	localDate(dateISO: Date): { sequentialDay: number, date: IDate, time: ITime } {
 		dateISO = new Date(dateISO)
 		const today: IDate = {
 			day: dateISO.getDate(),
@@ -52,6 +51,6 @@ export class GetDatesService {
 			seg: dateISO.getSeconds()
 		}
 
-		return { sequentialDay: sequentialDay, time: time }		
+		return { sequentialDay: sequentialDay, date: today, time: time }		
 	}
 }

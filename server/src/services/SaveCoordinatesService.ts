@@ -4,12 +4,12 @@ import prismaClient from "../prisma"
 export class SaveCoordinatesService {
 	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates, date: Date) {
 		try {
-			const { id } = await prismaClient.gnomon_V.findFirst({
+			const datePreExistent = await prismaClient.gnomon_V.findFirst({
 				where: {
 					date: date
 				}
 			})
-			if (id) return
+			if (datePreExistent) return
 
 			await prismaClient.gnomon_V.create({
 				data: {

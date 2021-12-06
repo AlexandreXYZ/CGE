@@ -5,7 +5,6 @@ import { GetDatesService } from "../services/GetDatesService"
 export class GetCoordinatesNowController {
 	async handle(request: Request, response: Response) {
 		try {
-			
 			const { dateISO } = request.body
 			
 			const latitude = -29.101912006

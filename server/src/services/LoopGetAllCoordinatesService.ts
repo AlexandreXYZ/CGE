@@ -2,6 +2,7 @@ import { IAllCoordinates } from "../interface/ICoordinates"
 import { IPropsCGE } from "../interface/IPropsCGE"
 import { IAllTimes } from "../interface/ITime"
 import { GetCoordinatesService } from "./GetCoordinatesService"
+import { GetDatesService } from "./GetDatesService"
 
 export class LoopGetAllCoordinatesService {
 	async execute({timeStart, timeEnd}: IAllTimes, propsCGE: IPropsCGE): Promise<IAllCoordinates[]> {
@@ -10,6 +11,7 @@ export class LoopGetAllCoordinatesService {
 			timeEnd.min = Math.round(timeEnd.min / 3)
 			
 			const getCoordinates = new GetCoordinatesService()
+			const getDates = new GetDatesService()
 					
 			var groupedAllCoordinates = []
 			function groupeCoordinates(allCoordinates: IAllCoordinates): void {
@@ -23,11 +25,12 @@ export class LoopGetAllCoordinatesService {
 					seg: propsCGE.time.seg
 				}
 
+				const { dateISO } = getDates.execute(propsCGE.date, propsCGE.time)
 				var allCoordinates = await getCoordinates.execute(
 					propsCGE.sequentialDay,
 					propsCGE.time,
 					propsCGE.latitude,
-					propsCGE.dateISO
+					dateISO
 					)
 
 				allCoordinates.time = propsCGE.time

@@ -15,6 +15,10 @@ export function isDay(time: ITime, sunrise: ITime, sunset: ITime): string {
 					return "dusk"
 				}
 			} else {
+				if (time.hour < sunrise.hour) {
+
+					return "dusk"
+				}
 				if (time.hour === sunset.hour) {
 					if (time.min < sunset.min) {
 						
@@ -24,6 +28,7 @@ export function isDay(time: ITime, sunrise: ITime, sunset: ITime): string {
 						return "nigth"
 					}
 				} else {
+
 					return "nigth"
 				}
 			}		
