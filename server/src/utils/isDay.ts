@@ -1,7 +1,7 @@
 import { ITime } from "../interface/ITime"
 
 export function isDay(time: ITime, sunrise: ITime, sunset: ITime): string {
-	if (time.hour > 0 && time.hour < 24) {
+	if (time.hour >= 0 && time.hour < 24) {
 		if (time.hour > sunrise.hour && time.hour < sunset.hour) {
 
 			return "day"
