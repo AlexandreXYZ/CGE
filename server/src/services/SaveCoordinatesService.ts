@@ -1,15 +1,23 @@
+import { mySqlCoordinatesRepository } from "../infra/repository/mySqlCoordinatesRepository"
 import { ICoordinates } from "../interface/ICoordinates"
 import prismaClient from "../prisma"
 
 export class SaveCoordinatesService {
 	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates, date: Date) {
 		try {
+			const mySqlRepository = new mySqlCoordinatesRepository()
+
+			await mySqlRepository.saveCoordinates(realCoordinates, date)
+
+			/*
 			const datePreExistent = await prismaClient.gnomon_V.findFirst({
 				where: {
 					date: date
 				}
 			})
 			if (datePreExistent) return
+
+			
 
 			await prismaClient.gnomon_V.create({
 				data: {
@@ -37,6 +45,7 @@ export class SaveCoordinatesService {
 					date: date
 				}
 			})
+			*/
 		} catch(err) {
 			err = {
 				statusCode: 500,
