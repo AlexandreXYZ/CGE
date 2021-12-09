@@ -1,61 +1,24 @@
-import { mySqlCoordinatesRepository } from "../infra/repository/mySqlCoordinatesRepository"
+import { mySqlGetCoordinatesRepository } from "../infra/repository/mySqlGetCoordinatesRepository"
+import { mySqlSaveCoordinatesRepository } from "../infra/repository/mySqlSaveCoordinatesRepository"
 import { ICoordinates } from "../interface/ICoordinates"
-import prismaClient from "../prisma"
+import { GetDatesService } from "./GetDatesService"
 
 export class SaveCoordinatesService {
-	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates, date: Date) {
-		try {
-			const mySqlRepository = new mySqlCoordinatesRepository()
+	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates, date: Date): Promise<void> {
+		date = new Date(date)
 
-			await mySqlRepository.saveCoordinates(realCoordinates, date)
+		const saveCoordinatesRepository = new mySqlSaveCoordinatesRepository(date)
+		const getCoordinatesRepository = new mySqlGetCoordinatesRepository()
+		const datesService = new GetDatesService()
+		
+		const { localDateISO } = datesService.localDate(date)
 
-			/*
-			const datePreExistent = await prismaClient.gnomon_V.findFirst({
-				where: {
-					date: date
-				}
-			})
-			if (datePreExistent) return
-
-			
-
-			await prismaClient.gnomon_V.create({
-				data: {
-					x: realCoordinates.x,
-					y: realCoordinates.y,
-					z: realCoordinates.z,
-					date: date
-				}
-			})
-
-			await prismaClient.gnomon_R.create({
-				data: {
-					x: virtualCoordinates.x,
-					y: virtualCoordinates.y,
-					z: virtualCoordinates.z,
-					date: date
-				}
-			})
-
-			await prismaClient.calc_Dados.create({
-				data: {
-					x: differenceCoordinates.x,
-					y: differenceCoordinates.y,
-					z: differenceCoordinates.z,
-					date: date
-				}
-			})
-			*/
-		} catch(err) {
-			err = {
-				statusCode: 500,
-				message: "Error when saving in database!",
-				stack: "SaveCoordinatesService.ts",
-				error: err,
-			}
-			
-			console.error(err)
-			throw new Error(err)
+		const datePreExistent = await getCoordinatesRepository.checkDate(localDateISO)
+		
+		if (!datePreExistent) {
+			await saveCoordinatesRepository.gnomon_R(realCoordinates)
+			await saveCoordinatesRepository.gnomon_V(virtualCoordinates)
+			await saveCoordinatesRepository.calc_Dados(differenceCoordinates)
 		}
 	}
 }

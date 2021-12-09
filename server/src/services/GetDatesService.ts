@@ -35,7 +35,7 @@ export class GetDatesService {
 		return { dateISO: dateISO, sequentialDay: sequentialDay, time: time }
 	}
 
-	localDate(dateISO: Date): { sequentialDay: number, date: IDate, time: ITime } {
+	localDate(dateISO: Date): { sequentialDay: number, date: IDate, time: ITime, localDateISO: Date } {
 		dateISO = new Date(dateISO)
 		const today: IDate = {
 			day: dateISO.getDate(),
@@ -51,6 +51,8 @@ export class GetDatesService {
 			seg: dateISO.getSeconds()
 		}
 
-		return { sequentialDay: sequentialDay, date: today, time: time }		
+		const localDateISO = new Date(dateISO.getFullYear(), dateISO.getMonth(), dateISO.getDate(), dateISO.getHours() - 3, dateISO.getMinutes(), dateISO.getSeconds())
+
+		return { sequentialDay: sequentialDay, date: today, time: time, localDateISO: localDateISO }		
 	}
 }
