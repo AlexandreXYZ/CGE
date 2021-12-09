@@ -24,4 +24,24 @@ export class mySqlGetCoordinatesRepository {
 			throw new Error(err)
 		}
 	}
+
+	async getCoordinates(table: string, num: number) {
+		try {
+			const [ rows ] = await pool.query(` SELECT id, x, y, z, date FROM ${table} LIMIT ${num} `)
+
+			return rows
+		} catch (err) {
+			err = {
+				statusCode: 500,
+				message: "Error when getting data from database!",
+				code: err.code,
+				stack: "mySqlGetCoordinatesRepository.ts",
+				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : null,
+				error: err,
+			}
+			
+			console.error(err)
+			throw new Error(err)
+		}
+	}
 }
