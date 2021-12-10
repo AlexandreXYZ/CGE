@@ -8,14 +8,18 @@ export function isBicesto(year: number): boolean {
             var step3 = year % 400
 
             if (step3 == 0) {
+
                 return true
             } else {
+
                 return false
             }
         } else {
+
             return true
         }
     } else {
+		
         return false
     }
 }

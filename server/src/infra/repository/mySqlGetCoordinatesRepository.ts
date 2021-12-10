@@ -1,4 +1,4 @@
-import { pool } from '../mySqlPoolConnection'
+import { pool } from "../mySqlPoolConnection"
 
 export class mySqlGetCoordinatesRepository {
 

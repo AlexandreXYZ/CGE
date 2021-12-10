@@ -1,5 +1,5 @@
-import { ICoordinates } from '../../interface/ICoordinates'
-import { pool } from '../mySqlPoolConnection'
+import { ICoordinates } from "../../interface/ICoordinates"
+import { pool } from "../mySqlPoolConnection"
 
 export class mySqlSaveCoordinatesRepository {
 	private date: Date
@@ -21,7 +21,7 @@ export class mySqlSaveCoordinatesRepository {
 				message: "Error when saving in database! (gnomon_R)",
 				code: err.code,
 				stack: "mySqlSaveCoordinatesRepository.ts",
-				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : '',
+				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : null,
 				error: err,
 			}
 			
@@ -44,7 +44,7 @@ export class mySqlSaveCoordinatesRepository {
 				message: "Error when saving in database! (gnomon_V)",
 				code: err.code,
 				stack: "mySqlSaveCoordinatesRepository.ts",
-				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : '',
+				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : null,
 				error: err,
 			}
 			
@@ -67,7 +67,7 @@ export class mySqlSaveCoordinatesRepository {
 				message: "Error when saving in database! (calc_Dados)",
 				code: err.code,
 				stack: "mySqlSaveCoordinatesRepository.ts",
-				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : '',
+				hint: err.code == "ECONNREFUSED" ? "Probably MySQL is off!" : null,
 				error: err,
 			}
 			

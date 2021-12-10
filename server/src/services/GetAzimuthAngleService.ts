@@ -16,7 +16,7 @@ export class GetAzimuthAngleService {
 
 		azimuthAngle = Math.acos(azimuthAngle)
 		if (hourAngle > 0) {
-			azimuthAngle = toRadian(360) - azimuthAngle;
+			azimuthAngle = toRadian(360) - azimuthAngle
 		}
 
 		azimuthAngle = parseFloat(azimuthAngle.toFixed(5))

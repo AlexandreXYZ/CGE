@@ -1,4 +1,4 @@
-import { IDate } from "./IDate";
+import { IDate } from "./IDate"
 import { ITime } from "./ITime"
 
 export interface IUserInput {

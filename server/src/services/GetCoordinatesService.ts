@@ -1,5 +1,5 @@
-import { IAllCoordinates } from "../interface/ICoordinates"
 import { ITime } from "../interface/ITime"
+import { IAllCoordinates } from "../interface/ICoordinates"
 import { GetAzimuthAngleService } from "./GetAzimuthAngleService"
 import { GetDifferenceCoordinatesService } from "./GetDifferenceCoordinatesService"
 import { GetElevationAngleService } from "./GetElevationAngleService"

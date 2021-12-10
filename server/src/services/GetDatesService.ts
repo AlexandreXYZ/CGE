@@ -15,26 +15,6 @@ export class GetDatesService {
 		return { sequentialDay: sequentialDay, dateISO: dateISO }
 	}
 
-	now(): { dateISO: Date; sequentialDay: number; time: ITime } {
-		var dateISO = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Sao_Paulo"}))
-
-		const today: IDate = {
-			day: dateISO.getDate() +1,
-			month: dateISO.getMonth() + 1,
-			year: dateISO.getFullYear()
-		}
-		
-		const sequentialDay = getSequentialDay(today)
-		
-		const time: ITime = {
-			hour: dateISO.getHours(),
-			min: dateISO.getMinutes(),
-			seg: dateISO.getSeconds()
-		}
-
-		return { dateISO: dateISO, sequentialDay: sequentialDay, time: time }
-	}
-
 	localDate(dateISO: Date): { sequentialDay: number, date: IDate, time: ITime, localDateISO: Date } {
 		dateISO = new Date(dateISO)
 		const today: IDate = {

@@ -4,7 +4,7 @@ import { ICoordinates } from "../interface/ICoordinates"
 import { GetDatesService } from "./GetDatesService"
 
 export class SaveCoordinatesService {
-	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates, date: Date): Promise<void> {
+	async execute(realCoordinates: ICoordinates, virtualCoordinates: ICoordinates, differenceCoordinates: ICoordinates, date: Date): Promise<void> {
 		date = new Date(date)
 
 		const saveCoordinatesRepository = new mySqlSaveCoordinatesRepository(date)

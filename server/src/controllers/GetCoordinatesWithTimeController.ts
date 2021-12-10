@@ -64,7 +64,7 @@ export class GetCoordinatesWithTimeController {
 			return response.json(groupedAllCoordinates)
 		}
 		catch(err) {
-			throw Error()			
+			throw Error()
 		}
 	}
 }
