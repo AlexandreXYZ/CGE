@@ -1,4 +1,4 @@
-# CGE - Calibrador de Gnômon Eletrônico
+# CGE - Comparador de Gnômon Eletrônico
 Esse projeto consiste em criar um programa que seja capaz de gerar dados perfeitos de um gnômon, sem nenhuma interferência externa. Além de comparar estes dados gerados artificalmente com os dados de um gnômon que existe, e então produzir gráficos que informe o quanto está descalibrado.
 
 Para auxiliar no entendimento do projeto, decidiu-se criar este arquivo para explicar alguns conceitos de forma enxuta e sucinta.
